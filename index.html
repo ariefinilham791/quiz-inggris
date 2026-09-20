@@ -1,999 +1,802 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Persiapan Ujian — Business English</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bank Soal Quiz 3 — Business English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#0f1b33;
-  --navy2:#16233f;
-  --amber:#e0a63a;
-  --amber-soft:#f3d79a;
-  --paper:#f6f3ea;
-  --ink:#1c2333;
-  --muted:#6b7280;
-  --green:#2f8f5b;
-  --red:#c1473b;
+  --paper:#f6f5f1;
   --card:#ffffff;
-  --border:#e4e0d3;
+  --ink:#16222b;
+  --ink-soft:#5b6b74;
+  --line:#e2ded5;
+  --accent:#0f6b5c;
+  --accent-soft:#e3f0ec;
+  --ok:#14684f;
+  --ok-bg:#e4f2ec;
+  --no:#a8322b;
+  --no-bg:#fbe9e7;
+  --note:#8a6a12;
+  --note-bg:#fbf2dd;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
 }
-*{box-sizing:border-box;}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#10181d;
+    --card:#172128;
+    --ink:#e8eef0;
+    --ink-soft:#9aabb3;
+    --line:#26333b;
+    --accent:#4fd1b5;
+    --accent-soft:#16302c;
+    --ok:#6fe0b6;
+    --ok-bg:#12312a;
+    --no:#ff9e94;
+    --no-bg:#3a1e1c;
+    --note:#f0cf80;
+    --note-bg:#312917;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#10181d; --card:#172128; --ink:#e8eef0; --ink-soft:#9aabb3; --line:#26333b;
+  --accent:#4fd1b5; --accent-soft:#16302c; --ok:#6fe0b6; --ok-bg:#12312a;
+  --no:#ff9e94; --no-bg:#3a1e1c; --note:#f0cf80; --note-bg:#312917;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:calc(96px + env(safe-area-inset-top,0px));-webkit-text-size-adjust:100%}
 body{
-  margin:0;
-  font-family:'Georgia','Times New Roman',serif;
-  background:var(--paper);
-  color:var(--ink);
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  font-size:16px;line-height:1.55;
 }
-header{
-  background:linear-gradient(135deg,var(--navy),var(--navy2));
-  color:#fff;
-  padding:22px 16px 18px;
-  text-align:center;
-  border-bottom:4px solid var(--amber);
+.wrap{max-width:620px;margin:0 auto;padding:0 14px 90px}
+
+header.top{
+  position:sticky;top:0;z-index:20;background:var(--paper);
+  padding-top:env(safe-area-inset-top,0px);
+  border-bottom:1px solid var(--line);
 }
-header h1{
-  margin:0 0 4px;
-  font-size:1.5rem;
-  letter-spacing:0.5px;
+.brand{max-width:620px;margin:0 auto;padding:12px 14px 6px;display:flex;align-items:center;gap:10px}
+.brand h1{font-size:17px;font-weight:800;margin:0;letter-spacing:-.01em}
+.brand p{margin:0;font-size:12.5px;color:var(--ink-soft)}
+.theme-btn{margin-left:auto;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);
+  border-radius:999px;padding:6px 11px;font:inherit;font-size:12.5px;cursor:pointer}
+nav.tabs{max-width:620px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:4px 14px 10px;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{
+  flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);
+  font:inherit;font-size:13.5px;font-weight:600;padding:8px 13px;border-radius:999px;cursor:pointer;
 }
-header p{
-  margin:0;
-  font-family:Arial,sans-serif;
-  font-size:0.85rem;
-  color:var(--amber-soft);
+nav.tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+
+.intro{margin:18px 0 6px}
+.intro h2{font-size:22px;margin:0 0 4px;letter-spacing:-.02em}
+.intro p{margin:0;color:var(--ink-soft);font-size:14.5px}
+
+.scorebar{
+  position:sticky;top:calc(96px + env(safe-area-inset-top,0px));z-index:10;
+  display:flex;align-items:center;gap:10px;margin:14px 0 18px;
+  background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;
 }
-nav{
-  padding:14px 10px 10px;
-  background:var(--navy2);
-}
-.nav-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  justify-content:center;
-}
-.nav-row.part-row{
-  margin-top:10px;
-  padding-top:10px;
-  border-top:1px solid rgba(255,255,255,0.15);
-}
-nav button{
-  font-family:Arial,sans-serif;
-  font-size:0.85rem;
-  padding:8px 14px;
-  border-radius:20px;
-  border:1px solid rgba(255,255,255,0.25);
-  background:transparent;
-  color:#fff;
-  cursor:pointer;
-  transition:all .15s;
-}
-nav button.active{
-  background:var(--amber);
-  color:var(--navy);
-  border-color:var(--amber);
-  font-weight:bold;
-}
-nav button:hover{ background:rgba(224,166,58,0.35); }
-main{
-  max-width:820px;
-  margin:0 auto;
-  padding:20px 14px 60px;
-}
-.section-title{
-  font-size:1.2rem;
-  margin:26px 0 12px;
-  color:var(--navy);
-  border-bottom:2px solid var(--amber);
-  padding-bottom:6px;
-}
-.scoreboard{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:12px 16px;
-  margin-bottom:14px;
-  font-family:Arial,sans-serif;
-  font-size:0.9rem;
-  flex-wrap:wrap;
-  gap:8px;
-}
-.scoreboard b{ color:var(--navy); }
-.badge{
-  display:inline-block;
-  font-family:Arial,sans-serif;
-  font-size:0.7rem;
-  font-weight:bold;
-  padding:2px 9px;
-  border-radius:12px;
-  color:#fff;
-  text-transform:uppercase;
-  letter-spacing:0.5px;
-}
-.badge.easy{ background:var(--green); }
-.badge.medium{ background:var(--amber); color:var(--navy);}
-.badge.hard{ background:var(--red); }
-.q-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:16px 18px;
-  margin-bottom:16px;
-  box-shadow:0 2px 4px rgba(15,27,51,0.05);
-}
-.q-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:8px;
-}
-.q-num{ font-family:Arial,sans-serif; font-size:0.8rem; color:var(--muted); }
-.q-text{ font-size:1.02rem; margin:6px 0 12px; line-height:1.5; }
+.scorebar .track{flex:1;height:7px;border-radius:99px;background:var(--line);overflow:hidden}
+.scorebar .fill{height:100%;width:0;background:var(--accent);transition:width .25s ease}
+.scorebar b{font-size:13.5px;font-weight:700;white-space:nowrap}
+.scorebar span{font-size:12.5px;color:var(--ink-soft);white-space:nowrap}
+
+.q{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 14px 12px;margin-bottom:12px}
+.q .num{font-size:12.5px;font-weight:700;color:var(--accent);margin-bottom:6px}
+.q .txt{white-space:pre-line;font-size:15.5px;margin-bottom:10px}
 .opt{
-  display:block;
-  width:100%;
-  text-align:left;
-  font-family:Arial,sans-serif;
-  font-size:0.92rem;
-  padding:10px 12px;
-  margin-bottom:8px;
-  border-radius:8px;
-  border:1px solid var(--border);
-  background:#fbfaf6;
-  cursor:pointer;
-  transition:all .12s;
+  display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;
+  border:1px solid var(--line);background:transparent;color:var(--ink);
+  font:inherit;font-size:15px;padding:10px 12px;border-radius:12px;margin-bottom:7px;cursor:pointer;
 }
-.opt:hover{ border-color:var(--amber); }
-.opt.correct{ background:#e6f4ec; border-color:var(--green); color:#1c5c3a; font-weight:bold; }
-.opt.wrong{ background:#fbe9e7; border-color:var(--red); color:#8c3126; font-weight:bold; }
-.opt.disabled{ pointer-events:none; opacity:0.85; }
-.explain{
-  margin-top:10px;
-  padding:10px 12px;
-  border-radius:8px;
-  font-family:Arial,sans-serif;
-  font-size:0.88rem;
-  line-height:1.5;
-  display:none;
-}
-.explain.show{ display:block; }
-.explain.ok{ background:#eefaf1; border:1px solid var(--green); color:#1c5c3a;}
-.explain.no{ background:#fdefee; border:1px solid var(--red); color:#8c3126;}
-.email-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:16px 18px;
-  margin-bottom:20px;
-}
-.email-draft{
-  background:#fbfaf6;
-  border:1px dashed #c9c2a8;
-  border-radius:8px;
-  padding:12px 14px;
-  font-family:'Courier New',monospace;
-  font-size:0.85rem;
-  white-space:pre-wrap;
-  margin:10px 0 14px;
-  line-height:1.6;
-}
-.email-card textarea{
-  width:100%;
-  min-height:130px;
-  font-family:Arial,sans-serif;
-  font-size:0.9rem;
-  padding:10px;
-  border-radius:8px;
-  border:1px solid var(--border);
-  resize:vertical;
-}
-.btn{
-  font-family:Arial,sans-serif;
-  font-size:0.85rem;
-  padding:9px 16px;
-  border-radius:8px;
-  border:none;
-  background:var(--navy);
-  color:#fff;
-  cursor:pointer;
-  margin-top:10px;
-  margin-right:8px;
-}
-.btn:hover{ background:var(--navy2); }
-.btn.secondary{ background:var(--amber); color:var(--navy); }
-.model-answer{
-  display:none;
-  margin-top:12px;
-  background:#eefaf1;
-  border:1px solid var(--green);
-  border-radius:8px;
-  padding:12px 14px;
-  font-family:Arial,sans-serif;
-  font-size:0.88rem;
-  line-height:1.6;
-  white-space:pre-wrap;
-}
-.model-answer.show{ display:block; }
-.checklist{
-  font-family:Arial,sans-serif;
-  font-size:0.85rem;
-  margin:10px 0 0;
-  padding-left:18px;
-  color:var(--muted);
-}
-.cheat-tabs{ display:flex; gap:8px; margin-bottom:14px; }
-.cheat-tabs button{
-  font-family:Arial,sans-serif;
-  font-size:0.85rem;
-  padding:8px 14px;
-  border-radius:8px;
-  border:1px solid var(--border);
-  background:var(--card);
-  cursor:pointer;
-}
-.cheat-tabs button.active{ background:var(--navy); color:#fff; border-color:var(--navy); }
-.cheat-panel{ display:none; }
-.cheat-panel.show{ display:block; }
-details{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:10px;
-  margin-bottom:10px;
-  padding:10px 14px;
-}
-details summary{
-  cursor:pointer;
-  font-weight:bold;
-  color:var(--navy);
-  font-family:Arial,sans-serif;
-}
-details p, details ul{
-  font-family:Arial,sans-serif;
-  font-size:0.9rem;
-  line-height:1.6;
-  color:#333;
-}
-.finish-box{
-  background:var(--navy);
-  color:#fff;
-  border-radius:12px;
-  padding:20px;
-  text-align:center;
-  margin-top:20px;
-}
-.finish-box h3{ margin:0 0 6px; color:var(--amber-soft); }
-.hidden{ display:none; }
-footer{
-  text-align:center;
-  font-family:Arial,sans-serif;
-  font-size:0.75rem;
-  color:var(--muted);
-  padding:20px;
-}
+.opt:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.opt .k{font-weight:700;color:var(--ink-soft);min-width:15px}
+.opt.pick-ok{background:var(--ok-bg);border-color:var(--ok);color:var(--ok);font-weight:600}
+.opt.pick-ok .k,.opt.pick-no .k{color:inherit}
+.opt.pick-no{background:var(--no-bg);border-color:var(--no);color:var(--no);font-weight:600}
+.opt.show-ok{border-color:var(--ok);color:var(--ok)}
+.opt[disabled]{cursor:default;opacity:1}
+.exp{display:none;margin-top:8px;background:var(--accent-soft);border-radius:12px;padding:10px 12px;font-size:14px}
+.exp.on{display:block}
+.exp b{color:var(--accent)}
+
+.done{display:none;background:var(--card);border:1px solid var(--accent);border-radius:16px;padding:16px;text-align:center;margin-top:6px}
+.done.on{display:block}
+.done .big{font-size:30px;font-weight:800;letter-spacing:-.02em}
+.rev{text-align:left;margin-top:16px;border-top:1px solid var(--line);padding-top:14px}
+.rev h4{margin:0 0 8px;font-size:14.5px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.chip{background:var(--no-bg);color:var(--no);border-radius:999px;padding:5px 11px;font-size:13px;font-weight:600}
+.chip.good{background:var(--ok-bg);color:var(--ok)}
+.miss{border:1px solid var(--line);border-radius:12px;padding:11px 12px;margin-bottom:9px}
+.miss .tag{font-size:12px;font-weight:700;color:var(--no);margin-bottom:5px}
+.miss .qt{white-space:pre-line;font-size:14.5px;margin-bottom:7px}
+.miss .row{font-size:14px;margin-bottom:3px}
+.miss .row .lbl{color:var(--ink-soft)}
+.miss .you{color:var(--no);font-weight:600}
+.miss .key{color:var(--ok);font-weight:600}
+.miss .why{margin-top:7px;font-size:14px;background:var(--accent-soft);border-radius:10px;padding:9px 11px}
+.actions{display:flex;gap:8px;margin:14px 0 4px}
+.actions.three button{font-size:13.5px;padding:10px 6px}
+.actions button{flex:1;border:1px solid var(--line);background:var(--card);color:var(--ink);
+  font:inherit;font-size:14px;font-weight:600;padding:11px;border-radius:12px;cursor:pointer}
+.actions button.main{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+
+/* cheatsheet */
+.cs h3{font-size:16px;margin:0;padding:14px 14px;cursor:pointer;display:flex;gap:10px;align-items:center;font-weight:700}
+.cs h3::after{content:"+";margin-left:auto;font-weight:700;color:var(--ink-soft)}
+.cs details[open] h3::after{content:"–"}
+.cs details{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:10px;overflow:hidden}
+.cs .body{padding:0 14px 14px;font-size:14.5px}
+.cs summary{list-style:none}
+.cs summary::-webkit-details-marker{display:none}
+.cs ul{margin:8px 0;padding-left:18px}
+.cs li{margin-bottom:5px}
+.cs code{background:var(--accent-soft);color:var(--accent);padding:1px 6px;border-radius:6px;font-size:13.5px;font-family:inherit;font-weight:600}
+.tip{background:var(--note-bg);color:var(--note);border-radius:10px;padding:9px 11px;font-size:13.5px;margin:10px 0}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:8px 0}
+th,td{text-align:left;padding:6px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:700;color:var(--ink-soft);font-size:12px}
+.scroll{overflow-x:auto}
+footer{color:var(--ink-soft);font-size:12.5px;text-align:center;padding:24px 0 8px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-
-<header>
-  <h1>Persiapan Ujian — Business English</h1>
-  <p>8 Part • 240 Soal Pilihan Ganda • 15 Latihan Koreksi Email • Cheatsheet</p>
+<header class="top">
+  <div class="brand">
+    <div>
+      <h1>Bank Soal Quiz 3</h1>
+      <p>Business English · 9 sesi · 180 soal</p>
+    </div>
+    <button class="theme-btn" id="themeBtn">Mode</button>
+  </div>
+  <nav class="tabs" id="tabs"></nav>
 </header>
 
-<nav id="mainNav"></nav>
-
-<main id="mainContent"></main>
-
-<footer>Semua soal dan latihan dibuat orisinal berdasarkan materi review. Jawab dengan santai — fokus pada pemahaman, bukan hafalan.</footer>
+<main class="wrap" id="main"></main>
 
 <script>
-/* ============ DATA: MULTIPLE CHOICE QUESTION BANK ============ */
-const QUESTION_BANK = {
-1:[
- {q:"Receptionist: \"Could I ask you to ___ a moment while I check if he's available?\"",opts:["hold on","hold up","hold in","hold off"],c:0,d:"Easy",ok:"\"Hold on\" is the standard phrase for asking someone to wait briefly on the phone.",no:"\"Hold up\" means to delay/rob, and \"hold off\" means to postpone — neither fits waiting on a call. The correct phrase is \"hold on.\""},
- {q:"\"I'm sorry, he's not at his desk right now. Would you like to leave a ___?\"",opts:["message","massage","notice","note"],c:0,d:"Easy",ok:"\"Leave a message\" is the fixed phone expression for asking someone to relay information.",no:"\"Massage\" is a spelling trap, and \"notice/note\" aren't the natural collocation with \"leave\" in this phone context. The standard phrase is \"leave a message.\""},
- {q:"Caller: \"Sorry, you're ___. Could you repeat that?\" (bad phone signal)",opts:["breaking up","breaking down","breaking in","breaking off"],c:0,d:"Easy",ok:"\"Breaking up\" describes a call with poor, unclear signal.",no:"\"Breaking down\" means malfunctioning (for machines), \"breaking in\" means interrupting/burgling, and \"breaking off\" means ending abruptly. Poor signal is \"breaking up.\""},
- {q:"\"One moment, I'll ___ you through to the Accounting Department.\"",opts:["put","send","pass","bring"],c:0,d:"Easy",ok:"\"Put someone through\" is the standard phrase for connecting a caller to another line.",no:"\"Send/pass/bring through\" aren't natural collocations for phone transfers. The fixed phrase is \"put through.\""},
- {q:"Caller: \"Is this the Marketing Department?\" Receptionist: \"No, I'm afraid you have the ___ number.\"",opts:["wrong","bad","false","incorrect"],c:0,d:"Medium",ok:"\"Wrong number\" is the fixed expression used when a caller has dialed incorrectly.",no:"\"Bad/false/incorrect number\" are not natural English collocations — native speakers always say \"wrong number.\""},
- {q:"\"Mr. Joko is currently on ___ other line. Could you hold?\"",opts:["the","a","an","--"],c:0,d:"Medium",ok:"\"On the line\" is the fixed expression describing being engaged in a phone call.",no:"The definite article \"the\" is required in this fixed phrase — \"on the line\" — not \"a/an\" or no article."},
- {q:"\"The manager forgot his badge, so he asked the guard to open the door for ___.\"",opts:["he","him","his","himself"],c:1,d:"Medium",ok:"\"Him\" is correct because it is the object of the preposition \"for.\"",no:"After a preposition, English requires an object pronoun (him), not the subject (he), possessive (his), or reflexive (himself) form."},
- {q:"\"Everyone should bring ___ own laptop to the training session.\"",opts:["they","their","them","theirs"],c:1,d:"Medium",ok:"\"Their\" is a possessive adjective used directly before a noun (\"own laptop\").",no:"\"They\" is a subject pronoun, \"them\" is an object pronoun, and \"theirs\" stands alone without a noun — none of these can directly precede \"own laptop.\""},
- {q:"\"I broke my phone, so I had to borrow ___ from a colleague.\" (referring to \"a phone\")",opts:["their","theirs","them","they"],c:1,d:"Medium",ok:"\"Theirs\" is a possessive pronoun that stands alone, replacing \"their phone.\"",no:"\"Their\" needs a noun after it, and \"them/they\" are not possessive forms. Standing alone requires \"theirs.\""},
- {q:"\"The director signed the contract ___, without asking anyone for help.\"",opts:["him","his","himself","he"],c:2,d:"Medium",ok:"\"Himself\" is a reflexive pronoun used to emphasize that he did the action alone.",no:"\"Him/his/he\" cannot be used to add emphasis to the subject performing an action alone — that function belongs to the reflexive pronoun \"himself.\""},
- {q:"Caller: \"Hello, this is Maya from Delta Corp. Could I speak to Mr. Andi?\" — Which is the best receptionist response?",opts:["\"He is busy, call later.\"","\"One moment please, I'll see if he's available.\"","\"Why do you want to speak to him?\"","\"He doesn't want to talk to you.\""],c:1,d:"Hard",ok:"This response is polite, professional, and offers to check availability rather than refusing outright.",no:"The other options are abrupt, intrusive, or rude — none reflect professional phone etiquette."},
- {q:"Which sentence correctly uses a stative verb?",opts:["\"I am not understanding your question.\"","\"I do not understand your question.\"","\"I not understand your question.\"","\"I am not understand your question.\""],c:1,d:"Hard",ok:"\"Understand\" is a stative verb (describes a mental state), so it is not normally used in the continuous (-ing) form.",no:"Stative verbs like \"understand,\" \"know,\" and \"believe\" are not typically used with \"-ing.\" The correct simple present negative is \"I do not understand.\""},
- {q:"\"The technician is fixing the printer ___ right now, without any assistant.\"",opts:["himself","him","his","he"],c:0,d:"Hard",ok:"\"Himself\" emphasizes that he is doing the repair alone, without help.",no:"Only the reflexive form \"himself\" can add this emphasis to the subject; the other pronoun forms cannot."},
- {q:"Which is the most professional way to end a business phone call?",opts:["\"Bye.\"","\"OK, bye bye.\"","\"Thank you for calling. Have a good day.\"","\"I'm hanging up now.\""],c:2,d:"Hard",ok:"This closing is warm, professional, and appropriate for business contexts.",no:"The other options are too casual (\"bye bye\") or abrupt (\"I'm hanging up now\") for a professional setting."},
- {q:"\"I'm calling to follow up on our conversation ___ Monday.\"",opts:["on","in","at","since"],c:0,d:"Hard",ok:"\"On\" is the correct preposition used with specific days of the week.",no:"\"In\" is used with months/years, \"at\" with clock times, and \"since\" with a starting point in time — none fit a specific day like \"Monday.\""},
- {q:"\"Could you give me his ___ number so I can call him directly?\"",opts:["extension","extend","extended","extending"],c:0,d:"Easy",ok:"\"Extension\" is the noun for an internal phone number within an office system.",no:"\"Extend/extended/extending\" are verb forms and don't fit as the noun before \"number.\""},
- {q:"\"I'm sorry, the line is ___. Can you try again in a few minutes?\"",opts:["busy","full","close","open"],c:0,d:"Easy",ok:"\"Busy\" (or \"engaged\") is the standard word describing a phone line already in use.",no:"\"Full/close/open\" don't describe a phone line being in use — the fixed term is \"busy.\""},
- {q:"\"Please leave your name and number after the ___, and I will call you back.\"",opts:["tone","bell","sound","ring"],c:0,d:"Easy",ok:"\"Tone\" refers to the beep signaling when to leave a voicemail message.",no:"\"Bell/sound/ring\" don't describe the voicemail beep — the standard term is \"tone.\""},
- {q:"\"We need to set up a ___ call so all three offices can join at once.\"",opts:["conference","group","team","multi"],c:0,d:"Easy",ok:"\"Conference call\" is the fixed business term for a call with multiple participants.",no:"\"Group/team/multi call\" are not standard English collocations — the correct term is \"conference call.\""},
- {q:"\"Could you please dial ___ 105 to reach the HR department?\"",opts:["extension","number","line","code"],c:0,d:"Medium",ok:"\"Dial extension 105\" is the natural phrasing for reaching an internal office number.",no:"\"Number/line/code\" don't collocate naturally with \"dial\" in this internal-phone context — \"extension\" is standard."},
- {q:"\"The manager asked me to call the client ___ this afternoon.\"",opts:["back","again","over","through"],c:0,d:"Medium",ok:"\"Call someone back\" is the fixed phrase for returning a call.",no:"\"Call again/over/through\" are not the correct collocation — the standard phrase is \"call back.\""},
- {q:"\"The new employees introduced ___ to the whole department.\"",opts:["them","themselves","their","they"],c:1,d:"Medium",ok:"\"Themselves\" is the reflexive pronoun needed because the subject and object refer to the same people.",no:"\"Them\" is a simple object pronoun (would imply introducing other people), and \"their/they\" are not object forms."},
- {q:"\"Each department must submit ___ own budget report.\"",opts:["their","they","them","theirs"],c:0,d:"Medium",ok:"\"Their\" is the possessive adjective placed directly before the noun phrase \"own budget report.\"",no:"\"They/them\" are not possessive, and \"theirs\" cannot be followed directly by a noun."},
- {q:"\"This desk is not mine, it belongs to ___.\"",opts:["they","them","theirs","their"],c:2,d:"Medium",ok:"\"Theirs\" is a possessive pronoun that stands alone after \"belongs to.\"",no:"\"They\" is a subject pronoun, \"them\" is an object pronoun, and \"their\" needs a noun directly after it — none fit standing alone here."},
- {q:"Caller: \"I've been on hold for 10 minutes!\" — Which is the best receptionist response?",opts:["\"That's not my problem.\"","\"I'm very sorry for the wait. Let me check on that for you right away.\"","\"You should have called earlier.\"","\"Well, we're busy.\""],c:1,d:"Hard",ok:"This response apologizes sincerely and immediately offers to help, which is the professional standard.",no:"The other options are dismissive or blame the caller, which damages the company's professional image."},
- {q:"\"By next week, the new phone system ___ installed in every office.\"",opts:["will be","will","is","was"],c:0,d:"Hard",ok:"\"Will be installed\" correctly forms the future passive, describing an action that will be completed by a future point.",no:"\"Will\" alone is incomplete, \"is\" is present tense, and \"was\" is past tense — none fit a plan for \"next week.\""},
- {q:"Identify the grammatically correct sentence.",opts:["\"She don't answer calls after 5 PM.\"","\"She doesn't answer calls after 5 PM.\"","\"She not answer calls after 5 PM.\"","\"She isn't answering calls after 5 PM never.\""],c:1,d:"Hard",ok:"\"Doesn't\" is the correct third-person singular negative auxiliary for the simple present tense.",no:"\"Don't\" doesn't agree with \"she,\" and the other options are grammatically incomplete or contain a double negative."},
- {q:"\"Could I leave a message ___ Mr. Tanaka, please?\"",opts:["for","to","at","with"],c:0,d:"Hard",ok:"\"Leave a message for someone\" is the correct fixed preposition pairing.",no:"\"To/at/with\" don't collocate correctly with \"leave a message\" in this context — the standard preposition is \"for.\""},
- {q:"\"The technician said the printer ___ fixed by tomorrow.\"",opts:["will","would be","will be","is being"],c:2,d:"Hard",ok:"\"Will be fixed\" correctly forms the future passive, matching a promise about a future outcome.",no:"\"Will\" alone is incomplete, \"would be\" shifts to a conditional/reported-speech tense not needed here, and \"is being fixed\" describes an ongoing present action, not a future one."},
- {q:"\"I'll ___ you an email with the meeting details right after this call.\"",opts:["send","put","give","make"],c:0,d:"Medium",ok:"\"Send an email\" is the correct, natural verb-object collocation.",no:"\"Put/give/make an email\" are not natural English collocations — the standard verb is \"send.\""}
-],
-2:[
- {q:"Which greeting is most appropriate for a first email to a new client, Mr. Hendra?",opts:["Hey Hendra,","Yo Hendra!","Dear Mr. Hendra,","Yo!"],c:2,d:"Easy",ok:"\"Dear Mr. + last name\" is the standard formal greeting for someone you haven't met before.",no:"\"Hey/Yo\" are too casual for a first professional contact and could damage your credibility."},
- {q:"Which sign-off suits a formal email to a company representative you don't know personally?",opts:["Cheers,","Later,","Sincerely,","Bye!"],c:2,d:"Easy",ok:"\"Sincerely\" is a standard formal closing appropriate for professional, unfamiliar contacts.",no:"\"Cheers/Later/Bye\" are informal and better suited to close colleagues or friends."},
- {q:"You want a colleague to see a copy of your email, and it's fine for the client to see they were copied. Which field should you use?",opts:["To","CC","BCC","Subject"],c:1,d:"Easy",ok:"CC (carbon copy) is used when the recipient's involvement is visible to everyone on the email.",no:"\"To\" is for main recipients, \"BCC\" hides the recipient, and \"Subject\" isn't a recipient field at all."},
- {q:"You want your manager to receive a copy secretly, without the client knowing. Which field?",opts:["To","CC","BCC","Reply-All"],c:2,d:"Easy",ok:"BCC (blind carbon copy) hides the recipient from everyone else on the email.",no:"CC would reveal the manager's involvement to the client, and \"To/Reply-All\" don't provide that privacy."},
- {q:"Which subject line is best for a business email?",opts:["hi","important!!!","Project Update – Q3 Marketing Report","question"],c:2,d:"Medium",ok:"This subject is specific, informative, and professional — it tells the reader exactly what the email is about.",no:"Vague subjects (\"hi,\" \"question\") or exaggerated punctuation (\"important!!!\") are unprofessional and unhelpful for the reader's inbox."},
- {q:"Which sentence uses correct capitalization?",opts:["the report is due on friday, january 5th.","The Report Is Due On Friday, January 5th.","The report is due on Friday, January 5th.","the meeting Is on wednesday in jakarta."],c:2,d:"Medium",ok:"Only the first word, proper nouns (Friday, January), and place names are capitalized — this option follows standard rules.",no:"Option A has no capitalization at all, and option B over-capitalizes every word (title case is not used mid-sentence)."},
- {q:"Which sentence uses the most professional punctuation?",opts:["When is the deadline???","I need the file ASAP!!!","Could you please send the report by 5 PM?","PLEASE send the report today!"],c:2,d:"Medium",ok:"A single question mark and polite phrasing is the professional standard for business requests.",no:"Multiple exclamation/question marks and all-caps text read as aggressive or unprofessional in business writing."},
- {q:"Which closing line is most appropriate before the sign-off in a formal request email?",opts:["\"Give it to me now.\"","\"Thank you for your time and consideration.\"","\"Whatever, just reply soon.\"","\"Hurry up please.\""],c:1,d:"Medium",ok:"This phrase politely closes the request while showing appreciation for the reader's time.",no:"The other options sound demanding or dismissive, which is inappropriate in professional correspondence."},
- {q:"Which is the most professional way to refer to an attached file?",opts:["\"check attachment\"","\"Please find the attached report for your review.\"","\"file inside, look\"","\"attachment!!\""],c:1,d:"Medium",ok:"This is a complete, polite sentence that clearly directs the reader to the attachment.",no:"The other options are sentence fragments or too abrupt for professional writing."},
- {q:"Which is the best opening line when replying to a client's earlier message?",opts:["\"What do you want now?\"","\"Thank you for your email regarding...\"","\"Received, ok.\"","\"Got your msg\""],c:1,d:"Hard",ok:"This opening acknowledges the client's message politely and professionally before continuing.",no:"The other options are rude, overly terse, or use text-message abbreviations unsuitable for business email."},
- {q:"Which sentence has the correct level of formality for an email to a senior director you've never met?",opts:["\"Hey boss, quick q for u\"","\"Hi, wanted to ask something real quick lol\"","\"Dear Sir/Madam, I would like to ask about...\"","\"Sup, got a sec?\""],c:2,d:"Hard",ok:"This greeting and phrasing matches the formality expected for a first contact with a senior, unfamiliar recipient.",no:"The other options use texting abbreviations and slang, which are inappropriate for formal, unfamiliar business contacts."},
- {q:"Which is the best professional way to ask for something quickly without sounding rude?",opts:["\"I need this now.\"","\"Could you please send this at your earliest convenience?\"","\"Hurry up, I'm waiting.\"","\"Why is this taking so long?\""],c:1,d:"Hard",ok:"This phrasing politely conveys urgency while remaining respectful.",no:"The other options sound demanding or accusatory, which can damage a professional relationship."},
- {q:"Which email best follows the \"one topic per email\" etiquette principle?",opts:["An email requesting a meeting, complaining about IT, and asking about holidays, all mixed together.","An email focused only on scheduling the meeting, with related details in a clear paragraph.","An email covering ten unrelated topics.","An email with no clear focus but many attachments."],c:1,d:"Hard",ok:"Keeping one clear topic per email makes it easier for the recipient to read, respond, and act on it.",no:"Mixing many unrelated topics in one email makes it confusing and increases the chance something gets missed."},
- {q:"A colleague CC's you on an email that doesn't require your input. What's the best etiquette?",opts:["Reply-all with unrelated comments.","No action needed unless you're specifically asked to respond.","Forward it to everyone in the company.","Ignore and delete without reading."],c:1,d:"Hard",ok:"Being CC'd means \"for your information\" — a response is only expected if you're directly asked.",no:"Replying unnecessarily or forwarding widely creates email clutter; simply ignoring it entirely isn't ideal either, as you may still need the information later."},
- {q:"Which sentence correctly uses a colon to introduce a list in a business email?",opts:["\"Please bring, your laptop, notes and pen.\"","\"Please bring: your laptop, notes, and pen.\"","\"Please bring the following: your laptop, notes, and pen.\"","\"Please bring; laptop notes pen.\""],c:2,d:"Hard",ok:"A colon should follow a complete introductory clause (\"the following\") before listing items — this is the correct standard form.",no:"A colon shouldn't directly follow a verb like \"bring\" without a proper lead-in phrase, and semicolons/commas are not used to introduce lists this way."},
- {q:"Which is appropriate for an automatic out-of-office reply?",opts:["\"I'm out, whatever.\"","\"I am currently out of the office and will respond upon my return on [date].\"","\"gone, back later\"","\"not here\""],c:1,d:"Easy",ok:"This is a complete, professional sentence stating the sender's status and expected return.",no:"The other options are sentence fragments too casual for an automatic professional reply."},
- {q:"Which email signature is most professional?",opts:["\"Bye, Rian 😎\"","\"[Your Name]\\n[Job Title]\\n[Company Name]\"","\"sent from my phone lol\"","\"- R\""],c:1,d:"Easy",ok:"A signature with full name, title, and company is the professional standard.",no:"Emojis, casual sign-offs, and single-initial signatures are inappropriate for business correspondence."},
- {q:"Which is the best way to address an email sent to several people at once?",opts:["\"Hey guys,\"","\"Dear All,\"","\"Yo everyone\"","\"Hi hi hi\""],c:1,d:"Easy",ok:"\"Dear All,\" is a standard, professional way to greet multiple recipients.",no:"The other options are too casual or nonsensical for a group business email."},
- {q:"Which phrase correctly introduces an attached file?",opts:["\"Please find attached the requested document.\"","\"attachment below check\"","\"doc is here\"","\"see file plz\""],c:0,d:"Easy",ok:"This is a complete, professional sentence commonly used to reference attachments.",no:"The other options are sentence fragments or use informal abbreviations unsuitable for business writing."},
- {q:"Which is the most polite way to follow up on an unanswered email?",opts:["\"Why haven't you replied yet?\"","\"Just following up on my previous email — please let me know if you need any more information.\"","\"This is my 3rd email, reply now.\"","\"Hello???\""],c:1,d:"Medium",ok:"This phrasing follows up politely without pressuring or blaming the recipient.",no:"The other options sound impatient or accusatory, which can strain a professional relationship."},
- {q:"Which sentence correctly uses \"please\" to soften a request?",opts:["\"Send the file.\"","\"Please send the file at your convenience.\"","\"SEND THE FILE NOW.\"","\"send file pls\""],c:1,d:"Medium",ok:"Adding \"please\" and \"at your convenience\" makes the request polite rather than a blunt command.",no:"The other options are commands, shouted text, or overly casual abbreviations."},
- {q:"What is the best etiquette when a message doesn't need a reply from everyone on the thread?",opts:["Reply-all to say thanks.","Reply only to the sender, unless others truly need to see your response.","Ignore the whole thread.","Forward it to your personal email."],c:1,d:"Medium",ok:"Replying only to the relevant person avoids cluttering everyone else's inbox unnecessarily.",no:"Reply-all for unnecessary responses creates inbox clutter, while ignoring or forwarding elsewhere isn't proper etiquette either."},
- {q:"Which sentence uses correct date formatting for a formal business email?",opts:["\"the meeting is on 5/6.\"","\"The meeting is on June 5, 2026.\"","\"meeting: 5th of the sixth\"","\"The meeting is on 5-6.\""],c:1,d:"Medium",ok:"Writing the month by name avoids the date-format ambiguity that numeric formats like \"5/6\" can create internationally.",no:"Numeric-only date formats are ambiguous across regions, and the other options are incomplete or unclear."},
- {q:"Which is the best way to politely request a read confirmation?",opts:["\"Reply so I know you got this.\"","\"Could you kindly confirm you've received this email?\"","\"Answer now.\"","\"Did you even read this?\""],c:1,d:"Medium",ok:"This phrasing is polite and clearly states what confirmation is being requested.",no:"The other options are demanding or accusatory in tone."},
- {q:"Which is the most professional way to end an email with a clear next step?",opts:["\"Bye.\"","\"Let me know if you have any questions, and I look forward to your response.\"","\"Whatever you decide.\"","\"K thx.\""],c:1,d:"Hard",ok:"This closing invites further questions and clearly signals what happens next.",no:"The other options are too brief, vague, or informal for a professional closing."},
- {q:"Which sentence avoids using ALL CAPS unnecessarily?",opts:["\"This is VERY IMPORTANT, please READ carefully.\"","\"This is very important — please read it carefully.\"","\"THIS IS IMPORTANT!!!\"","\"important!! READ!!\""],c:1,d:"Hard",ok:"Using normal capitalization with an em dash for emphasis is the professional way to highlight importance.",no:"ALL CAPS reads as shouting in written communication and should be avoided in professional emails."},
- {q:"Which is the correct way to forward an email with context for the new recipient?",opts:["Forwarding with no message at all.","\"FYI — please review the attached thread; let me know if you have questions.\"","\"look at this\"","Forwarding silently with a vague one-word title."],c:1,d:"Hard",ok:"Adding a short note explaining why you're forwarding helps the new recipient understand the context immediately.",no:"Forwarding without any explanation forces the recipient to guess the purpose, which wastes their time."},
- {q:"Which sentence uses numbers correctly in formal business writing?",opts:["\"We need 5 copies of the report by 3pm.\"","\"We need five copies of the report by 3 PM.\"","\"we need 5 copy of report by 3 p m\"","\"Five copies needed, 3PM.\""],c:1,d:"Hard",ok:"Formal writing typically spells out small numbers and uses standard time formatting (\"3 PM\").",no:"The other options mix numeral styles inconsistently or use lowercase/incomplete formatting."},
- {q:"Which is the most appropriate way to express mild disagreement politely in an email?",opts:["\"That's wrong.\"","\"I see your point, but I think there might be another way to approach this.\"","\"No, that's a bad idea.\"","\"Whatever you think is fine I guess.\""],c:1,d:"Hard",ok:"This phrasing acknowledges the other person's view before offering an alternative, which is diplomatic and professional.",no:"The other options are blunt, dismissive, or passive rather than constructively diplomatic."},
- {q:"Which best follows the etiquette of avoiding emojis and informal symbols in formal business email?",opts:["\"Thanks!! 😊👍\"","\"Thank you for your assistance.\"","\"thanks!!!\"","\"ty :)\""],c:1,d:"Hard",ok:"A plain, complete sentence without emojis or symbols is appropriate for formal business correspondence.",no:"Emojis, excessive punctuation, and chat abbreviations like \"ty\" are too casual for professional email."}
-],
-3:[
- {q:"\"Please review the ___ before the meeting so we know what will be discussed.\"",opts:["agenda","minutes","venue","invoice"],c:0,d:"Easy",ok:"An \"agenda\" is the planned list of topics to be discussed in a meeting.",no:"\"Minutes\" are the record written after a meeting, \"venue\" is the location, and \"invoice\" is unrelated to meeting planning."},
- {q:"\"After the meeting, someone needs to write the ___ to record what was decided.\"",opts:["agenda","minutes","schedule","notice"],c:1,d:"Easy",ok:"\"Minutes\" are the official written record of what was discussed and decided in a meeting.",no:"\"Agenda\" is the plan before the meeting, not the record after it; \"schedule/notice\" don't fit this specific meaning."},
- {q:"\"Since the client is sick, we need to ___ the meeting to another day.\"",opts:["attend","postpone","confirm","join"],c:1,d:"Easy",ok:"\"Postpone\" means to move an event to a later date, which fits the context of the client being sick.",no:"\"Attend/confirm/join\" don't convey the idea of delaying an event to a later time."},
- {q:"\"Due to low registration, the organizer decided to ___ the seminar entirely.\"",opts:["cancel","postpone","confirm","hold"],c:0,d:"Easy",ok:"\"Cancel\" means to call off an event completely, which fits \"entirely\" not happening.",no:"\"Postpone\" only delays an event rather than stopping it, and \"confirm/hold\" mean the opposite of stopping it."},
- {q:"\"Could you please ___ your attendance by replying to this email?\"",opts:["confirm","postpone","cancel","agenda"],c:0,d:"Medium",ok:"\"Confirm\" means to verify or officially state that something is certain, fitting a request to verify attendance.",no:"\"Postpone/cancel\" involve changing plans, not verifying them, and \"agenda\" is a noun, not a verb."},
- {q:"A: \"Have you already booked the flights?\" B: \"Yes, we ___ leave on Monday.\" (a plan already arranged)",opts:["will","are going to","go","going"],c:1,d:"Medium",ok:"\"Are going to\" is used for future plans already arranged, matching the fact that flights are booked.",no:"\"Will\" is typically for spontaneous decisions or promises, not pre-arranged plans with evidence (booked tickets)."},
- {q:"B: \"The phone is ringing!\" A: \"I ___ get it.\" (a decision made at the moment of speaking)",opts:["am going to","will","go","answers"],c:1,d:"Medium",ok:"\"Will\" is used for spontaneous decisions made at the moment of speaking, like reacting to a ringing phone.",no:"\"Am going to\" implies a plan made beforehand, which doesn't fit a sudden, in-the-moment reaction."},
- {q:"\"Don't worry about the deadline. I promise I ___ finish the report by tonight.\"",opts:["am going to","will","would","finish"],c:1,d:"Medium",ok:"\"Will\" is used to express a promise or firm commitment.",no:"\"Am going to\" expresses a plan rather than a promise, \"would\" is conditional, and \"finish\" alone isn't a complete future form."},
- {q:"\"Look at those dark clouds! It ___ rain soon.\" (prediction based on visible evidence)",opts:["will","is going to","would","going"],c:1,d:"Medium",ok:"\"Is going to\" is used for predictions based on present evidence, such as dark clouds.",no:"\"Will\" is used for predictions based on opinion rather than visible evidence; the clouds are physical proof supporting \"is going to.\""},
- {q:"Which is the most professional way to inform a client that a meeting must be moved?",opts:["\"We can't do it, sorry.\"","\"We need to postpone our meeting scheduled for Monday to Wednesday due to a scheduling conflict. We apologize for any inconvenience.\"","\"Meeting cancelled, no reason.\"","\"Change of plan lol\""],c:1,d:"Hard",ok:"This response is clear, gives a reason, states the new plan, and apologizes professionally.",no:"The other options are vague, lack detail, or are far too casual for informing a client of a schedule change."},
- {q:"\"The board members ___ their decision at the end of the quarterly meeting.\" (planned formal future action)",opts:["will announce","announces","announced","announcing"],c:0,d:"Hard",ok:"\"Will announce\" correctly forms the future tense for a planned formal action.",no:"\"Announces\" is present tense, \"announced\" is past tense, and \"announcing\" alone is not a complete verb form."},
- {q:"Which sentence correctly reports a decision in a formal \"minutes\" style?",opts:["\"We should buy new laptop.\"","\"It was agreed that the department would purchase new laptops next month.\"","\"buy laptop next month\"","\"New laptops!!\""],c:1,d:"Hard",ok:"Formal minutes use complete, past-tense reporting structures like \"It was agreed that...\"",no:"The other options are grammatically incomplete or too informal for an official meeting record."},
- {q:"\"Due to the manager's illness, today's meeting has been ___ until further notice.\"",opts:["confirmed","postponed","attended","scheduled"],c:1,d:"Hard",ok:"\"Postponed\" fits the context of delaying a meeting due to an unexpected circumstance.",no:"\"Confirmed/attended/scheduled\" don't convey the idea of an existing plan being delayed."},
- {q:"Choose the sentence with the correct verb form.",opts:["\"The meeting start at 9 AM tomorrow.\"","\"The meeting starts at 9 AM tomorrow.\"","\"The meeting starting at 9 AM tomorrow.\"","\"The meeting started at 9 AM tomorrow, ok?\""],c:1,d:"Hard",ok:"\"Starts\" correctly matches the singular subject \"meeting\" for a scheduled future event using present simple.",no:"\"Start\" lacks subject-verb agreement, \"starting\" alone isn't a complete verb, and \"started\" is past tense, which contradicts \"tomorrow.\""},
- {q:"\"We ___ already arranged the venue, so please don't worry about that.\"",opts:["have","has","had","having"],c:0,d:"Hard",ok:"\"Have\" is correct because the subject \"we\" requires the plural present-perfect auxiliary.",no:"\"Has\" is for singular subjects (he/she/it), \"had\" is past perfect (wrong tense here), and \"having\" isn't a complete auxiliary form."},
- {q:"\"Please ___ by Friday whether you can attend the workshop.\"",opts:["RSVP","RSPV","reply back","answer up"],c:0,d:"Easy",ok:"\"RSVP\" is the standard business abbreviation requesting confirmation of attendance.",no:"\"RSPV\" is a misspelling, and \"reply back / answer up\" are not standard invitation phrases."},
- {q:"\"The meeting room is already ___ for 10 AM, please choose another slot.\"",opts:["booked","bought","hold","taken"],c:0,d:"Easy",ok:"\"Booked\" is the standard word for reserving a meeting room.",no:"\"Bought\" doesn't apply to reserving a room, and \"hold/taken\" aren't the natural collocation with a meeting room."},
- {q:"\"Please ___ your microphone when you are not speaking.\"",opts:["mute","silence","close","off"],c:0,d:"Easy",ok:"\"Mute\" is the standard verb for turning off a microphone's sound during virtual meetings.",no:"\"Silence/close/off\" are not the natural verb used for microphones in virtual meeting software."},
- {q:"\"I'll send everyone the meeting ___ so you can join online.\"",opts:["link","road","way","route"],c:0,d:"Easy",ok:"\"Link\" is the correct term for the URL used to join an online meeting.",no:"\"Road/way/route\" don't apply to joining a virtual meeting — the correct term is \"link.\""},
- {q:"\"Let's schedule a follow-up meeting to review the ___ from today's discussion.\"",opts:["action items","action point","act items","actions item"],c:0,d:"Medium",ok:"\"Action items\" is the standard business term for tasks assigned during a meeting.",no:"The other options are incorrect or non-standard forms of this fixed business phrase."},
- {q:"\"This is a ___ meeting, so we meet every Monday at the same time.\"",opts:["recurring","repeating","returning","reoccurring"],c:0,d:"Medium",ok:"\"Recurring meeting\" is the standard business term for a meeting that happens on a regular schedule.",no:"\"Repeating/returning/reoccurring\" are not the natural collocation used in scheduling software and business speech."},
- {q:"\"I apologize for being late; I got stuck in traffic ___ way here.\"",opts:["on my","at my","in my","for my"],c:0,d:"Medium",ok:"\"On my way\" is the fixed expression describing being in transit somewhere.",no:"\"At my / in my / for my way\" are not correct — the standard phrase is \"on my way.\""},
- {q:"\"Since our teams are in different time zones, let's find a time that ___ for everyone.\"",opts:["works","work","working","worked"],c:0,d:"Medium",ok:"\"Works\" agrees with the singular subject \"a time\" in the present simple tense.",no:"\"Work\" doesn't match the singular subject, and \"working/worked\" don't fit this structure grammatically."},
- {q:"\"Before we wrap up, does anyone have any ___ questions?\"",opts:["last-minute","lastly","at last","finally"],c:0,d:"Medium",ok:"\"Last-minute\" is an adjective correctly describing questions raised just before ending.",no:"\"Lastly/at last/finally\" are transition words, not adjectives that can describe \"questions\" this way."},
- {q:"\"The deadline for submitting the proposal is ___ the end of this week.\"",opts:["by","until","on","at"],c:0,d:"Medium",ok:"\"By\" is used to indicate a deadline — an action must be completed at or before that time.",no:"\"Until\" implies a continuous action stopping at that point, and \"on/at\" don't fit \"the end of this week\" as a deadline expression."},
- {q:"Which is the most professional way to ask someone to speak up in a meeting?",opts:["\"Speak louder, I can't hear you.\"","\"Sorry, could you speak up a little? I'm having trouble hearing you.\"","\"What? Louder!\"","\"You're too quiet.\""],c:1,d:"Hard",ok:"This phrasing is polite, apologizes first, and clearly explains the issue.",no:"The other options are blunt commands or critical remarks unsuitable for a professional meeting."},
- {q:"Which sentence correctly assigns an action item?",opts:["\"John do the report.\"","\"John will be responsible for preparing the report by Friday.\"","\"report - john - friday\"","\"Someone do the report I guess.\""],c:1,d:"Hard",ok:"This is a complete, clear sentence assigning responsibility and a deadline.",no:"The other options are grammatically incomplete or too vague to serve as a clear action item."},
- {q:"Which is the best way to end a meeting professionally?",opts:["\"OK bye everyone.\"","\"Thank you all for your time; I'll send the minutes by tomorrow.\"","\"That's all, leave now.\"","\"Meeting over.\""],c:1,d:"Hard",ok:"This closing thanks participants and states a clear next step (sending the minutes).",no:"The other options are abrupt or lack a professional close."},
- {q:"Which sentence uses the correct verb tense to describe an ongoing agenda item?",opts:["\"We currently discuss the budget.\"","\"We are currently discussing the budget.\"","\"We currently discussing the budget.\"","\"We discuss currently the budget.\""],c:1,d:"Hard",ok:"The present continuous (\"are currently discussing\") correctly describes an action happening right now.",no:"The other options either use the wrong tense for an ongoing action or place the adverb incorrectly."},
- {q:"\"The client asked us to ___ the meeting until they finish their internal review.\"",opts:["postpone","postponement","postponed","postponing"],c:0,d:"Medium",ok:"\"Postpone\" is the correct base verb form needed directly after \"to.\"",no:"\"Postponement\" is a noun, and \"postponed/postponing\" don't fit the infinitive structure \"to + base verb.\""}
-],
-4:[
- {q:"\"Before starting the project, the supplier sent us a ___ showing the estimated cost.\"",opts:["quotation","invoice","receipt","agenda"],c:0,d:"Easy",ok:"A \"quotation\" is a document estimating the cost of goods or services before work begins.",no:"An \"invoice\" is sent after work is done requesting payment, a \"receipt\" proves payment was made, and \"agenda\" is unrelated to pricing."},
- {q:"\"After the work is completed, we will send you an ___ so you can make the payment.\"",opts:["quotation","invoice","receipt","purchase order"],c:1,d:"Easy",ok:"An \"invoice\" is a bill requesting payment after goods or services are delivered.",no:"A \"quotation\" comes before the work starts, a \"receipt\" comes after payment is made, and a \"purchase order\" is issued by the buyer, not the seller."},
- {q:"\"Thank you for your payment. Please find attached your ___ as proof of purchase.\"",opts:["invoice","quotation","receipt","agenda"],c:2,d:"Easy",ok:"A \"receipt\" is proof that a payment has already been made.",no:"An \"invoice\" requests payment (before it's made), a \"quotation\" is a price estimate, and \"agenda\" is unrelated to payments."},
- {q:"Buyer: \"Excuse me, ___ is this printer?\" Seller: \"It's Rp 1,500,000.\"",opts:["how many","how much","what price","how cost"],c:1,d:"Easy",ok:"\"How much\" is the correct phrase for asking about price (an uncountable concept).",no:"\"How many\" is for countable items, and \"what price / how cost\" are not natural English phrasings."},
- {q:"\"If you order more than 100 units, we can offer you a 15% ___.\"",opts:["discount","tax","subtotal","total"],c:0,d:"Medium",ok:"A \"discount\" is a price reduction, which fits the context of a bulk-order incentive.",no:"\"Tax\" adds to the price rather than reducing it, and \"subtotal/total\" refer to calculated amounts, not a price reduction."},
- {q:"\"We need to buy some new office ___.\"",opts:["furnitures","furniture's","furniture","a furniture"],c:2,d:"Medium",ok:"\"Furniture\" is an uncountable noun in English and has no plural form.",no:"\"Furnitures,\" the possessive \"furniture's,\" and \"a furniture\" are all incorrect — uncountable nouns don't take \"-s\" or the article \"a.\""},
- {q:"\"Could you send me some ___ about your new product line?\"",opts:["an information","informations","information","many information"],c:2,d:"Medium",ok:"\"Information\" is uncountable and has no plural form; \"some\" correctly precedes it.",no:"\"An information,\" \"informations,\" and \"many information\" all incorrectly treat \"information\" as countable."},
- {q:"\"We don't have ___ budget left for this quarter.\" (uncountable, negative sentence)",opts:["many","much","some","a"],c:1,d:"Medium",ok:"\"Much\" is used with uncountable nouns in negative sentences, matching \"budget.\"",no:"\"Many\" is for countable nouns, \"some\" is typically for positive statements or offers, and \"a\" doesn't fit uncountable nouns."},
- {q:"\"Do you have ___ samples available for testing?\" (countable noun, question)",opts:["much","many","any","a"],c:2,d:"Medium",ok:"\"Any\" is the standard choice for countable nouns in questions, especially when the quantity is unknown.",no:"\"Much\" is for uncountable nouns, \"many\" is more common in statements about a large quantity, and \"a\" doesn't fit a plural noun like \"samples.\""},
- {q:"\"Before we can confirm the order, please send us a formal ___.\"",opts:["Purchase Order","Receipt","Invoice","Agenda"],c:0,d:"Hard",ok:"A \"Purchase Order\" is the buyer's formal document requesting goods, needed before an order is confirmed.",no:"A \"Receipt\" and \"Invoice\" relate to payment stages after ordering, and \"Agenda\" is unrelated to purchasing."},
- {q:"Which is the most professional way to negotiate a lower price?",opts:["\"Give me discount now!\"","\"Is there any possibility of a discount for a bulk order?\"","\"Too expensive, reduce it.\"","\"I won't buy if you don't lower it.\""],c:1,d:"Hard",ok:"This phrasing is polite and frames the request as a reasonable question rather than a demand.",no:"The other options sound demanding or like a threat, which can damage a business relationship."},
- {q:"Which sentence correctly uses \"much\" or \"many\"?",opts:["\"How much boxes do you need?\"","\"How many boxes do you need?\"","\"How much box do you need?\"","\"How many box do you need?\""],c:1,d:"Hard",ok:"\"Many\" is used with plural countable nouns like \"boxes.\"",no:"\"Much\" is for uncountable nouns, and \"box\" (singular) doesn't match a quantity question expecting more than one."},
- {q:"\"We need to buy three new ___ for the meeting room.\"",opts:["furniture","furnitures","piece of furniture","pieces of furniture"],c:3,d:"Hard",ok:"\"Pieces of furniture\" is the correct way to count the uncountable noun \"furniture\" using a counting unit, matching \"three.\"",no:"\"Furniture/furnitures\" cannot take a number directly, and \"piece of furniture\" (singular) doesn't match \"three.\""},
- {q:"Which sentence best confirms acceptance of a price quotation?",opts:["\"ok we take it\"","\"We are pleased to accept your quotation and would like to proceed with the order.\"","\"yes good price go ahead\"","\"Accept. Send now.\""],c:1,d:"Hard",ok:"This is a complete, professional sentence clearly confirming acceptance and next steps.",no:"The other options are informal fragments unsuitable for a formal business confirmation."},
- {q:"\"The client asked for a ___ before agreeing to place a large order.\"",opts:["sample","samples","some sample","a samples"],c:0,d:"Hard",ok:"\"A sample\" (singular, countable) is correct after the article \"a.\"",no:"\"Samples\" is plural (doesn't match \"a\"), \"some sample\" mismatches quantity word and noun form, and \"a samples\" incorrectly pairs \"a\" with a plural noun."},
- {q:"\"Payment is due within 30 days ___ receiving the invoice.\"",opts:["of","after","from","on"],c:0,d:"Easy",ok:"\"Within 30 days of\" is the standard fixed phrase for stating a payment deadline.",no:"\"After/from/on\" don't fit this fixed business collocation as naturally as \"of.\""},
- {q:"\"This product comes with a one-year ___ against manufacturing defects.\"",opts:["warranty","guarantee","insurance","policy"],c:0,d:"Easy",ok:"\"Warranty\" is the standard business term for a manufacturer's promise to repair or replace defective goods.",no:"\"Guarantee\" is a near-synonym but less standard in this specific product context, and \"insurance/policy\" don't fit manufacturing defects."},
- {q:"\"I'm sorry, this item is currently ___; we expect new stock next week.\"",opts:["out of stock","out of order","out of date","out of place"],c:0,d:"Easy",ok:"\"Out of stock\" means an item is temporarily unavailable for purchase.",no:"\"Out of order\" describes broken equipment, \"out of date\" means expired/outdated, and \"out of place\" means misplaced — none fit unavailable inventory."},
- {q:"\"If you're not satisfied, we offer a full ___ within 14 days.\"",opts:["refund","return","change","exchange"],c:0,d:"Easy",ok:"\"Refund\" refers to money being returned to the customer, matching \"full\" before it.",no:"\"Return/change/exchange\" describe the action of sending an item back, not the money given back — \"refund\" is correct here."},
- {q:"\"We usually offer better prices for ___ orders rather than single items.\"",opts:["wholesale","retail","single","small"],c:0,d:"Medium",ok:"\"Wholesale\" refers to buying in bulk at a lower per-unit price, contrasting with buying single items.",no:"\"Retail\" refers to selling individual items to consumers, and \"single/small\" don't convey the bulk-buying concept."},
- {q:"\"Could we discuss extending the ___ date for this project?\"",opts:["deadline","dateline","timeline","lastline"],c:0,d:"Medium",ok:"\"Deadline\" is the standard business term for the date by which something must be completed.",no:"\"Dateline/lastline\" aren't standard English words in this context, and \"timeline\" refers to a schedule, not a single cutoff date."},
- {q:"\"We require a 30% ___ before we begin production.\"",opts:["deposit","discount","refund","receipt"],c:0,d:"Medium",ok:"\"Deposit\" is an upfront partial payment made before work begins.",no:"\"Discount\" reduces a price, \"refund\" returns money, and \"receipt\" proves payment — none describe an upfront partial payment."},
- {q:"\"All prices listed are exclusive of ___, which will be added at checkout.\"",opts:["tax","discount","refund","deposit"],c:0,d:"Medium",ok:"\"Tax\" is commonly added to a listed price at checkout, matching \"exclusive of\" and \"added.\"",no:"\"Discount/refund/deposit\" don't fit the context of something added on top of a listed price."},
- {q:"\"Please review the ___ and conditions before signing the contract.\"",opts:["terms","rules","agenda","policy"],c:0,d:"Medium",ok:"\"Terms and conditions\" is the standard fixed phrase used in contracts.",no:"\"Rules/agenda/policy\" don't pair with \"and conditions\" as the standard legal/business phrase."},
- {q:"\"We received the shipment, but two items arrived ___.\"",opts:["damage","damaged","damaging","damages"],c:1,d:"Medium",ok:"\"Damaged\" is the correct past-participle adjective describing the condition of the items.",no:"\"Damage/damaging/damages\" are not the correct adjective form needed after \"arrived.\""},
- {q:"Which is the most professional way to report a defective item?",opts:["\"Your product is trash, fix it.\"","\"We received the shipment today, but two units appear to be defective. Could you advise on the return process?\"","\"broken items, angry, refund now\"","\"Bad product, again!\""],c:1,d:"Hard",ok:"This response states the facts clearly and requests guidance politely.",no:"The other options are rude, vague, or unprofessional in tone."},
- {q:"Which sentence correctly requests an update on order tracking?",opts:["\"where package\"","\"Could you please provide a tracking number for our shipment?\"","\"package now?\"","\"send tracking\""],c:1,d:"Hard",ok:"This is a complete, polite sentence clearly requesting the specific information needed.",no:"The other options are sentence fragments too informal for a business inquiry."},
- {q:"Which sentence correctly uses \"deposit\" and \"balance\" together?",opts:["\"Please pay full deposit at delivery.\"","\"Please pay a 30% deposit now, with the remaining balance due upon delivery.\"","\"deposit balance pay now full\"","\"Balance first, then deposit later maybe.\""],c:1,d:"Hard",ok:"This sentence correctly explains the payment structure: partial deposit now, remaining balance later.",no:"The other options are grammatically incorrect or reverse the logical order of deposit and balance."},
- {q:"\"The exchange rate today means the total in USD ___ higher than last month.\"",opts:["is","are","was","were"],c:0,d:"Hard",ok:"\"Is\" agrees with the singular subject \"the total\" in the present tense, matching \"today.\"",no:"\"Are\" doesn't match the singular subject, and \"was/were\" are past tense, which contradicts \"today.\""},
- {q:"\"Could you confirm the ___ method — bank transfer, credit card, or cash?\"",opts:["payment","paying","pay","paid"],c:0,d:"Medium",ok:"\"Payment method\" is the correct noun form used before \"method.\"",no:"\"Paying/pay/paid\" are verb forms and don't fit directly before the noun \"method\" — the correct compound noun is \"payment method.\""}
-],
-5:[
- {q:"\"The new intern forgot ___ badge at home today.\"",opts:["he","his","him","himself"],c:1,d:"Easy",ok:"\"His\" is a possessive adjective used directly before the noun \"badge.\"",no:"\"He\" is a subject pronoun, \"him\" an object pronoun, and \"himself\" a reflexive pronoun — none can directly precede a noun like \"badge.\""},
- {q:"\"This report is not mine, it's ___.\"",opts:["they","their","theirs","them"],c:2,d:"Easy",ok:"\"Theirs\" is a possessive pronoun that stands alone without a following noun.",no:"\"They/them\" are not possessive forms, and \"their\" requires a noun directly after it (e.g., \"their report\")."},
- {q:"\"The manager checked the numbers ___ before submitting the report.\"",opts:["he","him","his","himself"],c:3,d:"Easy",ok:"\"Himself\" is a reflexive pronoun showing he checked the numbers personally, without help.",no:"\"He/him/his\" cannot add this reflexive emphasis to the subject performing the action alone."},
- {q:"\"Could you give this file to ___? He is waiting outside.\"",opts:["he","him","his","himself"],c:1,d:"Easy",ok:"\"Him\" is correct as the object of the preposition \"to.\"",no:"\"He\" is a subject pronoun, \"his\" is possessive, and \"himself\" is reflexive — none fit as the object of \"to\" here."},
- {q:"\"I'm sorry, I ___ what you're asking. Could you rephrase it?\"",opts:["don't understand","am not understanding","not understand","didn't understanding"],c:0,d:"Medium",ok:"\"Understand\" is a stative verb, so the correct negative form is simple present: \"don't understand.\"",no:"Stative verbs aren't normally used with \"-ing,\" and the other options are grammatically incomplete or incorrect."},
- {q:"\"She ___ three companies in different cities.\" (a fact/state)",opts:["is owning","owns","own","owning"],c:1,d:"Medium",ok:"\"Owns\" is correct — third-person singular present tense for a stative verb describing a fact.",no:"\"Is owning\" incorrectly uses continuous form with a stative verb, \"own\" lacks subject agreement, and \"owning\" alone isn't a complete verb."},
- {q:"\"We don't have ___ time to finish this today.\"",opts:["many","much","some","a"],c:1,d:"Medium",ok:"\"Much\" is used with the uncountable noun \"time\" in a negative sentence.",no:"\"Many\" is for countable nouns, and \"some/a\" don't fit this negative structure with an uncountable noun."},
- {q:"\"Would you like ___ coffee before the meeting starts?\" (an offer)",opts:["any","some","many","a"],c:1,d:"Medium",ok:"\"Some\" is used in offers, even though the sentence is a question — this is a common exception to the \"any in questions\" rule.",no:"\"Any\" is typical for negatives/most questions, but polite offers conventionally use \"some\"; \"many/a\" don't fit an uncountable noun like coffee."},
- {q:"\"There aren't ___ empty seats left in the conference room.\"",opts:["much","many","some","a"],c:1,d:"Medium",ok:"\"Many\" is used with the plural countable noun \"seats\" in a negative sentence.",no:"\"Much\" is for uncountable nouns, and \"some/a\" don't fit this negative structure with a plural countable noun."},
- {q:"Which sentence has correct subject-verb agreement?",opts:["\"The team of managers meet every Monday.\"","\"The team of managers meets every Monday.\"","\"The team of managers meeting every Monday.\"","\"The team of managers met every Monday, always.\""],c:1,d:"Hard",ok:"\"Team\" (singular collective noun) takes the singular verb \"meets,\" even though \"managers\" is plural.",no:"The verb must agree with \"team,\" the singular head noun, not with \"managers\" inside the prepositional phrase."},
- {q:"\"By the time you arrive, we ___ already finished the presentation.\"",opts:["will","have","will have","had"],c:2,d:"Hard",ok:"\"Will have\" forms the future perfect, correctly describing an action completed before a future point in time.",no:"\"Will\" alone and \"have\" alone are incomplete forms, and \"had\" (past perfect) doesn't fit a future time reference (\"by the time you arrive\")."},
- {q:"Which sentence uses the article correctly?",opts:["\"She is an unique employee.\"","\"She is a unique employee.\"","\"She is the unique employee.\"","\"She is unique employee.\""],c:1,d:"Hard",ok:"\"Unique\" begins with a consonant sound (\"yu-\"), so it takes \"a,\" not \"an.\"",no:"\"An\" is used before vowel sounds, but \"unique\" sounds like it starts with \"y,\" a consonant sound, so \"a unique\" is correct; omitting the article entirely is also wrong."},
- {q:"\"Neither the manager nor the staff ___ available today.\"",opts:["is","are","was","were"],c:0,d:"Hard",ok:"With \"neither...nor,\" the verb agrees with the noun closest to it — \"staff\" (treated as singular here) takes \"is.\"",no:"\"Are/were\" don't match the singular treatment of \"staff\" nearest the verb, and \"was\" is past tense, which doesn't fit \"today.\""},
- {q:"Which sentence is correctly punctuated?",opts:["\"Although he was late, he still finished the report.\"","\"Although he was late he still finished the report\"","\"Although, he was late, he still finished the report.\"","\"Although he was late; he still finished the report.\""],c:0,d:"Hard",ok:"A comma correctly separates the introductory subordinate clause (\"Although he was late\") from the main clause.",no:"Option B is missing the required comma, option C wrongly places a comma after \"Although,\" and option D misuses a semicolon where a comma is needed."},
- {q:"Which is the most natural, professional sentence?",opts:["\"I would like to inquire about the status of my application.\"","\"Where is my application status??\"","\"Tell me my application now.\"","\"Application status pls.\""],c:0,d:"Hard",ok:"This is a complete, polite, professional sentence appropriate for formal inquiries.",no:"The other options are demanding, incomplete, or use informal abbreviations unsuitable for professional writing."},
- {q:"\"The report ___ by the finance team every month.\"",opts:["prepares","is prepared","prepare","preparing"],c:1,d:"Easy",ok:"\"Is prepared\" is the correct passive form, since the report receives the action rather than performing it.",no:"\"Prepares/prepare\" are active forms that don't fit (the report doesn't prepare itself), and \"preparing\" alone isn't a complete verb."},
- {q:"\"If the client ___ available tomorrow, we will reschedule the call.\"",opts:["isn't","wasn't","hasn't","won't"],c:0,d:"Easy",ok:"\"Isn't\" (present simple) is correct in the \"if\" clause of a first conditional sentence about a future possibility.",no:"\"Wasn't\" is past tense, \"hasn't\" doesn't fit with \"available,\" and \"won't\" can't follow \"if\" directly in this structure."},
- {q:"\"This proposal is much ___ than the previous one.\"",opts:["good","better","best","well"],c:1,d:"Easy",ok:"\"Better\" is the correct comparative form of \"good,\" matching \"than\" in the sentence.",no:"\"Good\" is the base form, \"best\" is superlative (no \"than\" needed), and \"well\" is an adverb, not fitting this adjective comparison."},
- {q:"\"This is the ___ presentation I've seen all year.\"",opts:["best","better","good","well"],c:0,d:"Easy",ok:"\"Best\" is the superlative form of \"good,\" correctly used with \"the\" to describe the top of a group (\"all year\").",no:"\"Better\" is comparative (needs \"than\"), and \"good/well\" don't fit the superlative structure with \"the.\""},
- {q:"\"The report is due ___ Friday afternoon.\"",opts:["by","on","at","in"],c:0,d:"Medium",ok:"\"Due by\" is the correct collocation for a deadline that must be met at or before a certain time.",no:"\"On/at/in\" don't convey the deadline meaning as naturally as \"by\" does in this context."},
- {q:"\"The document ___ you sent me yesterday had an error.\"",opts:["who","which","whom","whose"],c:1,d:"Medium",ok:"\"Which\" is the correct relative pronoun for referring to a thing (the document), not a person.",no:"\"Who/whom\" are used for people, and \"whose\" indicates possession — none fit referring to \"the document.\""},
- {q:"\"You ___ submit the form before the deadline, or your application won't be considered.\"",opts:["must","might","could","would"],c:0,d:"Medium",ok:"\"Must\" expresses a strong obligation, matching the serious consequence stated afterward.",no:"\"Might/could/would\" express possibility or hypothetical situations, not the strict requirement implied here."},
- {q:"\"She said that she ___ send the report the next day.\" (reported speech)",opts:["will","would","is going to","going"],c:1,d:"Medium",ok:"\"Would\" is the correct backshifted form of \"will\" used in reported speech about a past statement.",no:"\"Will\" is not backshifted for reported speech, and \"is going to / going\" don't follow the reported-speech pattern correctly here."},
- {q:"\"He avoided ___ the client until the report was ready.\"",opts:["to contact","contacting","contact","contacted"],c:1,d:"Medium",ok:"\"Avoid\" is followed by a gerund (\"contacting\"), not an infinitive.",no:"\"To contact\" incorrectly uses the infinitive after \"avoid,\" and \"contact/contacted\" aren't the correct verb forms in this structure."},
- {q:"\"We look forward to ___ from you soon.\"",opts:["hear","hearing","heard","to hear"],c:1,d:"Hard",ok:"\"Look forward to\" is followed by a gerund (\"hearing\"), since \"to\" here is a preposition, not part of an infinitive.",no:"\"Hear/heard/to hear\" incorrectly treat \"to\" as part of an infinitive verb form, which is a common mistake with this fixed phrase."},
- {q:"Choose the sentence with correct passive voice.",opts:["\"The invoice sent yesterday.\"","\"The invoice was sent yesterday.\"","\"The invoice is sending yesterday.\"","\"The invoice sends yesterday.\""],c:1,d:"Hard",ok:"\"Was sent\" correctly forms the past passive, since the invoice received the action.",no:"The other options are missing the auxiliary verb or use an incorrect tense/aspect for a completed past action."},
- {q:"Which sentence correctly uses a conditional for a business policy?",opts:["\"If you cancel within 24 hours, you gets a full refund.\"","\"If you cancel within 24 hours, you will get a full refund.\"","\"If you cancel within 24 hours, you got a full refund.\"","\"If you cancel within 24 hours, you getting a full refund.\""],c:1,d:"Hard",ok:"This is a correctly formed first conditional: present simple in the \"if\" clause, \"will\" + base verb in the result clause.",no:"The other options have incorrect subject-verb agreement or tense in the result clause."},
- {q:"Which sentence uses the correct business collocation?",opts:["\"make a decision\"","\"do a decision\"","\"take a decision\"","\"have a decision\""],c:0,d:"Hard",ok:"\"Make a decision\" is the standard English collocation.",no:"\"Do/take/have a decision\" are not the natural pairing in standard business English — the correct verb is \"make.\""},
- {q:"Which sentence best uses \"despite\" correctly?",opts:["\"Despite of the delay, we finished on time.\"","\"Despite the delay, we finished on time.\"","\"Despite the delay, but we finished on time.\"","\"Although the delay, we finished on time.\""],c:1,d:"Hard",ok:"\"Despite\" is directly followed by a noun phrase, with no \"of\" and no \"but\" needed afterward.",no:"\"Despite of\" incorrectly adds \"of,\" the \"but\" is redundant after \"despite,\" and \"although\" must be followed by a full clause, not just a noun phrase."},
- {q:"\"The client has ___ concerns about the new pricing model.\"",opts:["some","much","many","a"],c:0,d:"Medium",ok:"\"Some\" is used with the plural countable noun \"concerns\" in a general positive statement.",no:"\"Much\" is for uncountable nouns, \"many\" usually pairs with negatives/questions rather than a plain positive statement, and \"a\" doesn't fit a plural noun."}
-],
-6:[
- {q:"\"Let's ___ base next week to check on the project's progress.\"",opts:["touch","hit","reach","get"],c:0,d:"Easy",ok:"\"Touch base\" is a fixed idiom meaning to make brief contact with someone.",no:"\"Hit/reach/get base\" are not the correct idiom — the fixed expression is \"touch base.\""},
- {q:"\"I think we're finally ___ the same page about the budget.\"",opts:["on","in","at","with"],c:0,d:"Easy",ok:"\"On the same page\" is a fixed idiom meaning to be in agreement or have the same understanding.",no:"\"In/at/with the same page\" are not correct — the standard idiom uses \"on.\""},
- {q:"\"Can you give me a ___ figure for the total cost?\"",opts:["ballpark","baseball","football","round"],c:0,d:"Easy",ok:"\"Ballpark figure\" is a fixed idiom meaning a rough estimate.",no:"\"Baseball/football/round figure\" are not the correct idiom — the standard phrase is \"ballpark figure.\""},
- {q:"\"The ___ line is, we need to cut costs this quarter.\"",opts:["bottom","top","main","final"],c:0,d:"Easy",ok:"\"Bottom line\" is a fixed idiom meaning the most essential point or conclusion.",no:"\"Top/main/final line\" are not correct — the standard idiom is \"bottom line.\""},
- {q:"\"The project's future is still ___ in the air; nothing is confirmed yet.\"",opts:["up","down","out","over"],c:0,d:"Easy",ok:"\"Up in the air\" is a fixed idiom meaning uncertain or undecided.",no:"\"Down/out/over in the air\" are not correct — the standard idiom is \"up in the air.\""},
- {q:"\"After the plan failed, we had to go back to the ___ board.\"",opts:["drawing","writing","planning","design"],c:0,d:"Medium",ok:"\"Back to the drawing board\" is a fixed idiom meaning to start planning again from the beginning.",no:"\"Writing/planning/design board\" are not correct — the standard idiom uses \"drawing.\""},
- {q:"\"Let's get the ___ rolling on this new campaign.\"",opts:["ball","wheel","car","train"],c:0,d:"Medium",ok:"\"Get the ball rolling\" is a fixed idiom meaning to start a process or activity.",no:"\"Wheel/car/train rolling\" are not the correct idiom — the standard expression is \"get the ball rolling.\""},
- {q:"\"We shouldn't ___ corners just to save time on this project.\"",opts:["cut","skip","miss","turn"],c:0,d:"Medium",ok:"\"Cut corners\" is a fixed idiom meaning to do something poorly or incompletely to save time or money.",no:"\"Skip/miss/turn corners\" are not correct — the standard idiom is \"cut corners.\""},
- {q:"\"Please keep me in the ___ about any updates on this deal.\"",opts:["loop","circle","group","team"],c:0,d:"Medium",ok:"\"Keep someone in the loop\" is a fixed idiom meaning to keep someone informed.",no:"\"Circle/group/team\" are not correct — the standard idiom uses \"loop.\""},
- {q:"\"Our new product could be a real game ___ for the industry.\"",opts:["changer","maker","breaker","winner"],c:0,d:"Medium",ok:"\"Game changer\" is a fixed idiom meaning something that significantly alters a situation.",no:"\"Maker/breaker/winner\" are not correct — the standard idiom is \"game changer.\""},
- {q:"\"She always goes the extra ___ to make sure clients are happy.\"",opts:["mile","step","kilometer","distance"],c:0,d:"Medium",ok:"\"Go the extra mile\" is a fixed idiom meaning to make a special additional effort.",no:"\"Step/kilometer/distance\" are not correct — the standard idiom uses \"mile.\""},
- {q:"\"There's a steep learning ___ with this new software.\"",opts:["curve","hill","slope","climb"],c:0,d:"Medium",ok:"\"Learning curve\" is a fixed idiom describing the rate at which someone gains new skills or knowledge.",no:"\"Hill/slope/climb\" are not correct — the standard idiom is \"learning curve.\""},
- {q:"\"Getting approval took forever because of all the red ___.\"",opts:["tape","paper","line","string"],c:0,d:"Medium",ok:"\"Red tape\" is a fixed idiom referring to excessive bureaucracy or official rules that slow things down.",no:"\"Paper/line/string\" are not correct — the standard idiom is \"red tape.\""},
- {q:"\"I'll keep you ___ on how the negotiation goes.\"",opts:["posted","informed","updated","aware"],c:0,d:"Medium",ok:"\"Keep someone posted\" is the fixed idiomatic phrase meaning to give someone regular updates.",no:"While \"informed/updated/aware\" are related in meaning, the fixed idiomatic collocation with \"keep you\" is specifically \"posted.\""},
- {q:"\"The new manager really hit the ground ___ in her first week.\"",opts:["running","walking","moving","working"],c:0,d:"Medium",ok:"\"Hit the ground running\" is a fixed idiom meaning to start something with energy and enthusiasm right away.",no:"\"Walking/moving/working\" are not correct — the standard idiom uses \"running.\""},
- {q:"\"No one wanted to mention the budget cuts — it was the elephant in the ___.\"",opts:["room","office","meeting","building"],c:0,d:"Hard",ok:"\"Elephant in the room\" is a fixed idiom for an obvious problem everyone avoids discussing.",no:"\"Office/meeting/building\" are not correct — the standard idiom is \"elephant in the room.\""},
- {q:"\"That's an interesting idea — definitely food for ___.\"",opts:["thought","mind","brain","idea"],c:0,d:"Hard",ok:"\"Food for thought\" is a fixed idiom meaning something worth thinking about carefully.",no:"\"Mind/brain/idea\" are not correct — the standard idiom uses \"thought.\""},
- {q:"\"Their new technology helped them ___ the market in that region.\"",opts:["corner","win","take","own"],c:0,d:"Hard",ok:"\"Corner the market\" is a fixed idiom meaning to gain a dominant, controlling position in a market.",no:"\"Win/take/own the market\" are plausible-sounding but not the fixed business idiom — the standard phrase is \"corner the market.\""},
- {q:"\"After months of negotiation, they finally ___ the deal.\"",opts:["closed","finished","ended","completed"],c:0,d:"Hard",ok:"\"Close the deal\" is the fixed business idiom meaning to successfully finalize an agreement.",no:"\"Finished/ended/completed\" are understandable but not the standard fixed collocation — the idiom is \"close the deal.\""},
- {q:"\"Switching to digital invoices was a ___ decision — it saved us so much time.\"",opts:["no-brainer","easy-brain","quick-mind","simple-choice"],c:0,d:"Hard",ok:"\"No-brainer\" is a fixed idiom meaning an obviously correct or easy decision.",no:"\"Easy-brain/quick-mind/simple-choice\" are not real English idioms — the correct term is \"no-brainer.\""},
- {q:"\"This factory uses ___ technology to reduce waste.\"",opts:["state-of-the-art","state of art","state-of-art","high-state"],c:0,d:"Hard",ok:"\"State-of-the-art\" is the correctly hyphenated fixed idiom meaning the most advanced available technology.",no:"The other options are incorrect or incomplete versions of this fixed compound adjective."},
- {q:"\"We're trying to ___ the approval process so it takes less time.\"",opts:["streamline","widen","lengthen","complicate"],c:0,d:"Hard",ok:"\"Streamline\" means to make a process more efficient by removing unnecessary steps.",no:"\"Widen/lengthen/complicate\" have the opposite or unrelated meaning to making a process simpler and faster."},
- {q:"\"The company had to ___ after losing several major clients.\"",opts:["downsize","upsize","resize","oversize"],c:0,d:"Hard",ok:"\"Downsize\" means to reduce the size of a company, often by cutting staff.",no:"\"Upsize/resize/oversize\" don't convey the meaning of reducing a company's workforce or scale."},
- {q:"\"It's time to raise the ___ — our competitors are catching up.\"",opts:["bar","flag","level","standard"],c:0,d:"Medium",ok:"\"Raise the bar\" is a fixed idiom meaning to set a higher standard of performance.",no:"\"Flag/level/standard\" are not correct — the standard idiom uses \"bar.\""},
- {q:"\"This partnership is a ___ situation for both companies.\"",opts:["win-win","lose-lose","give-take","all-win"],c:0,d:"Medium",ok:"\"Win-win\" is a fixed idiom describing a situation that benefits everyone involved.",no:"\"Lose-lose/give-take/all-win\" are either opposite in meaning or not standard English idioms."},
- {q:"\"She's always on the ___ — nothing gets past her.\"",opts:["ball","point","edge","mark"],c:0,d:"Easy",ok:"\"On the ball\" is a fixed idiom meaning alert, competent, and attentive.",no:"\"Point/edge/mark\" are not correct — the standard idiom is \"on the ball.\""},
- {q:"\"Let's call it a ___; we can continue tomorrow.\"",opts:["day","night","end","stop"],c:0,d:"Easy",ok:"\"Call it a day\" is a fixed idiom meaning to stop working for the day.",no:"\"Night/end/stop\" are not correct — the standard idiom is \"call it a day.\""},
- {q:"Which idiom means \"to think creatively, beyond usual methods\"?",opts:["\"think outside the box\"","\"think inside the lines\"","\"think around the corner\"","\"think beyond the wall\""],c:0,d:"Hard",ok:"\"Think outside the box\" is the standard idiom for creative, unconventional thinking.",no:"The other options are not real English idioms."},
- {q:"Which idiom best describes cutting unnecessary steps to make a process faster?",opts:["\"streamline the process\"","\"widen the process\"","\"lengthen the process\"","\"complicate the process\""],c:0,d:"Hard",ok:"\"Streamline the process\" correctly describes making something more efficient by removing unnecessary steps.",no:"The other options describe the opposite of making a process more efficient."},
- {q:"\"We need everyone ___ before we launch, so let's have a quick alignment meeting.\"",opts:["on the same page","on the same table","on the same line","on the same book"],c:0,d:"Medium",ok:"\"On the same page\" is the fixed idiom meaning everyone shares the same understanding.",no:"\"Table/line/book\" are not correct — the standard idiom uses \"page.\""}
-],
-7:[
- {q:"\"Thank you for calling. How may I ___ you today?\"",opts:["assist","hear","answer","service"],c:0,d:"Easy",ok:"\"May I assist you\" is the standard polite phrase used to open a customer service interaction.",no:"\"Hear/answer/service\" don't fit this fixed opening phrase — the standard verb is \"assist.\""},
- {q:"\"I completely understand your frustration, and I ___ for the inconvenience.\"",opts:["apologize","sorry","regret","excuse"],c:0,d:"Easy",ok:"\"Apologize\" is the correct verb form following the subject \"I.\"",no:"\"Sorry\" is an adjective (needs \"am sorry\"), \"regret\" changes the intended meaning slightly, and \"excuse\" doesn't fit this structure."},
- {q:"\"Let me ___ your issue and find the best solution.\"",opts:["look into","look for","look at","look up"],c:0,d:"Easy",ok:"\"Look into\" means to investigate, which fits the context of resolving a customer's issue.",no:"\"Look for\" means to search, \"look at\" is less formal for investigating, and \"look up\" means to search for information — none fit as precisely as \"look into.\""},
- {q:"\"Could you please provide your order ___ so I can check the details?\"",opts:["number","name","code","id"],c:0,d:"Easy",ok:"\"Order number\" is the standard term used to identify a specific purchase.",no:"\"Name/code/id\" are less standard in this specific customer-service context — the fixed term is \"order number.\""},
- {q:"\"I'm sorry for the delay. Let me ___ this up for you right away.\"",opts:["speed","fast","quick","rush"],c:0,d:"Easy",ok:"\"Speed this up\" is the fixed phrasal verb meaning to make a process faster.",no:"\"Fast/quick/rush this up\" are not correct — the standard phrasal verb is \"speed up.\""},
- {q:"\"We value your feedback and will use it to ___ our service.\"",opts:["improve","increase","impress","inform"],c:0,d:"Medium",ok:"\"Improve\" fits the context of making service better based on feedback.",no:"\"Increase/impress/inform\" don't convey the idea of making something better in quality."},
- {q:"\"I understand this is frustrating, and I want to help resolve it as quickly as possible.\" — This is an example of which kind of customer-service phrase?",opts:["Empathy statement","Apology","Complaint","Warning"],c:0,d:"Medium",ok:"This phrase acknowledges the customer's feelings, which is the defining feature of an empathy statement.",no:"It's not an apology (no \"sorry\"), a complaint, or a warning — its purpose is to show understanding."},
- {q:"Which response best shows empathy to an angry customer?",opts:["\"Calm down, it's not a big deal.\"","\"I understand this is frustrating, and I want to help resolve it as quickly as possible.\"","\"That's not my department.\"","\"You should have read the instructions.\""],c:1,d:"Medium",ok:"This response acknowledges the customer's feelings and offers help, which is the professional standard.",no:"The other options are dismissive or blame the customer, which can escalate frustration."},
- {q:"\"If the issue cannot be resolved, I will ___ this to my supervisor.\"",opts:["escalate","elevate","upgrade","upload"],c:0,d:"Medium",ok:"\"Escalate\" is the standard customer-service term for passing an issue to a higher authority.",no:"\"Elevate/upgrade/upload\" are not the standard term used in this customer-service context."},
- {q:"\"We'd like to offer you a ___ on your next purchase as an apology for the inconvenience.\"",opts:["discount","refund","bill","charge"],c:0,d:"Medium",ok:"\"Discount\" fits the context of a goodwill gesture applied to a future purchase.",no:"\"Refund\" would apply to the current purchase, not a future one, and \"bill/charge\" don't convey a goodwill gesture."},
- {q:"\"Could you please hold while I ___ this information?\"",opts:["verify","occupy","fill","hold"],c:0,d:"Medium",ok:"\"Verify\" means to check that information is correct, which fits this customer-service context.",no:"\"Occupy/fill/hold\" don't convey the meaning of checking information for accuracy."},
- {q:"\"We appreciate your patience while we ___ this matter.\"",opts:["resolve","solve","fix","end"],c:0,d:"Medium",ok:"\"Resolve\" is the standard, more formal customer-service term for settling an issue.",no:"\"Solve/fix/end\" are understandable but less formal or precise in this professional customer-service context."},
- {q:"\"I'm going to transfer you to our ___ team, who can assist further.\"",opts:["technical","technic","technique","technically"],c:0,d:"Medium",ok:"\"Technical\" is the correct adjective form used before \"team.\"",no:"\"Technic/technique/technically\" are incorrect word forms — the adjective needed here is \"technical.\""},
- {q:"\"Your satisfaction is our top ___.\"",opts:["priority","target","goal","mission"],c:0,d:"Medium",ok:"\"Top priority\" is the standard fixed collocation used in customer-service language.",no:"\"Target/goal/mission\" are related in meaning but not the standard fixed phrase used here."},
- {q:"\"We're sorry to hear that the product didn't meet your ___.\"",opts:["expectations","hopes","wishes","dreams"],c:0,d:"Medium",ok:"\"Expectations\" is the standard business term used when discussing product performance versus customer standards.",no:"\"Hopes/wishes/dreams\" are too emotional or informal for this professional customer-service context."},
- {q:"Which is the best way to de-escalate an angry customer on the phone?",opts:["\"Sir, please stop shouting.\"","\"I hear how upsetting this is, and I want to make it right — let's go through this together.\"","\"There's nothing I can do.\"","\"You need to calm down first.\""],c:1,d:"Hard",ok:"This response acknowledges the customer's emotions and offers collaborative help, which is the professional de-escalation standard.",no:"The other options are commanding, dismissive, or unhelpful, which tend to escalate anger rather than calm it."},
- {q:"Which sentence professionally declines a refund request while offering an alternative?",opts:["\"No refunds, sorry.\"","\"I'm unable to offer a refund in this case, but I'd be happy to offer a replacement or store credit instead.\"","\"That's against policy, can't help.\"","\"Ask someone else.\""],c:1,d:"Hard",ok:"This response clearly explains the limitation while offering a constructive alternative.",no:"The other options are abrupt or unhelpful, leaving the customer without any path forward."},
- {q:"Which is the most professional way to ask a customer to repeat information?",opts:["\"What did you say?\"","\"I'm sorry, could you please repeat that for me?\"","\"Huh?\"","\"Say again.\""],c:1,d:"Hard",ok:"This phrasing is polite and apologizes before making the request.",no:"The other options are too blunt or casual for a professional customer-service interaction."},
- {q:"Which sentence best closes a customer service call professionally?",opts:["\"OK bye.\"","\"Thank you for your patience today. Is there anything else I can help you with?\"","\"That's all, goodbye.\"","\"Done, next.\""],c:1,d:"Hard",ok:"This closing thanks the customer and offers further assistance before ending the call.",no:"The other options are abrupt and don't leave room for any final questions."},
- {q:"Which phrase is appropriate for informing a customer about a follow-up survey?",opts:["\"Please rate us or else.\"","\"We'd appreciate it if you could take a moment to complete our feedback survey.\"","\"Fill this out now.\"","\"Survey, please, thanks.\""],c:1,d:"Hard",ok:"This phrasing politely invites participation without pressuring the customer.",no:"The other options are demanding or too abrupt for a polite request."},
- {q:"\"We take all complaints ___ and will investigate this thoroughly.\"",opts:["seriously","serious","severely","heavily"],c:0,d:"Medium",ok:"\"Seriously\" is the correct adverb modifying the verb \"take\" in this fixed phrase.",no:"\"Serious\" is an adjective (wrong word form here), and \"severely/heavily\" don't fit this standard customer-service collocation."},
- {q:"\"Please accept our sincere apologies for any ___ this may have caused.\"",opts:["inconvenience","inconvenient","convenience","convenient"],c:0,d:"Medium",ok:"\"Inconvenience\" is the correct noun form needed after \"any.\"",no:"\"Inconvenient\" is an adjective, and \"convenience/convenient\" have the opposite meaning — the correct noun is \"inconvenience.\""},
- {q:"\"Our team is currently ___ into the issue and will update you shortly.\"",opts:["looking","looked","look","looks"],c:0,d:"Medium",ok:"\"Looking\" correctly completes the present continuous tense (\"is currently looking\").",no:"\"Looked/look/looks\" don't fit the present continuous structure required with \"is currently.\""},
- {q:"\"We aim to respond to all inquiries ___ 24 hours.\"",opts:["within","inside","by","on"],c:0,d:"Medium",ok:"\"Within 24 hours\" is the standard fixed phrase for stating a response-time commitment.",no:"\"Inside/by/on\" are not the natural collocation used for this type of time-frame commitment."},
- {q:"\"Is there anything else I can ___ with today?\"",opts:["help","assist","aid","support"],c:0,d:"Medium",ok:"\"Help you with\" is the standard closing phrase in customer service, matching the preposition \"with.\"",no:"\"Assist/aid/support with\" are less natural in this specific fixed closing phrase — the standard verb is \"help.\""},
- {q:"Which sentence correctly reports a customer complaint to a manager?",opts:["\"customer angry, bad product\"","\"A customer reported that the product arrived damaged and has requested a replacement.\"","\"someone mad about box\"","\"complaint, box broke, fix\""],c:1,d:"Hard",ok:"This is a complete, professional sentence clearly stating the issue and the customer's request.",no:"The other options are sentence fragments too informal for reporting to a manager."},
- {q:"Which response best handles a customer who is repeating the same complaint?",opts:["\"I already told you the answer.\"","\"I understand you've raised this before — let me review it again to make sure we resolve it properly this time.\"","\"You already asked this.\"","\"Nothing has changed.\""],c:1,d:"Hard",ok:"This response acknowledges the repetition without blaming the customer and commits to resolving it properly.",no:"The other options sound dismissive or blame the customer for repeating their concern."},
- {q:"Which is the most professional way to thank a customer for their loyalty?",opts:["\"Thanks for buying stuff.\"","\"We truly appreciate your continued support and loyalty as a valued customer.\"","\"Nice, you bought again.\"","\"Good customer, thanks.\""],c:1,d:"Hard",ok:"This is a complete, warm, and professional expression of appreciation.",no:"The other options are too casual or awkwardly phrased for professional customer communication."},
- {q:"Which sentence uses \"regret\" correctly and formally?",opts:["\"We regret to inform you that your order has been delayed.\"","\"We regret you that your order late.\"","\"Regret, order delay, sorry.\"","\"We are regret for the delay.\""],c:0,d:"Hard",ok:"\"We regret to inform you that...\" is the correct, standard formal structure for delivering unwelcome news.",no:"The other options misuse the grammar of \"regret\" or are sentence fragments."},
- {q:"\"Could you please confirm your ___ address so we can send the replacement?\"",opts:["shipping","sending","mail-out","post-out"],c:0,d:"Medium",ok:"\"Shipping address\" is the standard business term for the delivery address.",no:"\"Sending/mail-out/post-out address\" are not standard fixed terms — the correct phrase is \"shipping address.\""}
-],
-8:[
- {q:"\"Let's begin with a brief ___ of today's agenda.\"",opts:["overview","underview","preview","review"],c:0,d:"Easy",ok:"\"Overview\" is the standard term for a brief summary given at the start of a presentation.",no:"\"Underview\" isn't a real word, and \"preview/review\" don't fit as precisely as \"overview\" for introducing an agenda."},
- {q:"\"I'll now hand over to my colleague for the next ___.\"",opts:["slide","page","part","section"],c:0,d:"Easy",ok:"\"Slide\" is the standard term used in the context of a presentation.",no:"\"Page/part/section\" could work generally, but \"slide\" is the precise, standard term for presentations specifically."},
- {q:"\"At the end of the presentation, we'll have a Q&A ___.\"",opts:["session","time","part","moment"],c:0,d:"Easy",ok:"\"Q&A session\" is the standard fixed phrase for the question-and-answer portion of a presentation.",no:"\"Time/part/moment\" are not the standard collocation — the fixed phrase is \"Q&A session.\""},
- {q:"\"This report includes an executive ___ summarizing our findings.\"",opts:["summary","report","note","brief"],c:0,d:"Easy",ok:"\"Executive summary\" is the standard fixed term for a concise overview at the start of a formal report.",no:"\"Report/note/brief\" don't form the standard fixed phrase — the correct term is \"executive summary.\""},
- {q:"\"Please refer to the ___ for supporting data and charts.\"",opts:["appendix","footnote","index","glossary"],c:0,d:"Easy",ok:"\"Appendix\" is the standard section at the end of a report containing supporting data and charts.",no:"\"Footnote/index/glossary\" serve different purposes — the correct section for supporting data is the \"appendix.\""},
- {q:"\"Sales ___ by 15% compared to last quarter.\"",opts:["increased","increase","increasing","increases"],c:0,d:"Medium",ok:"\"Increased\" is the correct simple past tense, describing a completed change compared to the past.",no:"\"Increase/increasing/increases\" don't match the past-tense comparison structure implied by \"compared to last quarter.\""},
- {q:"\"Costs ___ steadily over the past six months.\"",opts:["have decreased","decreased","decreasing","decrease"],c:0,d:"Medium",ok:"\"Have decreased\" (present perfect) correctly describes a trend continuing up to now over a stated period (\"over the past six months\").",no:"\"Decreased\" alone (simple past) doesn't emphasize the continuing relevance to the present as clearly, and \"decreasing/decrease\" aren't complete verb forms here."},
- {q:"\"The graph shows an upward ___ in customer satisfaction.\"",opts:["trend","trending","trended","trends"],c:0,d:"Medium",ok:"\"Trend\" is the correct singular noun form following \"an upward.\"",no:"\"Trending/trended\" are verb forms, and \"trends\" is plural, which doesn't match the singular article \"an.\""},
- {q:"\"Our main ___ from this quarter's data is that customer retention needs improvement.\"",opts:["finding","found","find","finds"],c:0,d:"Medium",ok:"\"Finding\" is the correct noun form used in formal reports to describe a discovered result.",no:"\"Found\" is a past-tense verb, and \"find/finds\" are present-tense verb forms — none fit as the noun needed here."},
- {q:"\"Based on these results, we ___ increasing the marketing budget.\"",opts:["recommend","suggestion","recommendation","suggested"],c:0,d:"Medium",ok:"\"Recommend\" is the correct verb form needed after the subject \"we.\"",no:"\"Suggestion/recommendation\" are nouns, and \"suggested\" is past tense — the correct present-tense verb is \"recommend.\""},
- {q:"\"To ___ up, let's review the three main points we discussed today.\"",opts:["sum","total","finish","close"],c:0,d:"Medium",ok:"\"Sum up\" is the fixed idiom meaning to briefly summarize.",no:"\"Total/finish/close up\" are not the correct idiom — the standard phrase is \"sum up.\""},
- {q:"\"As you can see ___ this chart, revenue grew steadily.\"",opts:["in","on","at","from"],c:0,d:"Medium",ok:"\"In this chart\" is the standard preposition used when referring to information displayed within a chart.",no:"\"On/at/from this chart\" are less standard in this context — the correct preposition is \"in.\""},
- {q:"\"Let's move ___ to the next section of the report.\"",opts:["on","forward","ahead","up"],c:0,d:"Medium",ok:"\"Move on\" is the fixed phrasal verb meaning to proceed to the next topic.",no:"\"Forward/ahead/up\" are not the correct phrasal verb — the standard expression is \"move on.\""},
- {q:"\"In ___, our team achieved all quarterly targets.\"",opts:["conclusion","final","end","finally"],c:0,d:"Medium",ok:"\"In conclusion\" is the standard fixed transition phrase used to introduce a closing statement.",no:"\"Final/end/finally\" don't form the correct fixed phrase — the standard transition is \"in conclusion.\""},
- {q:"\"This slide illustrates the key ___ of our strategy.\"",opts:["components","component","componental","componentize"],c:0,d:"Medium",ok:"\"Components\" (plural) is correct because \"key\" implies more than one main part.",no:"\"Component\" (singular) doesn't match the plural implication of \"key,\" and \"componental/componentize\" are not real words."},
- {q:"Which sentence uses formal, report-appropriate language?",opts:["\"Sales went up a ton this quarter, which is awesome.\"","\"Sales increased significantly this quarter.\"","\"Sales like really jumped up, ya know.\"","\"Sales, wow, up a lot!\""],c:1,d:"Hard",ok:"This sentence uses formal vocabulary (\"increased significantly\") appropriate for a business report.",no:"The other options use casual slang and filler words unsuitable for formal written reports."},
- {q:"Which phrase correctly introduces a chart or graph in a report?",opts:["\"look at this graph\"","\"As illustrated in Figure 1, revenue grew by 12%.\"","\"graph shows stuff\"","\"see graph below, up\""],c:1,d:"Hard",ok:"This is a complete, formal sentence that correctly references a specific figure and states the data clearly.",no:"The other options are sentence fragments too casual for formal report writing."},
- {q:"Which sentence uses passive voice appropriately in a formal report?",opts:["\"We conducted the survey in March.\"","\"The survey was conducted in March.\"","\"The survey conducting in March.\"","\"The survey conduct in March.\""],c:1,d:"Hard",ok:"\"Was conducted\" is the correct passive form, commonly preferred in formal reports to focus on the action rather than who performed it.",no:"The other options either use active voice (less common in this formal context) or are grammatically incomplete."},
- {q:"Which is the best way to transition to a recommendation section in a report?",opts:["\"So yeah, here's what we think.\"","\"Based on the findings above, we recommend the following actions.\"","\"Anyway, recommendations:\"","\"Here's some ideas maybe.\""],c:1,d:"Hard",ok:"This transition formally connects the findings to the recommendations, which is the standard report structure.",no:"The other options are too casual or vague for a formal report transition."},
- {q:"Which sentence best describes a declining trend formally?",opts:["\"Numbers went down a lot, bad.\"","\"Revenue declined by 8% over the past quarter.\"","\"Money less now.\"","\"Down, down, down this quarter.\""],c:1,d:"Hard",ok:"This sentence uses precise, formal vocabulary and a specific figure appropriate for a business report.",no:"The other options are vague, ungrammatical, or too casual for formal reporting."},
- {q:"\"The presentation will ___ approximately 20 minutes, followed by discussion.\"",opts:["last","take","spend","hold"],c:0,d:"Medium",ok:"\"Last\" is the correct verb describing the duration of an event.",no:"\"Take/spend/hold\" don't fit this specific structure describing how long an event continues."},
- {q:"\"Please hold your questions ___ the end of the presentation.\"",opts:["until","by","at","on"],c:0,d:"Medium",ok:"\"Until\" correctly indicates that questions should wait up to that point in time.",no:"\"By/at/on\" don't convey the meaning of waiting throughout the presentation until a later point."},
- {q:"\"This chart ___ the sales performance across all regions.\"",opts:["compares","compare","comparing","compared"],c:0,d:"Medium",ok:"\"Compares\" agrees with the singular subject \"this chart\" in the present simple tense.",no:"\"Compare\" doesn't match the singular subject, and \"comparing/compared\" aren't complete present-tense verb forms here."},
- {q:"\"Our next steps ___ finalizing the budget and assigning responsibilities.\"",opts:["include","includes","including","included"],c:0,d:"Medium",ok:"\"Include\" agrees with the plural subject \"our next steps.\"",no:"\"Includes\" is for singular subjects, and \"including/included\" aren't the correct verb forms needed here."},
- {q:"\"The report was ___ by the research team over three months.\"",opts:["prepared","preparing","prepare","prepares"],c:0,d:"Medium",ok:"\"Prepared\" correctly completes the passive structure \"was prepared,\" since the report received the action.",no:"\"Preparing/prepare/prepares\" don't fit the passive structure required after \"was.\""},
- {q:"Which is the correct formal way to acknowledge a limitation in a report?",opts:["\"This part is kinda weak, sorry.\"","\"It should be noted that this analysis is limited by the sample size available.\"","\"Data was bad here, oops.\"","\"We didn't have enough data, my bad.\""],c:1,d:"Hard",ok:"This sentence formally acknowledges a limitation using appropriate report language.",no:"The other options are too casual or apologetic in an unprofessional way for formal report writing."},
- {q:"Which sentence best introduces the purpose of a report?",opts:["\"This report is about some stuff we found.\"","\"The purpose of this report is to evaluate the effectiveness of our Q3 marketing campaign.\"","\"Here's what happened, basically.\"","\"Report time, let's go.\""],c:1,d:"Hard",ok:"This is a precise, formal sentence clearly stating the report's specific purpose.",no:"The other options are vague and too casual for formally introducing a report."},
- {q:"Which sentence correctly uses \"in terms of\" formally?",opts:["\"In terms of, sales are good.\"","\"In terms of revenue, this quarter exceeded expectations.\"","\"In term of revenue good.\"","\"Revenue in terms, good this quarter.\""],c:1,d:"Hard",ok:"\"In terms of revenue\" correctly uses the fixed phrase followed directly by the noun it refers to.",no:"The other options misuse the fixed phrase grammatically or omit necessary words."},
- {q:"Which is the most professional way to invite audience questions after a presentation?",opts:["\"Any questions? No? OK bye.\"","\"I'd be happy to answer any questions you may have.\"","\"Questions, anyone? Quick, now.\"","\"Ask stuff if you want.\""],c:1,d:"Hard",ok:"This is a warm, professional invitation for the audience to engage further.",no:"The other options are abrupt or too casual for closing a formal presentation."},
- {q:"\"We would like to thank everyone ___ their contributions to this project.\"",opts:["for","of","with","about"],c:0,d:"Medium",ok:"\"Thank someone for something\" is the correct fixed preposition pairing.",no:"\"Of/with/about\" don't fit this standard fixed collocation — the correct preposition is \"for.\""}
-]
-};
-
-/* ============ DATA: EMAIL CORRECTION EXERCISES ============ */
-const EMAIL_BANK = {
-1:[
- {to:"mr.andi@company.com", cc:"(none)", subject:"meeting change",
-  body:"hi bro\n\ncan we move the meeting tomorrow i have another schedule. i already tell my team about this. is it ok to move it to next week? i think tuesday same time is fine for me. let me know asap because i need to update my calendar too\n\nthanks",
-  issues:["Greeting is too informal (\"hi bro\") for a professional contact","No CC to the team member who is also affected by the change","Grammar errors (\"i already tell\", run-on sentence about Tuesday)","Vague/pressuring close (\"asap\") instead of a polite request","Missing proper sign-off and sender's name"],
-  model:"To: mr.andi@company.com\nCc: sarah.tim@company.com\nSubject: Request to Reschedule Tomorrow's Meeting to Next Tuesday\n\nDear Mr. Andi,\n\nI hope this email finds you well. I am writing to ask whether we could reschedule our meeting originally planned for tomorrow, as I have a scheduling conflict that I was unable to resolve in time.\n\nWould it be possible to move it to next Tuesday at the same time, 10:00 AM? I have copied Sarah from my team, as she will also need to adjust her schedule accordingly.\n\nPlease let me know if this new time works for you, or feel free to suggest another time that suits you better.\n\nThank you very much for your understanding.\n\nBest regards,\n[Your Name]"},
- {to:"support@abcsupplier.com", cc:"(none)", subject:"where is my order??",
-  body:"hello\n\nyou still not send my order. i order 2 weeks ago on 10 august and until now nothing arrive at my office. i already call your office three time but no one answer. this is very bad service from your company. if you cannot send it by this week i will cancel and buy from other supplier instead\n\nplease reply fast",
-  issues:["Aggressive, threatening tone (\"i will cancel and buy from other supplier\")","Grammar errors throughout (\"you still not send\", \"i order\", \"three time\")","No CC to the internal procurement team who should be kept informed","Order number never explicitly stated despite mentioning the date","Subject line uses excessive punctuation and no sign-off is given"],
-  model:"To: support@abcsupplier.com\nCc: procurement@mycompany.com\nSubject: Inquiry About Delayed Order #4521 (Placed 10 August)\n\nDear [Recipient's Name],\n\nI am writing to follow up on my order (Order #4521), which was placed on 10 August but has not yet arrived at our office. I have also tried calling your office three times this week without success in reaching anyone.\n\nCould you please check the status of this order and confirm the expected delivery date? I have copied our procurement team, as they will need this information for their records as well.\n\nI would appreciate your prompt attention to this matter, as the delay is affecting our operations.\n\nThank you in advance for your assistance.\n\nBest regards,\n[Your Name]"},
- {to:"marketing-team@company.com", cc:"(none)", subject:"(no subject)",
-  body:"hi\n\nim new intern in marketing team start today. nice to meet you all. i will help with social media and content for the next 3 month. if u need help just tell me. also my supervisor is pak budi so if u want to know more about my work you can ask him. see u around\n\nbye",
-  issues:["Missing subject line entirely","Texting abbreviations throughout (\"im\", \"u\", \"see u\")","No CC to HR, who should typically be aware of intern introductions","Grammar error: \"3 month\" should be \"three months\"","No formal greeting or closing signature"],
-  model:"To: marketing-team@company.com\nCc: hr@company.com\nSubject: Introduction – New Marketing Intern\n\nDear Team,\n\nMy name is [Your Name], and I am the new intern joining the Marketing team starting today. I will be assisting with social media and content creation for the next three months, under the supervision of Mr. Budi.\n\nI am excited to work with all of you and look forward to learning from this team. Please feel free to reach out if there is anything I can help with, or if you would like to know more about my role.\n\nI look forward to meeting you all in person soon.\n\nBest regards,\n[Your Name]"}
-],
-2:[
- {to:"ms.wulan@company.com", cc:"(none)", subject:"ok",
-  body:"hi\n\nyes i can join the meeting see you there. btw do i need bring laptop or presentation? let me know if there anything i need prepare before. also can you cc pak rian too because he ask me update him about this meeting later\n\nthanks",
-  issues:["Subject line is far too vague (\"ok\")","Informal abbreviation \"btw\" and grammar errors (\"do i need bring\", \"he ask me\")","Doesn't confirm the specific date/time being agreed to","Asks the recipient to CC someone instead of doing it directly","No proper sign-off"],
-  model:"To: ms.wulan@company.com\nCc: rian.pratama@company.com\nSubject: Re: Meeting Confirmation – Thursday 2 PM\n\nDear Ms. Wulan,\n\nThank you for the invitation. I confirm that I will be able to attend the meeting on Thursday at 2 PM.\n\nCould you let me know if I need to bring my laptop or prepare a presentation beforehand? I have copied Mr. Rian on this email, as he mentioned he would like to be kept updated on this meeting.\n\nThank you, and please let me know if there is anything else I should prepare.\n\nBest regards,\n[Your Name]"},
- {to:"mr.rizal@company.com", cc:"(none)", subject:"sorry",
-  body:"hi pak rizal\n\nsorry i late send the report yesterday. i was busy with another urgent task from my supervisor and i forgot to check the deadline until it already passed. here i attach the report now, please check it. if there any mistake please tell me i will fix it fast\n\nsorry again",
-  issues:["Grammar errors (\"i late send\", \"if there any mistake\")","Greeting mixes an Indonesian honorific into an English sentence awkwardly","Rambling, unfocused explanation instead of a concise apology","No formal sign-off or sender's name","Subject line too vague for a formal apology"],
-  model:"To: mr.rizal@company.com\nCc: (none)\nSubject: Apology for Delayed Report Submission\n\nDear Mr. Rizal,\n\nI apologize for the delay in sending yesterday's report. Due to an unexpected urgent task from my supervisor, I was unable to submit it on time. Please find the report attached now.\n\nIf you notice any errors, please let me know and I will correct them promptly. I understand the inconvenience this delay may have caused and will make sure to manage my deadlines more carefully going forward.\n\nThank you for your understanding.\n\nBest regards,\n[Your Name]"},
- {to:"mr.fajar@company.com", cc:"(none)", subject:"doc",
-  body:"hi fajar\n\ncan u send me the file? need it today because my manager ask for it this afternoon for the client meeting. also if you have the excel version please send that too, the pdf version i got before cannot open properly on my laptop\n\nthanks a lot",
-  issues:["Texting abbreviation \"u\" instead of \"you\"","Greeting uses first name only, too casual for this contact","Run-on sentence bundling two requests together awkwardly","Subject line too vague (\"doc\")","No formal sign-off"],
-  model:"To: mr.fajar@company.com\nCc: (none)\nSubject: Request for [Document Name] – Needed by This Afternoon\n\nDear Mr. Fajar,\n\nCould you please send me a copy of the [document name]? My manager has requested it for a client meeting this afternoon, so I would appreciate a quick response.\n\nIf possible, could you also send the Excel version? The PDF copy I received earlier is not opening properly on my laptop.\n\nThank you very much for your help.\n\nBest regards,\n[Your Name]"}
-],
-3:[
- {to:"team-dept@company.com", cc:"manager@company.com", subject:"meeting cancel",
-  body:"hi all\n\nthe meeting today is cancel because boss is sick since this morning and cannot come to office. we will inform new schedule later maybe next week but not sure yet. sorry for the inconvenient, please continue your work as usual and if there urgent matter you can contact me directly\n\nthanks",
-  issues:["Grammar errors (\"is cancel\", \"inconvenient\" should be \"inconvenience\", \"if there urgent matter\")","Vague rescheduling info with no clear next step","Run-on sentences throughout the body","No formal sign-off or sender's name"],
-  model:"To: team-dept@company.com\nCc: manager@company.com\nSubject: Meeting Cancellation – [Date]\n\nDear Team,\n\nI am writing to inform you that today's meeting has been cancelled, as the manager is unwell and unable to come to the office this morning. We will share a new date as soon as one is confirmed.\n\nWe apologize for any inconvenience this may cause. In the meantime, please continue with your regular tasks, and feel free to contact me directly if any urgent matters arise.\n\nBest regards,\n[Your Name]"},
- {to:"notulen-team@company.com", cc:"(none)", subject:"minutes?",
-  body:"hi\n\ndid anyone write the minutes from yesterday meeting? need it today pls because i want to make report for my supervisor and he ask me to include what we discuss and decide in that meeting. if nobody write it yet maybe we can make it together this afternoon\n\nthanks",
-  issues:["Grammar errors (\"yesterday meeting\", \"he ask me\", \"what we discuss and decide\")","Abbreviation \"pls\" is too informal for a work request","No specific greeting naming the recipient","No sign-off or sender's name"],
-  model:"To: notulen-team@company.com\nCc: (none)\nSubject: Request for Yesterday's Meeting Minutes\n\nDear [Name],\n\nCould you please share the minutes from yesterday's meeting when you have a chance? I need them today to prepare a report for my supervisor, who asked me to include what was discussed and decided.\n\nIf the minutes haven't been written yet, perhaps we could put them together this afternoon.\n\nThank you very much for your help.\n\nBest regards,\n[Your Name]"},
- {to:"ms.sinta@company.com", cc:"(none)", subject:"can't come",
-  body:"hi ms sinta\n\ni cant come to the meeting tmr because i have another meeting same time with the finance team, they schedule it first before you invite me so i cannot cancel it. can we do it different day, maybe thursday or friday afternoon is okay for me, please let me know which one work for you\n\nthanks",
-  issues:["Missing apostrophe (\"cant\" → \"can't\") and abbreviation \"tmr\"","Run-on sentence explaining the conflict without proper punctuation","Greeting has inconsistent capitalization (\"ms sinta\")","No formal sign-off or sender's name"],
-  model:"To: ms.sinta@company.com\nCc: (none)\nSubject: Scheduling Conflict – Tomorrow's Meeting\n\nDear Ms. Sinta,\n\nI am sorry to inform you that I have a scheduling conflict tomorrow and will be unable to attend our meeting, as I have another meeting at the same time with the Finance team that was scheduled first.\n\nWould it be possible to reschedule to Thursday or Friday afternoon instead? Please let me know which time works best for you.\n\nThank you for your understanding.\n\nBest regards,\n[Your Name]"}
-],
-4:[
- {to:"sales@supplierabc.com", cc:"(none)", subject:"(no subject)",
-  body:"hi\n\nhow much for 100 boxes? need soon because our stock almost finish and we have big order from our client next month so we must prepare early. please also tell me if you have discount for big quantity like this and how long the delivery time normally take\n\nthanks",
-  issues:["No subject line and no product name specified","Run-on sentence bundling three separate requests together","Grammar errors (\"stock almost finish\", \"how long the delivery time normally take\")","No formal sign-off"],
-  model:"To: sales@supplierabc.com\nCc: (none)\nSubject: Request for Quotation – 100 Boxes of [Product]\n\nDear [Supplier's Name],\n\nCould you please send me a quotation for 100 boxes of [product name]? Our stock is running low, and we have a large order from a client next month, so we would like to prepare in advance.\n\nCould you also let me know if a discount is available for an order of this size, and what the usual delivery time would be?\n\nThank you very much for your assistance.\n\nBest regards,\n[Your Name]"},
- {to:"mr.hendra@supplierxyz.com", cc:"(none)", subject:"too expensive",
-  body:"hi pak hendra\n\nyour price too high compare to other supplier we already check, almost 20% more expensive than market price now. give discount or we buy from other company instead because our budget this quarter is limited and we need to save cost as much as possible\n\nplease reply soon",
-  issues:["Aggressive tone and an implicit threat to switch suppliers","Missing verb: \"your price too high\" should be \"your price is too high\"","Grammar errors throughout the comparison sentence","No formal greeting or sign-off"],
-  model:"To: mr.hendra@supplierxyz.com\nCc: (none)\nSubject: Inquiry About Discount for Bulk Order\n\nDear Mr. Hendra,\n\nThank you for sending the quotation. After comparing it with other suppliers, we noticed the price is around 20% higher than the current market rate. As our budget this quarter is limited, we would like to ask if a discount would be possible, especially given the size of our order.\n\nWe value our partnership and hope we can find a price that works well for both sides.\n\nWe look forward to your response.\n\nBest regards,\n[Your Name]"},
- {to:"sales@supplierabc.com", cc:"finance@mycompany.com", subject:"order",
-  body:"hi\n\nok we order 50 unit please send invoice after, also can you confirm the delivery date because we need it before end of month for our project deadline, and please send to our warehouse address not the office like before because last time it was wrong address and cause delay\n\nthanks",
-  issues:["Grammar error: \"50 unit\" should be \"50 units\"","No reference to a Purchase Order number or exact product name","Long run-on sentence bundling three separate requests","Tone too terse for a formal order confirmation despite the length"],
-  model:"To: sales@supplierabc.com\nCc: finance@mycompany.com\nSubject: Confirmation of Purchase Order – 50 Units\n\nDear [Name],\n\nWe are pleased to confirm our order of 50 units of [product name], as per the attached Purchase Order. Please send the invoice once the order has been processed.\n\nCould you also confirm the delivery date, as we need the items before the end of the month for our project deadline? Please note that this shipment should be sent to our warehouse address rather than the office, as the previous shipment was sent to the wrong location and caused a delay.\n\nThank you for your continued support.\n\nBest regards,\n[Your Name]"}
-],
-5:[
- {to:"mr.yoga@company.com", cc:"(none)", subject:"feedback",
-  body:"hi pak yoga\n\ncan u give feedback my presentation yesterday? want to improve for next time because i will present again next month to bigger audience and i really need to know what part is weak so i can practice more before that\n\nthanks",
-  issues:["Texting abbreviation \"u\" and grammar error (\"feedback my presentation\" should be \"feedback on my presentation\")","Run-on sentence explaining the reason instead of clear, separate sentences","No formal sign-off or sender's name","Subject line too vague for the specific request"],
-  model:"To: mr.yoga@company.com\nCc: (none)\nSubject: Request for Feedback on My Presentation\n\nDear Mr. Yoga,\n\nI would like to ask if you could kindly provide feedback on my presentation from yesterday. I am hoping to improve before I present again next month to a larger audience, and your input would help me know which areas to focus on.\n\nThank you in advance for your time.\n\nBest regards,\n[Your Name]"},
- {to:"ms.dewi@company.com", cc:"(none)", subject:"thanks",
-  body:"hi bu dewi\n\nthanks for help me yesterday. really appreciate it because without your help i dont think i can finish the report on time, you explain everything very clear and patient even though i ask many question, i hope next time i can help you too if you need something\n\nthanks again",
-  issues:["Grammar errors (\"help me\" → \"helping me\", missing apostrophe in \"i dont\", \"you explain... very clear\" → \"explained clearly\")","One long run-on sentence instead of clear, separate ideas","No formal subject line or sign-off","Greeting mixes an Indonesian honorific into an English sentence"],
-  model:"To: ms.dewi@company.com\nCc: (none)\nSubject: Thank You for Your Help\n\nDear Ms. Dewi,\n\nI just wanted to say thank you for helping me yesterday with the report. I really appreciate your time and patience — without your help, I don't think I could have finished it on time.\n\nI hope I can return the favor if you ever need assistance in the future.\n\nBest regards,\n[Your Name]"},
- {to:"mr.bagas@company.com", cc:"hr@company.com", subject:"day off",
-  body:"hi pak bagas\n\ni want take day off next friday for personal reason is it ok, i already finish most of my task for this week and i will make sure everything is done before friday so it not disturb the team work, please let me know if i need to submit any form for this\n\nthanks",
-  issues:["Grammar errors (\"i want take\" → \"I would like to take\", \"it not disturb\" → \"it does not disturb\")","Missing punctuation causing a confusing run-on request","No formal sign-off or sender's name","Greeting mixes an Indonesian honorific into an English sentence"],
-  model:"To: mr.bagas@company.com\nCc: hr@company.com\nSubject: Request for Day Off – Friday, [Date]\n\nDear Mr. Bagas,\n\nI would like to request a day off next Friday, [date], for personal reasons. I have already completed most of my tasks for this week and will make sure everything is finished beforehand so it does not disturb the team's work.\n\nPlease let me know if I need to submit any form for this request.\n\nThank you for considering my request.\n\nBest regards,\n[Your Name]"}
-]
-};
-
-const PART_TITLES = {
- 1:"Part 1 — Telephone & Office Communication",
- 2:"Part 2 — Email Writing Etiquette",
- 3:"Part 3 — Meetings & Scheduling",
- 4:"Part 4 — Business Transactions",
- 5:"Part 5 — Grammar & Vocabulary Review",
- 6:"Part 6 — Business Idioms & Expressions",
- 7:"Part 7 — Customer Service & Complaint Handling",
- 8:"Part 8 — Presentations, Reports & Formal Writing"
-};
-const MC_PART_COUNT = 8;
-const EMAIL_PART_COUNT = 5;
-
-/* ============ STATE ============ */
-let currentPart = 1;
-let currentView = "mc"; // "mc", "email", or "cheatsheet"
-let sessionOrder = {}; // part -> shuffled MC array (with shuffled options) generated once per load
-let score = { correct:0, total:0 };
-let answered = {}; // key `${part}-${idx}` -> true
-
-function shuffle(arr){
-  const a = arr.slice();
-  for(let i=a.length-1;i>0;i--){
-    const j = Math.floor(Math.random()*(i+1));
-    [a[i],a[j]] = [a[j],a[i]];
-  }
-  return a;
+const SESSIONS = [
+{
+  name:"Sesi 1",
+  title:"Perintah, Urutan & Preposisi Waktu",
+  desc:"Imperative, Let's, First/Next/Finally, by vs until, in/on/at, modal dasar.",
+  items:[
+    {q:`Manager: "The fire alarm is ringing!"\nStaff: "___ use the elevator. Take the stairs."`,o:["Don't","Not","Doesn't","No"],a:0,e:"Kalimat perintah larangan (negative imperative) selalu <b>Don't + Verb 1</b>, tanpa subjek. 'Doesn't' hanya untuk kalimat berita orang ketiga."},
+    {q:`Team leader: "The deadline is tomorrow."\nMember: "___ finish it tonight then."`,o:["Let's","We","Please to","Lets us"],a:0,e:"<b>Let's</b> = let us, untuk mengajak melakukan sesuatu bersama. Rumus: Let's + Verb 1."},
+    {q:`IT Support: "___, turn on the computer. ___, enter your password."`,o:["First / Next","Finally / First","Next / First","After that / First"],a:0,e:"Urutan instruksi: <b>First → Next / Then / After that → Finally</b>. 'First' selalu di langkah pertama."},
+    {q:`Manager: "Please submit the proposal ___ Friday at the latest."`,o:["until","by","in","since"],a:1,e:"<b>by</b> = paling lambat / batas akhir suatu aksi sekali jadi. 'Until' dipakai untuk aksi yang berlangsung terus sampai waktu itu."},
+    {q:`Notice: "The office will be closed ___ next Monday."`,o:["by","until","in","at"],a:1,e:"Kantor tutup terus-menerus sampai Senin depan → aksi berdurasi → <b>until</b>."},
+    {q:`"The meeting starts ___ 8 AM ___ Monday."`,o:["on / at","at / on","in / on","at / in"],a:1,e:"<b>at</b> untuk jam, <b>on</b> untuk hari/tanggal, <b>in</b> untuk bulan/tahun."},
+    {q:`"We will launch the new product ___ March."`,o:["on","at","in","by"],a:2,e:"Bulan, tahun, dan musim memakai <b>in</b>: in March, in 2026, in the morning."},
+    {q:`Staff: "I have a terrible toothache."\nColleague: "You ___ see a dentist."`,o:["should","shouldn't","must not","don't have to"],a:0,e:"<b>should</b> = saran / nasihat yang baik dilakukan."},
+    {q:`Security: "Visitors ___ enter the server room. It is restricted."`,o:["don't have to","mustn't","needn't","may"],a:1,e:"<b>mustn't</b> = larangan keras (dilarang). 'Don't have to' justru berarti tidak wajib."},
+    {q:`Manager: "The system is automatic now. You ___ input the data manually."`,o:["mustn't","don't have to","shouldn't","can't"],a:1,e:"Bukan dilarang, tapi <b>tidak perlu / tidak wajib</b> → don't have to (= needn't)."},
+    {q:`"All employees ___ wear an ID card. It is a company regulation."`,o:["might","have to","could","don't need to"],a:1,e:"Kewajiban dari aturan luar (perusahaan/hukum) → <b>have to</b>."},
+    {q:`"You ___ to check the email before sending it."`,o:["should","must","ought","had"],a:2,e:"Hanya <b>ought</b> yang diikuti <b>to</b>: ought to + Verb 1. Should/must langsung Verb 1."},
+    {q:`"It is raining heavily. You ___ take an umbrella."`,o:["should","mustn't","don't have to","aren't"],a:0,e:"Saran ringan untuk kebaikan lawan bicara → <b>should</b>."},
+    {q:`Project Manager: "We are two weeks late." It means the project is ___.`,o:["ahead of schedule","behind schedule","on time","right on track"],a:1,e:"<b>behind schedule</b> = terlambat dari jadwal; ahead of schedule = lebih cepat."},
+    {q:`"The payment was due last week and it is still unpaid. It is ___."`,o:["overdue","ahead of time","on schedule","upcoming"],a:0,e:"<b>overdue</b> = sudah lewat jatuh tempo dan belum dibayar/diselesaikan."},
+    {q:`"The team finished three days earlier than planned. They are ___."`,o:["behind schedule","running late","ahead of schedule","overdue"],a:2,e:"Selesai lebih cepat dari rencana → <b>ahead of schedule</b>."},
+    {q:`Receptionist: "Please wait here ___ the manager comes."`,o:["by","until","on","since"],a:1,e:"Menunggu berlangsung terus sampai manajer datang → <b>until</b>."},
+    {q:`"___ close the door quietly." (permintaan sopan)`,o:["You","Please","Do you","Let"],a:1,e:"<b>Please + Verb 1</b> membuat perintah menjadi permintaan sopan."},
+    {q:`"Don't forget ___ the light when you leave."`,o:["turn off","to turn off","turning","turned"],a:1,e:"Setelah <b>forget</b> yang bermakna tugas ke depan, dipakai <b>to + Verb 1</b>."},
+    {q:`Manakah kalimat larangan (negative imperative) yang benar?`,o:["Don't to touch the wires.","Not touch the wires.","Don't touch the wires.","Doesn't touch the wires."],a:2,e:"Rumus tetap: <b>Don't + Verb 1</b>, tanpa 'to', tanpa subjek, tanpa -s."}
+  ]
+},
+{
+  name:"Sesi 2",
+  title:"Past Simple: Rumus, Ejaan -ed & Pelafalan",
+  desc:"Kalimat positif, negatif, tanya, ejaan -ed, dan bunyi /t/ /d/ /ɪd/.",
+  items:[
+    {q:`Colleague A: "Where is Mr. Doni?"\nColleague B: "He ___ to Bandung yesterday for a meeting."`,o:["go","went","gone","going"],a:1,e:"Kata waktu <b>yesterday</b> → Past Simple → Verb 2 dari go = <b>went</b>."},
+    {q:`Supervisor: "Why didn't you reply?"\nStaff: "I didn't ___ the email yesterday."`,o:["received","receive","receives","receiving"],a:1,e:"Setelah <b>didn't</b> selalu Verb 1 (base verb), karena 'did' sudah menandai lampau."},
+    {q:`"___ you finish the report yesterday?"`,o:["Do","Did","Does","Are"],a:1,e:"Pertanyaan Past Simple: <b>Did + subjek + Verb 1</b>."},
+    {q:`Colleague A: "What ___ you ___ last night?"\nColleague B: "I wrote the weekly report."`,o:["do / did","did / did","did / do","do / do"],a:2,e:"Yang berubah ke bentuk lampau hanya auxiliary-nya: <b>did + do (Verb 1)</b>."},
+    {q:`"She ___ the file to my desk an hour ago."`,o:["copy","copied","copyed","copys"],a:1,e:"Konsonan + y → y berubah jadi i lalu +ed: copy → <b>copied</b>, study → studied."},
+    {q:`"We ___ the meeting because the client cancelled."`,o:["stoped","stopped","stopt","stopping"],a:1,e:"Satu suku kata berpola konsonan-vokal-konsonan → konsonan akhir digandakan: stop → <b>stopped</b>."},
+    {q:`"They ___ the annual event last year."`,o:["plan","planed","planned","planing"],a:2,e:"Sama seperti stop: plan → <b>planned</b> (n digandakan)."},
+    {q:`"He ___ very hard for the certification exam."`,o:["studyed","studied","studed","studyd"],a:1,e:"study → <b>studied</b>. Bandingkan play → played (karena sebelum y ada vokal)."},
+    {q:`Manakah kalimat yang benar secara gramatikal?`,o:["Where did you went?","When did the CEO arrive?","What did he said?","Why you called me?"],a:1,e:"Setelah <b>did</b> harus Verb 1: arrive, bukan arrived/went/said."},
+    {q:`Rumus kalimat negatif Past Simple yang benar adalah ___.`,o:["Subject + didn't + Verb 2","Subject + didn't + Verb-ing","Subject + didn't + Verb 1","Subject + wasn't + Verb 2"],a:2,e:"<b>S + didn't + Verb 1</b>. 'Wasn't' hanya dipakai jika tidak ada kata kerja aksi (to be)."},
+    {q:`Colleague B: "Because our finance team ___ the payment invoice."`,o:["didn't paid","didn't pay","didn't paying","don't paid"],a:1,e:"didn't + Verb 1 → <b>didn't pay</b>."},
+    {q:`Kalimat mana yang memuat bentuk lampau yang SALAH?`,o:["She brought the documents.","He teached the new staff.","They built a new warehouse.","We sent the package."],a:1,e:"teach adalah irregular verb: teach – <b>taught</b> – taught, bukan 'teached'."},
+    {q:`Regular verb mana yang berakhir dengan bunyi /t/?`,o:["Played","Watched","Opened","Cleaned"],a:1,e:"Setelah bunyi tak bersuara (/k/, /p/, /s/, /ʃ/, /tʃ/, /f/) -ed dibaca <b>/t/</b>: watched = /wɒtʃt/."},
+    {q:`Regular verb mana yang berakhir dengan bunyi /d/?`,o:["Stopped","Washed","Called","Wanted"],a:2,e:"Setelah bunyi bersuara (vokal, /l/, /n/, /m/, /b/, /g/, /v/) -ed dibaca <b>/d/</b>: called = /kɔːld/."},
+    {q:`Kata mana yang bertambah satu suku kata (/ɪd/)?`,o:["Finished","Started","Moved","Helped"],a:1,e:"Hanya verba yang berakhir huruf <b>-t</b> atau <b>-d</b> yang dibaca /ɪd/: start → started."},
+    {q:`Kata mana yang TIDAK berakhir dengan bunyi /ɪd/?`,o:["Needed","Decided","Visited","Fixed"],a:3,e:"fixed berakhir /ks/ → dibaca <b>/t/</b>. Yang lain berakhir -d/-t sehingga /ɪd/."},
+    {q:`"Last month, our team ___ a new system and ___ all staff."`,o:["install / train","installed / trained","installed / train","installs / trained"],a:1,e:"Dua kata kerja sejajar dalam kalimat lampau, keduanya harus Verb 2."},
+    {q:`"The client ___ at 9 AM and ___ until noon."`,o:["arrive / stay","arrived / stayed","arrived / staied","arrivd / stayed"],a:1,e:"Vokal + y tetap +ed: stay → <b>stayed</b> (bukan staied)."},
+    {q:`Manager: "___ did you meet at the hotel lobby?"\nStaff: "I met our new investor."`,o:["When","Where","Who","What"],a:2,e:"Jawabannya orang → kata tanya <b>Who</b>."},
+    {q:`Admin: "___ did the training end?"\nStaff: "It ended at 4 PM."`,o:["When","Where","Who","Why"],a:0,e:"Jawabannya waktu → <b>When</b>."}
+  ]
+},
+{
+  name:"Sesi 3",
+  title:"Irregular Verbs & lay / lie",
+  desc:"Bentuk V1–V2–V3 yang tidak beraturan, plus jebakan lay, laid, lain, lied.",
+  items:[
+    {q:`"The boat started taking in water and ___ to the bottom."`,o:["sinked","sank","sunk","sinks"],a:1,e:"sink – <b>sank</b> – sunk. 'Sunk' adalah V3, dipakai setelah have/was."},
+    {q:`"The wind ___ the documents away."`,o:["blowed","blew","blown","blows"],a:1,e:"blow – <b>blew</b> – blown."},
+    {q:`"He ___ his job last month because the salary was too low."`,o:["quited","quitted","quit","quiting"],a:2,e:"quit – <b>quit</b> – quit (bentuknya tidak berubah), seperti cut, put, shut, cost, hit."},
+    {q:`"The strong waves ___ the metal frame of the boat severely."`,o:["bended","bent","binded","bend"],a:1,e:"bend – <b>bent</b> – bent."},
+    {q:`"I ___ the report on your desk this morning." (meletakkan sesuatu)`,o:["lay","laid","lied","layed"],a:1,e:"lay (meletakkan objek) – <b>laid</b> – laid. Bentuk 'layed' tidak ada dalam bahasa Inggris baku."},
+    {q:`"I felt sick, so I ___ down on the sofa for an hour." (berbaring)`,o:["laid","lay","lied","lain"],a:1,e:"lie (berbaring) – <b>lay</b> – lain. Jebakan klasik: V2 dari lie justru 'lay'."},
+    {q:`"He ___ about his previous experience during the interview." (berbohong)`,o:["lay","laid","lied","lain"],a:2,e:"lie (berbohong) itu regular: lie – <b>lied</b> – lied."},
+    {q:`Kalimat mana yang bentuk lampaunya SALAH?`,o:["He thinked about the offer.","She caught the early train.","They chose the cheapest vendor.","We paid the bill yesterday."],a:0,e:"think – <b>thought</b> – thought."},
+    {q:`"The manager ___ us a bonus last December."`,o:["gived","gave","given","give"],a:1,e:"give – <b>gave</b> – given."},
+    {q:`"She ___ the presentation slides last night."`,o:["maked","made","maden","make"],a:1,e:"make – <b>made</b> – made."},
+    {q:`"The company ___ a new warehouse in 2019."`,o:["builded","built","build","building"],a:1,e:"build – <b>built</b> – built."},
+    {q:`"I ___ him at the annual conference last year."`,o:["meeted","met","meet","meated"],a:1,e:"meet – <b>met</b> – met."},
+    {q:`"The courier ___ the package to the office yesterday."`,o:["bringed","brought","broughted","bring"],a:1,e:"bring – <b>brought</b> – brought."},
+    {q:`"We ___ the operational budget by 10% last quarter."`,o:["cutted","cut","cuted","cutting"],a:1,e:"cut – <b>cut</b> – cut, bentuknya sama di ketiga kolom."},
+    {q:`"He ___ the server room door and went home."`,o:["shutted","shut","shuted","shutting"],a:1,e:"shut – <b>shut</b> – shut."},
+    {q:`"She ___ a day off yesterday because she was sick."`,o:["taked","took","taken","take"],a:1,e:"take – <b>took</b> – taken."},
+    {q:`"The price of raw materials ___ sharply last month." (naik sendiri)`,o:["rised","rose","risen","raised"],a:1,e:"rise (naik, tanpa objek) – <b>rose</b> – risen."},
+    {q:`"He ___ his hand to ask a question." (mengangkat sesuatu)`,o:["rose","raised","risen","rised"],a:1,e:"raise (menaikkan sesuatu, ada objek) itu regular: raise – <b>raised</b> – raised."},
+    {q:`Bentuk V1 – V2 – V3 dari "choose" yang benar adalah ___.`,o:["choose – chose – chosen","choose – choosed – chosen","choose – chose – chose","choose – chosen – chose"],a:0,e:"choose – <b>chose</b> – chosen."},
+    {q:`Bentuk V1 – V2 – V3 dari "write" yang benar adalah ___.`,o:["write – wrote – writen","write – writed – written","write – wrote – written","write – written – wrote"],a:2,e:"write – <b>wrote</b> – written (dobel t)."}
+  ]
+},
+{
+  name:"Sesi 4",
+  title:"Recount Text & Bahasa Email Kantor",
+  desc:"Orientation, Series of Events, Re-orientation, plus frasa email profesional.",
+  items:[
+    {q:`Apa fungsi utama paragraf "Orientation" dalam Recount Text?`,o:["Menyusun kejadian secara kronologis dengan First, Next.","Memberi komentar atau perasaan pribadi tentang keseluruhan acara.","Mengeluhkan masalah yang terjadi saat kunjungan.","Menjelaskan latar belakang: siapa, kapan, dan di mana cerita dimulai."],a:3,e:"Orientation = pembuka yang memuat <b>Who, When, Where</b> (dan kadang Why)."},
+    {q:`"Finally, we paid the vendor and returned to the office. Overall, the trip was very successful."\nBagian ini termasuk ___.`,o:["Orientation","Series of Events","Re-orientation","Introduction"],a:2,e:"Adanya kesimpulan/komentar pribadi ('Overall, ... successful') menandai <b>Re-orientation</b>."},
+    {q:`Kalimat mana yang paling cocok sebagai Orientation?`,o:["Then we inspected the machine one by one.","Last Monday, our team visited the factory in Cikarang.","Overall, it was a tiring but useful day.","Finally, we returned to the head office."],a:1,e:"Memuat kapan (Last Monday), siapa (our team), di mana (Cikarang) → <b>Orientation</b>."},
+    {q:`Tense utama yang dipakai dalam Recount Text adalah ___.`,o:["Simple Present","Past Simple","Present Perfect","Future"],a:1,e:"Recount menceritakan kejadian yang sudah lewat → <b>Past Simple</b>."},
+    {q:`"___ we checked the machine. ___, we replaced the broken part."`,o:["Finally / First","First / After that","Next / First","Overall / Then"],a:1,e:"Urutan logis: First → After that/Then/Next → Finally."},
+    {q:`"___, I would like to say that the site visit was very useful."`,o:["First","Overall","Next","After that"],a:1,e:"<b>Overall</b> menandai kesimpulan menyeluruh, khas kalimat Re-orientation."},
+    {q:`Urutan struktur Recount Text yang benar adalah ___.`,o:["Orientation – Series of Events – Re-orientation","Series of Events – Orientation – Re-orientation","Orientation – Re-orientation – Series of Events","Thesis – Arguments – Conclusion"],a:0,e:"Tiga bagian berurutan: pembuka, rangkaian kejadian, penutup."},
+    {q:`Bagian mana yang BUKAN termasuk struktur Recount Text?`,o:["Orientation","Thesis and Arguments","Series of Events","Re-orientation"],a:1,e:"Thesis and Arguments adalah struktur <b>Analytical Exposition</b>, bukan Recount."},
+    {q:`Kalimat mana yang termasuk Series of Events?`,o:["Last week, I went to Surabaya with my supervisor.","After that, we met the client and discussed the contract.","In short, the meeting was worth the long trip.","It was a very memorable experience for me."],a:1,e:"Kejadian berurutan dengan konektor waktu → <b>Series of Events</b>."},
+    {q:`"We are ___ schedule; the project will finish next week instead of this week."`,o:["ahead of","behind","on","in"],a:1,e:"Mundur dari rencana → <b>behind schedule</b>."},
+    {q:`Pembuka email formal yang paling tepat kepada klien baru adalah ___.`,o:["Hi bro,","Dear Mr. Hasan,","Hello there!","Yo, Hasan!"],a:1,e:"Email profesional memakai <b>Dear + gelar + nama belakang</b>."},
+    {q:`"I am writing to ___ about the delay of our order."`,o:["inquire","inquiry","inquiring","inquired"],a:0,e:"Setelah <b>to</b> (to-infinitive) dipakai Verb 1: to inquire. 'Inquiry' adalah kata benda."},
+    {q:`"Please find ___ the invoice for last month."`,o:["attach","attached","attaching","attachment"],a:1,e:"Frasa baku email: <b>Please find attached ...</b>"},
+    {q:`"We apologize ___ the inconvenience."`,o:["of","for","with","to"],a:1,e:"Pola baku: apologize <b>for</b> + hal yang disesali (apologize to + orang)."},
+    {q:`"Thank you for your ___ to this matter."`,o:["attend","attention","attentive","attending"],a:1,e:"Setelah 'your' dipakai kata benda: <b>attention</b>."},
+    {q:`"I look forward to ___ from you soon."`,o:["hear","hearing","heard","be hear"],a:1,e:"Di sini 'to' adalah preposisi, jadi diikuti <b>V-ing</b>: look forward to hearing."},
+    {q:`"The meeting was postponed ___ next week."`,o:["until","by","in","at"],a:0,e:"Ditunda sampai minggu depan → <b>until</b>."},
+    {q:`"Kindly confirm your attendance ___ Thursday."`,o:["until","by","in","since"],a:1,e:"Batas akhir konfirmasi → <b>by</b> Thursday."},
+    {q:`Penutup email formal yang tepat adalah ___.`,o:["See ya,","Best regards,","Thx,","Later,"],a:1,e:"<b>Best regards / Sincerely / Kind regards</b> adalah penutup baku email bisnis."},
+    {q:`"Could you please ___ me the updated file?"`,o:["sent","send","sending","to send"],a:1,e:"Setelah modal <b>could</b> selalu Verb 1: could you send."}
+  ]
+},
+{
+  name:"Sesi 5",
+  title:"Simulasi Campuran",
+  desc:"Semua materi diacak, plus satu soal modul My Chemical Romance.",
+  items:[
+    {q:`Menurut modul, lagu My Chemical Romance yang ditulis Gerard Way sebagai respons langsung terhadap tragedi 11 September 2001 adalah ___.`,o:["Helena","Skylines and Turnstiles","Teenagers","Famous Last Words"],a:1,e:"Gerard Way menyaksikan serangan 9/11 dan menulis <b>Skylines and Turnstiles</b>, lagu pertama MCR; band ini terbentuk tahun 2001 di New Jersey sebagai respons psikologis atas tragedi tersebut."},
+    {q:`"You ___ to submit the form before 5 PM."`,o:["should","must","ought","have"],a:2,e:"Hanya <b>ought</b> yang butuh 'to'. (Catatan: 'have to' juga benar secara makna, tapi polanya have to + V1, bukan 'have to to'.)"},
+    {q:`"___ panic. Everything is under control."`,o:["Don't","Not","No","Doesn't"],a:0,e:"Larangan langsung → <b>Don't + Verb 1</b>."},
+    {q:`"Let's ___ a short break before the next session."`,o:["taking","take","took","to take"],a:1,e:"Let's + <b>Verb 1</b>."},
+    {q:`"She didn't ___ the meeting notes to the team."`,o:["sent","send","sending","sends"],a:1,e:"didn't + Verb 1 → <b>send</b>."},
+    {q:`"The technician ___ the printer yesterday afternoon."`,o:["fixed","fixt","fix","fixing"],a:0,e:"fix adalah regular verb → <b>fixed</b> (dibaca /fɪkst/)."},
+    {q:`Kata "fixed" berakhir dengan bunyi ___.`,o:["/d/","/t/","/ɪd/","/s/"],a:1,e:"Berakhir bunyi tak bersuara /ks/ → -ed dibaca <b>/t/</b>."},
+    {q:`Kata "needed" berakhir dengan bunyi ___.`,o:["/t/","/d/","/ɪd/","/n/"],a:2,e:"Berakhir huruf -d → -ed dibaca <b>/ɪd/</b> dan menambah satu suku kata."},
+    {q:`"Where ___ the CEO ___ last night?"`,o:["did / stay","did / stayed","does / stayed","do / stay"],a:0,e:"did + Verb 1 → <b>did the CEO stay</b>."},
+    {q:`"We ___ the project ahead of schedule, so the client was very happy."`,o:["finish","finished","finishing","finishes"],a:1,e:"Ditandai 'was' (lampau) → verba lain juga lampau: <b>finished</b>."},
+    {q:`"Warehouse staff ___ wear safety shoes. It is mandatory."`,o:["might","have to","don't have to","could"],a:1,e:"Kewajiban dari peraturan → <b>have to</b>."},
+    {q:`Manager: "The deadline was extended, so you ___ work this weekend."`,o:["mustn't","don't have to","shouldn't","can't"],a:1,e:"Tidak wajib (bukan dilarang) → <b>don't have to</b>."},
+    {q:`"The old ship ___ near the harbour ten years ago."`,o:["sinked","sank","sunk","sinking"],a:1,e:"sink – <b>sank</b> – sunk."},
+    {q:`"He was exhausted, so he ___ down for twenty minutes."`,o:["laid","lay","lied","lain"],a:1,e:"lie (berbaring) – <b>lay</b> – lain."},
+    {q:`"I ___ the documents on the table an hour ago."`,o:["lay","laid","lied","layed"],a:1,e:"lay (meletakkan) – <b>laid</b> – laid."},
+    {q:`Kalimat mana yang bentuk lampaunya SALAH?`,o:["She writed the minutes of meeting.","He spoke to the supervisor.","They sold the old printers.","We kept the receipts."],a:0,e:"write – <b>wrote</b> – written, bukan 'writed'."},
+    {q:`Manager: "___ did the client arrive?"\nAdmin: "He arrived at 9 AM exactly."`,o:["When","Where","Who","Why"],a:0,e:"Jawabannya jam → <b>When</b>."},
+    {q:`Manakah pertanyaan yang benar?`,o:["Did you saw the email?","Did you see the email?","Do you saw the email?","Did you seen the email?"],a:1,e:"Did + subjek + <b>Verb 1</b>."},
+    {q:`"In short, the visit gave us many new ideas for next year."\nKalimat ini termasuk bagian ___.`,o:["Orientation","Series of Events","Re-orientation","Description"],a:2,e:"Kesimpulan dan kesan akhir → <b>Re-orientation</b>."},
+    {q:`"The training session will last ___ 4 PM."`,o:["by","until","in","on"],a:1,e:"Berlangsung terus sampai pukul 4 → <b>until</b>."}
+  ]
+},
+{
+  name:"Sesi 6",
+  title:"Modal & Preposisi Waktu: Drill Lanjutan",
+  desc:"Latihan tambahan untuk dua materi yang paling sering menjebak.",
+  items:[
+    {q:`"You ___ park here. It is a fire exit."`,o:["don't have to","mustn't","needn't","may not"],a:1,e:"Larangan keras demi keselamatan → <b>mustn't</b>."},
+    {q:`"The extra report is optional. You ___ finish it today."`,o:["mustn't","don't have to","shouldn't","can't"],a:1,e:"Optional = tidak wajib → <b>don't have to</b>."},
+    {q:`"Employees ___ log in with their own account. It is the IT policy."`,o:["have to","might","could","don't need to"],a:0,e:"Aturan dari perusahaan → <b>have to</b>."},
+    {q:`"You look exhausted. You ___ take a short rest."`,o:["should","mustn't","don't have to","shouldn't"],a:0,e:"Saran → <b>should</b>."},
+    {q:`"That email looks suspicious. You ___ click the link."`,o:["should","shouldn't","have to","don't have to"],a:1,e:"Saran negatif (sebaiknya jangan) → <b>shouldn't</b>."},
+    {q:`"Drivers ___ have a valid license. It is the law."`,o:["must","might","should","may"],a:0,e:"Kewajiban hukum → <b>must</b> (atau have to)."},
+    {q:`"We ___ to inform the client before changing the schedule."`,o:["should","must","ought","can"],a:2,e:"Hanya <b>ought</b> yang diikuti to."},
+    {q:`"Last year we ___ to work on Saturday, but now we don't."`,o:["must","had","should","mustn't"],a:1,e:"Bentuk lampau dari have to adalah <b>had to</b>. Modal 'must' tidak punya bentuk lampau."},
+    {q:`"___ I use your printer for a moment?"`,o:["May","Must","Ought","Do"],a:0,e:"<b>May / Could / Can</b> untuk meminta izin secara sopan."},
+    {q:`"Please send the draft ___ Wednesday morning."`,o:["until","by","since","for"],a:1,e:"Batas akhir pengiriman → <b>by</b>."},
+    {q:`"She worked ___ 7 PM last night."`,o:["by","until","in","on"],a:1,e:"Bekerja terus sampai jam 7 → <b>until</b>."},
+    {q:`"The workshop runs ___ 10 AM ___ 12 PM."`,o:["from / to","at / until","in / on","by / to"],a:0,e:"Rentang waktu dengan titik awal dan akhir → <b>from ... to ...</b>."},
+    {q:`"The contract was signed ___ 12 May 2025."`,o:["in","at","on","by"],a:2,e:"Tanggal spesifik → <b>on</b>."},
+    {q:`"I will finish the audit ___ two weeks."`,o:["on","in","at","until"],a:1,e:"<b>in + durasi</b> = dalam waktu sekian lama ke depan."},
+    {q:`"He has worked in this company ___ 2019."`,o:["for","since","by","until"],a:1,e:"<b>since</b> + titik waktu mulai; <b>for</b> + lama waktu."},
+    {q:`"We waited in the lobby ___ two hours."`,o:["since","for","until","by"],a:1,e:"<b>for</b> + durasi: for two hours."},
+    {q:`"___ you leave the room, turn off the machine."`,o:["Before","Until","By","Since"],a:0,e:"<b>Before</b> menandai urutan aksi: matikan mesin sebelum keluar."},
+    {q:`"The delivery is ___; it should have arrived last Monday."`,o:["ahead of time","overdue","on schedule","due"],a:1,e:"Sudah lewat waktu dan belum datang → <b>overdue</b>."},
+    {q:`"Everything is ___ schedule. We will launch as planned."`,o:["behind","on","out of","off"],a:1,e:"<b>on schedule</b> = sesuai jadwal."},
+    {q:`"We need to ___ the deadline because of the power outage."`,o:["extend","extent","expand","expend"],a:0,e:"<b>extend</b> = memperpanjang waktu. 'Extent' kata benda, 'expand' = memperluas ukuran."}
+  ]
+},
+{
+  name:"Sesi 7",
+  title:"Past Simple Lanjutan & Kalimat Tanya",
+  desc:"To be lampau, pertanyaan WH, dan kalimat negatif yang sering tertukar.",
+  items:[
+    {q:`"They ___ the new branch office last Friday."`,o:["open","opened","opens","opening"],a:1,e:"Ada 'last Friday' → Past Simple → <b>opened</b>."},
+    {q:`"I ___ not able to join the call yesterday."`,o:["am","was","were","is"],a:1,e:"Subjek I → to be lampau <b>was</b>."},
+    {q:`"The files ___ deleted by mistake last night."`,o:["was","were","are","is"],a:1,e:"Subjek jamak (files) → <b>were</b>."},
+    {q:`"___ the vendor deliver the goods on time?"`,o:["Was","Did","Does","Is"],a:1,e:"Ada kata kerja aksi (deliver) → pakai <b>Did</b>, bukan was."},
+    {q:`"How many staff ___ attend the training yesterday?"`,o:["did","do","does","were"],a:0,e:"<b>did + Verb 1</b> untuk pertanyaan lampau."},
+    {q:`"Why ___ the system crash last night?"`,o:["does","did","was","do"],a:1,e:"Kata kerja aksi + lampau → <b>did</b>."},
+    {q:`"How ___ you solve the problem so quickly?"`,o:["did","do","were","was"],a:0,e:"WH + <b>did</b> + subjek + Verb 1."},
+    {q:`"He didn't ___ any answer from the supplier."`,o:["got","get","gets","getting"],a:1,e:"didn't + Verb 1 → <b>get</b>."},
+    {q:`Manakah kalimat negatif yang benar?`,o:["She did not attended the meeting.","She did not attend the meeting.","She not attended the meeting.","She didn't attending the meeting."],a:1,e:"did not + <b>Verb 1</b>."},
+    {q:`"We ___ very busy last week, so we ___ the deadline."`,o:["were / missed","was / missed","were / miss","are / missed"],a:0,e:"Subjek we → were; kata kerja kedua juga lampau → missed."},
+    {q:`"The manager ___ angry when he ___ the mistake."`,o:["was / saw","were / saw","was / seen","is / saw"],a:0,e:"was (to be lampau) + saw (V2 dari see). 'Seen' adalah V3."},
+    {q:`"___ there any problem during the installation?"`,o:["Was","Did","Do","Is"],a:0,e:"Tidak ada kata kerja aksi, hanya 'there is/are' → bentuk lampaunya <b>Was there ...?</b>"},
+    {q:`"I ___ my laptop at the office yesterday."`,o:["leaved","left","leave","lefted"],a:1,e:"leave – <b>left</b> – left."},
+    {q:`"She ___ the email at 8 and ___ a reply at 9."`,o:["send / receive","sent / received","sent / receive","sended / received"],a:1,e:"Dua aksi lampau berurutan, keduanya V2: sent, received."},
+    {q:`"___ you ___ the invoice to the vendor last week?"`,o:["Did / send","Did / sent","Do / sent","Did / sending"],a:0,e:"Did + subjek + <b>Verb 1</b>."},
+    {q:`"He was late because he ___ the bus."`,o:["miss","missed","misses","missing"],a:1,e:"Kalimat lampau → <b>missed</b> (regular verb)."},
+    {q:`Manakah pertanyaan WH yang benar?`,o:["What time did the meeting start?","What time the meeting started?","What time did the meeting started?","What time does the meeting start yesterday?"],a:0,e:"Polanya WH + did + subjek + Verb 1."},
+    {q:`"Our team ___ the sales target last quarter."`,o:["achieveed","achieved","achievd","achieve"],a:1,e:"Kata berakhir -e cukup ditambah <b>-d</b>: achieve → achieved."},
+    {q:`"The technician ___ the cable because it was damaged."`,o:["replaceed","replaced","replaceid","replace"],a:1,e:"replace → <b>replaced</b> (berakhir -e, tambah -d saja)."},
+    {q:`"The company ___ 20 new employees last year."`,o:["hireed","hired","hirred","hire"],a:1,e:"hire → <b>hired</b>."}
+  ]
+},
+{
+  name:"Sesi 8",
+  title:"Irregular Verbs Batch 2 & Pelafalan",
+  desc:"Kata kerja tak beraturan lain yang sering keluar, plus drill bunyi -ed.",
+  items:[
+    {q:`"He ___ the truth to the auditor."`,o:["telled","told","tell","tolded"],a:1,e:"tell – <b>told</b> – told."},
+    {q:`"They ___ a lot of money on the new server."`,o:["spended","spent","spend","spendt"],a:1,e:"spend – <b>spent</b> – spent."},
+    {q:`"She ___ her phone in the taxi last night."`,o:["losed","lost","lose","loosed"],a:1,e:"lose – <b>lost</b> – lost."},
+    {q:`"We ___ the presentation at 10 AM sharp."`,o:["beginned","began","begun","begin"],a:1,e:"begin – <b>began</b> – begun. 'Begun' adalah V3."},
+    {q:`"The client ___ our proposal last week." (dibaca /red/)`,o:["readed","read","red","reading"],a:1,e:"read – <b>read</b> – read. Tulisannya sama, pelafalannya berubah jadi /red/."},
+    {q:`"She ___ the door open for the guests."`,o:["holded","held","hold","holded up"],a:1,e:"hold – <b>held</b> – held."},
+    {q:`"The stock price ___ sharply after the announcement."`,o:["falled","fell","fallen","fall"],a:1,e:"fall – <b>fell</b> – fallen."},
+    {q:`"He ___ all the receipts for the tax report."`,o:["keeped","kept","keept","keep"],a:1,e:"keep – <b>kept</b> – kept."},
+    {q:`"The CEO ___ at the seminar yesterday."`,o:["speaked","spoke","spoken","speak"],a:1,e:"speak – <b>spoke</b> – spoken."},
+    {q:`"They ___ all the old printers last month."`,o:["selled","sold","sell","solded"],a:1,e:"sell – <b>sold</b> – sold."},
+    {q:`"We finally ___ the root of the problem."`,o:["understanded","understood","understand","understooded"],a:1,e:"understand – <b>understood</b> – understood."},
+    {q:`"He ___ a formal suit to the interview."`,o:["weared","wore","worn","wear"],a:1,e:"wear – <b>wore</b> – worn."},
+    {q:`"Our team ___ the national competition last year."`,o:["winned","won","win","wan"],a:1,e:"win – <b>won</b> – won."},
+    {q:`"He ___ to the project site at 6 AM."`,o:["drived","drove","driven","drive"],a:1,e:"drive – <b>drove</b> – driven."},
+    {q:`Bentuk V1 – V2 – V3 dari "take" adalah ___.`,o:["take – took – taken","take – taked – taken","take – took – took","take – taken – took"],a:0,e:"take – took – taken."},
+    {q:`Bentuk V1 – V2 – V3 dari "begin" adalah ___.`,o:["begin – begun – began","begin – began – begun","begin – beginned – begun","begin – began – began"],a:1,e:"Polanya i–a–u, sama seperti sing–sang–sung dan drink–drank–drunk."},
+    {q:`Kalimat mana yang bentuk lampaunya SALAH?`,o:["He catched the error early.","She brought the samples.","They left before noon.","We bought new monitors."],a:0,e:"catch – <b>caught</b> – caught."},
+    {q:`Kata mana yang berakhir dengan bunyi /ɪd/?`,o:["Worked","Completed","Called","Closed"],a:1,e:"complete berakhir huruf -t → -ed dibaca <b>/ɪd/</b>."},
+    {q:`Kata mana yang berakhir dengan bunyi /t/?`,o:["Developed","Arrived","Managed","Delivered"],a:0,e:"develop berakhir bunyi /p/ (tak bersuara) → <b>/t/</b>."},
+    {q:`Kata mana yang berakhir dengan bunyi /d/?`,o:["Checked","Asked","Prepared","Finished"],a:2,e:"prepare berakhir bunyi vokal/r (bersuara) → <b>/d/</b>."}
+  ]
+},
+{
+  name:"Sesi 9",
+  title:"Simulasi Akhir",
+  desc:"Dua puluh soal campuran terakhir, format persis seperti review.",
+  items:[
+    {q:`Supervisor: "This cabinet contains client data."\nStaff: "___ worry, I always lock it."`,o:["Don't","Not","No","Doesn't"],a:0,e:"Don't + Verb 1."},
+    {q:`"Let's ___ the meeting to Friday morning."`,o:["moving","move","moved","to move"],a:1,e:"Let's + Verb 1."},
+    {q:`"___, prepare the documents. ___, send them to the client."`,o:["First / After that","Finally / Next","After that / First","Overall / Then"],a:0,e:"Urutan instruksi dimulai dengan First."},
+    {q:`"Submit your timesheet ___ Monday at the latest."`,o:["until","by","since","for"],a:1,e:"Batas akhir → by."},
+    {q:`"The service desk is open ___ 5 PM every day."`,o:["by","until","in","on"],a:1,e:"Buka terus sampai jam 5 → until."},
+    {q:`"Visitors ___ enter the production area without a badge."`,o:["don't have to","mustn't","needn't","should"],a:1,e:"Larangan → mustn't."},
+    {q:`"You ___ bring your own laptop; the office provides one."`,o:["mustn't","don't have to","shouldn't","can't"],a:1,e:"Tidak wajib → don't have to."},
+    {q:`"All drivers ___ wear a seatbelt during working hours."`,o:["have to","might","could","don't need to"],a:0,e:"Aturan → have to."},
+    {q:`"You ___ to inform HR about the address change."`,o:["should","must","ought","can"],a:2,e:"ought + to."},
+    {q:`"We finished the installation two days early. We are ___."`,o:["behind schedule","overdue","ahead of schedule","running late"],a:2,e:"Lebih cepat dari jadwal → ahead of schedule."},
+    {q:`"He ___ to the head office last Tuesday."`,o:["go","went","gone","goes"],a:1,e:"go – went – gone."},
+    {q:`"I'm sorry, I didn't ___ your message this morning."`,o:["saw","see","seen","sees"],a:1,e:"didn't + Verb 1 → see."},
+    {q:`"She ___ the form and ___ it to HR yesterday."`,o:["fill / submit","filled / submitted","filled / submit","fills / submitted"],a:1,e:"Dua aksi lampau → keduanya V2."},
+    {q:`"The storm ___ the roof off the warehouse."`,o:["blowed","blew","blown","blows"],a:1,e:"blow – blew – blown."},
+    {q:`"He felt dizzy, so he ___ down in the clinic."`,o:["laid","lay","lied","lain"],a:1,e:"lie (berbaring) – lay – lain."},
+    {q:`"I ___ the spare keys on the counter this morning."`,o:["lay","laid","lied","layed"],a:1,e:"lay (meletakkan) – laid – laid."},
+    {q:`Kata "submitted" dilafalkan dengan bunyi akhir ___.`,o:["/t/","/d/","/ɪd/","/s/"],a:2,e:"Berakhir huruf -t → /ɪd/ dan menambah satu suku kata."},
+    {q:`Kata "stopped" dilafalkan dengan bunyi akhir ___.`,o:["/t/","/d/","/ɪd/","/p/"],a:0,e:"Berakhir bunyi /p/ (tak bersuara) → /t/."},
+    {q:`"Last Monday, our team visited the client in Bandung."\nKalimat ini adalah bagian ___.`,o:["Orientation","Series of Events","Re-orientation","Conclusion"],a:0,e:"Memuat kapan, siapa, dan di mana → Orientation."},
+    {q:`Manager: "___ did you send the report to?"\nStaff: "To the finance manager."`,o:["When","Who","Where","What"],a:1,e:"Jawabannya orang → Who."}
+  ]
 }
+];
 
-function buildSessionForPart(part){
-  const base = QUESTION_BANK[part];
-  const shuffledQs = shuffle(base.map((q,origIdx)=>({...q, origIdx})));
-  const withShuffledOpts = shuffledQs.map(q=>{
-    const optObjs = q.opts.map((text,i)=>({text, isCorrect:i===q.c}));
-    const shuffledOpts = shuffle(optObjs);
-    return {...q, shuffledOpts};
+const TAGS = [
+["Imperative","Imperative","Konektor urutan","Preposisi waktu","Preposisi waktu","Preposisi waktu","Preposisi waktu","Modal verbs","Modal verbs","Modal verbs","Modal verbs","Modal verbs","Modal verbs","Istilah jadwal","Istilah jadwal","Istilah jadwal","Preposisi waktu","Imperative","Pola kata kerja","Imperative"],
+["Past Simple","Past Simple","Past Simple","Past Simple","Ejaan -ed","Ejaan -ed","Ejaan -ed","Ejaan -ed","Past Simple","Past Simple","Past Simple","Irregular verb","Pelafalan -ed","Pelafalan -ed","Pelafalan -ed","Pelafalan -ed","Past Simple","Ejaan -ed","Kata tanya","Kata tanya"],
+["Irregular verb","Irregular verb","Irregular verb","Irregular verb","lay / lie","lay / lie","lay / lie","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","raise / rise","raise / rise","Irregular verb","Irregular verb"],
+["Recount Text","Recount Text","Recount Text","Recount Text","Konektor urutan","Konektor urutan","Recount Text","Recount Text","Recount Text","Istilah jadwal","Email kantor","Email kantor","Email kantor","Email kantor","Email kantor","Email kantor","Preposisi waktu","Preposisi waktu","Email kantor","Modal verbs"],
+["Modul MCR","Modal verbs","Imperative","Imperative","Past Simple","Ejaan -ed","Pelafalan -ed","Pelafalan -ed","Past Simple","Past Simple","Modal verbs","Modal verbs","Irregular verb","lay / lie","lay / lie","Irregular verb","Kata tanya","Past Simple","Recount Text","Preposisi waktu"],
+["Modal verbs","Modal verbs","Modal verbs","Modal verbs","Modal verbs","Modal verbs","Modal verbs","Modal verbs","Modal verbs","Preposisi waktu","Preposisi waktu","Preposisi waktu","Preposisi waktu","Preposisi waktu","Preposisi waktu","Preposisi waktu","Konektor urutan","Istilah jadwal","Istilah jadwal","Kosakata kantor"],
+["Past Simple","To be lampau","To be lampau","Past Simple","Kata tanya","Kata tanya","Kata tanya","Past Simple","Past Simple","To be lampau","To be lampau","To be lampau","Irregular verb","Past Simple","Past Simple","Past Simple","Kata tanya","Ejaan -ed","Ejaan -ed","Ejaan -ed"],
+["Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Irregular verb","Pelafalan -ed","Pelafalan -ed","Pelafalan -ed"],
+["Imperative","Imperative","Konektor urutan","Preposisi waktu","Preposisi waktu","Modal verbs","Modal verbs","Modal verbs","Modal verbs","Istilah jadwal","Irregular verb","Past Simple","Past Simple","Irregular verb","lay / lie","lay / lie","Pelafalan -ed","Pelafalan -ed","Recount Text","Kata tanya"]
+];
+
+const CHEATS = [
+{t:"Imperative & ajakan", h:`
+<ul>
+<li>Perintah: <code>Verb 1 + ...</code> → <i>Open the file.</i></li>
+<li>Larangan: <code>Don't + Verb 1</code> → <i>Don't touch it.</i></li>
+<li>Sopan: <code>Please + Verb 1</code> / <i>Could you please send it?</i></li>
+<li>Ajakan: <code>Let's + Verb 1</code> (= let us) → <i>Let's start.</i></li>
+</ul>
+<div class="tip">Imperative tidak pernah pakai subjek dan tidak pernah pakai <i>doesn't</i>.</div>`},
+
+{t:"Konektor urutan (sequence)", h:`
+<ul>
+<li>Awal: <code>First</code>, First of all, To begin with</li>
+<li>Tengah: <code>Next</code>, <code>Then</code>, <code>After that</code>, Later</li>
+<li>Akhir: <code>Finally</code>, Lastly, In the end</li>
+<li>Kesimpulan: <code>Overall</code>, In short, All in all</li>
+</ul>`},
+
+{t:"Preposisi waktu: by vs until", h:`
+<table>
+<tr><th>Kata</th><th>Makna</th><th>Contoh</th></tr>
+<tr><td><b>by</b></td><td>paling lambat, aksi sekali jadi</td><td>Send it by 4 PM.</td></tr>
+<tr><td><b>until</b></td><td>berlangsung terus sampai</td><td>The meeting lasts until 11 AM.</td></tr>
+<tr><td><b>at</b></td><td>jam</td><td>at 8 AM, at noon</td></tr>
+<tr><td><b>on</b></td><td>hari / tanggal</td><td>on Monday, on 17 August</td></tr>
+<tr><td><b>in</b></td><td>bulan / tahun / musim</td><td>in March, in 2026</td></tr>
+</table>
+<div class="tip">Trik cepat: <b>by</b> = deadline (titik), <b>until</b> = durasi (garis).</div>`},
+
+{t:"Modal verbs", h:`
+<table>
+<tr><th>Modal</th><th>Arti</th><th>Contoh</th></tr>
+<tr><td>must / have to</td><td>wajib</td><td>You must wear an ID card.</td></tr>
+<tr><td><b>mustn't</b></td><td>dilarang keras</td><td>You mustn't smoke here.</td></tr>
+<tr><td><b>don't have to</b></td><td>tidak wajib (boleh tidak)</td><td>You don't have to come.</td></tr>
+<tr><td>should / ought to</td><td>saran</td><td>You should rest.</td></tr>
+<tr><td>shouldn't</td><td>sebaiknya jangan</td><td>You shouldn't skip it.</td></tr>
+</table>
+<ul>
+<li>Semua modal diikuti <code>Verb 1</code>, tanpa to — <b>kecuali ought to dan have to</b>.</li>
+<li><b>must</b> = aturan dari diri sendiri/pembicara; <b>have to</b> = aturan dari luar (kantor, hukum).</li>
+</ul>
+<div class="tip">Jebakan paling sering: mustn't (dilarang) ≠ don't have to (tidak perlu).</div>`},
+
+{t:"Past Simple: tiga rumus", h:`
+<ul>
+<li>(+) <code>S + Verb 2</code> → She sent the report.</li>
+<li>(–) <code>S + didn't + Verb 1</code> → She didn't send the report.</li>
+<li>(?) <code>Did + S + Verb 1</code> → Did she send the report?</li>
+<li>WH: <code>WH + did + S + Verb 1</code> → What did you do yesterday?</li>
+</ul>
+<div class="tip">Kalau sudah ada <b>did / didn't</b>, kata kerjanya kembali ke Verb 1. Ini soal yang paling sering muncul.</div>
+<p><b>Kata tanya:</b> Who (orang) · When (waktu) · Where (tempat) · What (benda/kegiatan) · Why (alasan) · How (cara).</p>`},
+
+{t:"Ejaan -ed", h:`
+<ul>
+<li>Umum: + ed → work → worked</li>
+<li>Berakhir -e: + d → like → liked</li>
+<li>Konsonan + y: y → i + ed → study → stud<b>ied</b>, copy → cop<b>ied</b></li>
+<li>Vokal + y: tetap + ed → stay → stay<b>ed</b>, play → played</li>
+<li>1 suku kata pola K-V-K: konsonan akhir digandakan → stop → stop<b>ped</b>, plan → planned</li>
+</ul>
+<div class="tip">Tidak ada bentuk "layed", "copyed", "stoped", "sinked", "quited".</div>`},
+
+{t:"Pelafalan -ed: /t/ /d/ /ɪd/", h:`
+<table>
+<tr><th>Bunyi</th><th>Aturan</th><th>Contoh</th></tr>
+<tr><td><b>/ɪd/</b></td><td>berakhir huruf <b>-t</b> atau <b>-d</b> (tambah suku kata)</td><td>wanted, needed, started, submitted, guided, persuaded, decided, visited</td></tr>
+<tr><td><b>/t/</b></td><td>bunyi tak bersuara: k, p, s, f, sh, ch, x</td><td>worked, stopped, passed, watched, washed, fixed, laughed</td></tr>
+<tr><td><b>/d/</b></td><td>bunyi bersuara & semua vokal: b, g, l, m, n, v, z, r</td><td>called, played, closed, filed, answered, opened, moved</td></tr>
+</table>
+<div class="tip">Cara cek cepat: ucapkan kata dasarnya. Berhenti di t/d → /ɪd/. Nafas keluar tanpa suara → /t/. Sisanya → /d/. <b>Ricocheted</b> berakhir bunyi /eɪ/, jadi /d/ — bukan /ɪd/ meski tulisannya ada 't'.</div>`},
+
+{t:"Irregular verbs (wajib hafal)", h:`
+<div class="scroll"><table>
+<tr><th>V1</th><th>V2</th><th>V3</th></tr>
+<tr><td>be</td><td>was/were</td><td>been</td></tr>
+<tr><td>begin</td><td>began</td><td>begun</td></tr>
+<tr><td>bend</td><td>bent</td><td>bent</td></tr>
+<tr><td>blow</td><td>blew</td><td>blown</td></tr>
+<tr><td>break</td><td>broke</td><td>broken</td></tr>
+<tr><td>bring</td><td>brought</td><td>brought</td></tr>
+<tr><td>build</td><td>built</td><td>built</td></tr>
+<tr><td>buy</td><td>bought</td><td>bought</td></tr>
+<tr><td>catch</td><td>caught</td><td>caught</td></tr>
+<tr><td>choose</td><td>chose</td><td>chosen</td></tr>
+<tr><td>come</td><td>came</td><td>come</td></tr>
+<tr><td>cost</td><td>cost</td><td>cost</td></tr>
+<tr><td>cut</td><td>cut</td><td>cut</td></tr>
+<tr><td>do</td><td>did</td><td>done</td></tr>
+<tr><td>drink</td><td>drank</td><td>drunk</td></tr>
+<tr><td>drive</td><td>drove</td><td>driven</td></tr>
+<tr><td>eat</td><td>ate</td><td>eaten</td></tr>
+<tr><td>fall</td><td>fell</td><td>fallen</td></tr>
+<tr><td>feel</td><td>felt</td><td>felt</td></tr>
+<tr><td>find</td><td>found</td><td>found</td></tr>
+<tr><td>get</td><td>got</td><td>gotten/got</td></tr>
+<tr><td>give</td><td>gave</td><td>given</td></tr>
+<tr><td>go</td><td>went</td><td>gone</td></tr>
+<tr><td>grow</td><td>grew</td><td>grown</td></tr>
+<tr><td>hold</td><td>held</td><td>held</td></tr>
+<tr><td>keep</td><td>kept</td><td>kept</td></tr>
+<tr><td>know</td><td>knew</td><td>known</td></tr>
+<tr><td>lead</td><td>led</td><td>led</td></tr>
+<tr><td>leave</td><td>left</td><td>left</td></tr>
+<tr><td>lose</td><td>lost</td><td>lost</td></tr>
+<tr><td>make</td><td>made</td><td>made</td></tr>
+<tr><td>meet</td><td>met</td><td>met</td></tr>
+<tr><td>pay</td><td>paid</td><td>paid</td></tr>
+<tr><td>put</td><td>put</td><td>put</td></tr>
+<tr><td>quit</td><td>quit</td><td>quit</td></tr>
+<tr><td>read</td><td>read (/red/)</td><td>read</td></tr>
+<tr><td>rise</td><td>rose</td><td>risen</td></tr>
+<tr><td>run</td><td>ran</td><td>run</td></tr>
+<tr><td>say</td><td>said</td><td>said</td></tr>
+<tr><td>see</td><td>saw</td><td>seen</td></tr>
+<tr><td>sell</td><td>sold</td><td>sold</td></tr>
+<tr><td>send</td><td>sent</td><td>sent</td></tr>
+<tr><td>shut</td><td>shut</td><td>shut</td></tr>
+<tr><td>sing</td><td>sang</td><td>sung</td></tr>
+<tr><td>sink</td><td>sank</td><td>sunk</td></tr>
+<tr><td>sit</td><td>sat</td><td>sat</td></tr>
+<tr><td>sleep</td><td>slept</td><td>slept</td></tr>
+<tr><td>speak</td><td>spoke</td><td>spoken</td></tr>
+<tr><td>spend</td><td>spent</td><td>spent</td></tr>
+<tr><td>stand</td><td>stood</td><td>stood</td></tr>
+<tr><td>take</td><td>took</td><td>taken</td></tr>
+<tr><td>teach</td><td>taught</td><td>taught</td></tr>
+<tr><td>tell</td><td>told</td><td>told</td></tr>
+<tr><td>think</td><td>thought</td><td>thought</td></tr>
+<tr><td>understand</td><td>understood</td><td>understood</td></tr>
+<tr><td>wear</td><td>wore</td><td>worn</td></tr>
+<tr><td>win</td><td>won</td><td>won</td></tr>
+<tr><td>write</td><td>wrote</td><td>written</td></tr>
+</table></div>
+<p><b>Kenapa ada irregular verb?</b> Kata kerja ini warisan bahasa Inggris Kuno (Old English), disebut <i>strong verbs</i>: bentuk lampaunya dibuat dengan mengubah vokal di tengah kata (sing–sang–sung, drink–drank–drunk), bukan menambah akhiran -ed. Akhiran -ed berasal dari <i>weak verbs</i>, pola yang lebih muda dan akhirnya jadi pola umum. Karena kata-kata strong verb ini paling sering dipakai sehari-hari, bentuk lamanya bertahan sampai sekarang — sekitar 200 kata saja, dan itulah yang perlu dihafal.</p>`},
+
+{t:"lay / lie / raise / rise", h:`
+<table>
+<tr><th>Verba</th><th>Arti</th><th>V1 – V2 – V3</th></tr>
+<tr><td>lay</td><td>meletakkan (ada objek)</td><td>lay – laid – laid</td></tr>
+<tr><td>lie</td><td>berbaring</td><td>lie – lay – lain</td></tr>
+<tr><td>lie</td><td>berbohong</td><td>lie – lied – lied</td></tr>
+<tr><td>raise</td><td>menaikkan (ada objek)</td><td>raise – raised – raised</td></tr>
+<tr><td>rise</td><td>naik sendiri</td><td>rise – rose – risen</td></tr>
+</table>
+<div class="tip">Ejaan <b>"layed"</b> tidak pernah benar. Kalau ada objek setelahnya (lay <i>the file</i>), pakai laid.</div>`},
+
+{t:"Istilah jadwal & email kantor", h:`
+<ul>
+<li><code>ahead of schedule</code> — lebih cepat dari jadwal</li>
+<li><code>on schedule / on time</code> — tepat waktu</li>
+<li><code>behind schedule / running behind</code> — terlambat</li>
+<li><code>overdue</code> — lewat jatuh tempo</li>
+<li><code>due</code> — jatuh tempo (The report is due on Friday.)</li>
+</ul>
+<p><b>Frasa email baku:</b></p>
+<ul>
+<li>Dear Mr./Ms. + nama belakang,</li>
+<li>I am writing to inquire about ...</li>
+<li>Please find attached the invoice.</li>
+<li>We apologize for the inconvenience.</li>
+<li>Thank you for your attention to this matter.</li>
+<li>I look forward to hearing from you.</li>
+<li>Best regards, / Sincerely,</li>
+</ul>`},
+
+{t:"Recount Text", h:`
+<table>
+<tr><th>Bagian</th><th>Isi</th><th>Penanda</th></tr>
+<tr><td><b>Orientation</b></td><td>Who, When, Where — latar pembuka</td><td>Last Monday, our team ...</td></tr>
+<tr><td><b>Series of Events</b></td><td>kejadian berurutan</td><td>First, Then, After that, Finally</td></tr>
+<tr><td><b>Re-orientation</b></td><td>kesimpulan, kesan, perasaan</td><td>Overall, In short, It was ...</td></tr>
+</table>
+<ul><li>Tense: <b>Past Simple</b>. Orang pertama (I / we) umum dipakai.</li></ul>`},
+
+{t:"Modul My Chemical Romance", h:`
+<ul>
+<li>Terbentuk <b>2001</b> di Newark, New Jersey, tidak lama setelah <b>serangan 9/11</b>. Gerard Way menyaksikan kejadian itu dan memutuskan membuat band.</li>
+<li>Lagu pertama: <b>Skylines and Turnstiles</b> — ditulis langsung sebagai respons atas 9/11.</li>
+<li>Personel inti: Gerard Way (vokal), Mikey Way (bass), Ray Toro & Frank Iero (gitar), Bob Bryar (drum, 2004–2010).</li>
+<li>Album: <i>I Brought You My Bullets, You Brought Me Your Love</i> (2002), <i>Three Cheers for Sweet Revenge</i> (2004), <i>The Black Parade</i> (2006), <i>Danger Days</i> (2010).</li>
+<li>Lagu terkenal: Helena · I'm Not Okay (I Promise) · Welcome to the Black Parade · Famous Last Words · Teenagers · Na Na Na.</li>
+<li>Genre: emo / pop punk / alternative rock. Bubar 2013, reuni 2019.</li>
+</ul>
+<div class="tip">Jawaban tersering di soal modul: MCR lahir sebagai respons psikologis terhadap <b>The 9/11 Attacks</b>.</div>`}
+];
+
+const LET = ["A","B","C","D","E"];
+const state = SESSIONS.map(s => ({answered:0, correct:0, picks:new Array(s.items.length).fill(null)}));
+let view = 0;
+
+const tabsEl = document.getElementById('tabs');
+const mainEl = document.getElementById('main');
+
+SESSIONS.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.textContent=s.name; b.onclick=()=>go(i);
+  tabsEl.appendChild(b);
+});
+const cb=document.createElement('button');
+cb.textContent="Cheatsheet"; cb.onclick=()=>go('cs');
+tabsEl.appendChild(cb);
+
+function go(v){
+  view=v;
+  [...tabsEl.children].forEach((b,i)=>{
+    const id = i<SESSIONS.length ? i : 'cs';
+    b.setAttribute('aria-selected', id===v ? 'true':'false');
   });
-  sessionOrder[part] = withShuffledOpts;
+  render();
+  window.scrollTo({top:0});
 }
 
-/* ============ NAV RENDER ============ */
-function renderNav(){
-  const nav = document.getElementById('mainNav');
-  nav.innerHTML = '';
-
-  const modeRow = document.createElement('div');
-  modeRow.className = 'nav-row';
-  const modes = [
-    {key:'mc', label:'📝 Pilihan Ganda'},
-    {key:'email', label:'✉️ Latihan Email'},
-    {key:'cheatsheet', label:'📘 Cheatsheet'}
-  ];
-  modes.forEach(m=>{
-    const btn = document.createElement('button');
-    btn.textContent = m.label;
-    if(currentView===m.key) btn.classList.add('active');
-    btn.onclick = ()=>{
-      currentView=m.key;
-      if(m.key==='email' && currentPart>EMAIL_PART_COUNT) currentPart = 1;
-      render();
-    };
-    modeRow.appendChild(btn);
-  });
-  nav.appendChild(modeRow);
-
-  if(currentView==='mc' || currentView==='email'){
-    const partRow = document.createElement('div');
-    partRow.className = 'nav-row part-row';
-    const maxPart = currentView==='email' ? EMAIL_PART_COUNT : MC_PART_COUNT;
-    for(let p=1;p<=maxPart;p++){
-      const btn = document.createElement('button');
-      btn.textContent = 'Part ' + p;
-      if(currentPart===p) btn.classList.add('active');
-      btn.onclick = ()=>{ currentPart=p; render(); };
-      partRow.appendChild(btn);
-    }
-    nav.appendChild(partRow);
-  }
-}
-
-/* ============ MC QUESTION RENDER ============ */
-function renderQuestion(part, q, displayIdx){
-  const card = document.createElement('div');
-  card.className = 'q-card';
-  const key = `${part}-${q.origIdx}`;
-
-  const head = document.createElement('div');
-  head.className = 'q-head';
-  head.innerHTML = `<span class="q-num">Soal ${displayIdx+1} / 30</span><span class="badge ${q.d.toLowerCase()}">${q.d}</span>`;
-  card.appendChild(head);
-
-  const qtext = document.createElement('div');
-  qtext.className = 'q-text';
-  qtext.textContent = q.q;
-  card.appendChild(qtext);
-
-  const explainDiv = document.createElement('div');
-
-  q.shuffledOpts.forEach(opt=>{
-    const b = document.createElement('button');
-    b.className = 'opt';
-    b.textContent = opt.text;
-    b.onclick = ()=>{
-      if(answered[key]) return;
-      answered[key] = true;
-      score.total++;
-      const allBtns = card.querySelectorAll('.opt');
-      allBtns.forEach(ob=>ob.classList.add('disabled'));
-      q.shuffledOpts.forEach((o,i)=>{
-        if(o.isCorrect) allBtns[i].classList.add('correct');
-      });
-      if(opt.isCorrect){
-        score.correct++;
-        b.classList.add('correct');
-        explainDiv.className = 'explain show ok';
-        explainDiv.innerHTML = '<b>Benar!</b> ' + q.ok;
-      } else {
-        b.classList.add('wrong');
-        explainDiv.className = 'explain show no';
-        explainDiv.innerHTML = '<b>Kurang tepat.</b> ' + q.no;
-      }
-      updateScoreboard();
-    };
-    card.appendChild(b);
-  });
-
-  card.appendChild(explainDiv);
-  return card;
-}
-
-/* ============ EMAIL EXERCISE RENDER ============ */
-function renderEmail(part, ex, displayIdx){
-  const card = document.createElement('div');
-  card.className = 'email-card';
-  card.innerHTML = `
-    <div class="q-head"><span class="q-num">Latihan Email ${displayIdx+1} / 3</span></div>
-    <p style="font-family:Arial,sans-serif;font-size:0.9rem;margin:4px 0 0;">Email di bawah ini memiliki beberapa kesalahan (tata bahasa, kelengkapan, kesopanan, penggunaan To/Cc, dan format). Tuliskan versi email bisnis yang benar dan profesional, lengkap dengan header To/Cc/Subject.</p>
-    <div class="email-draft">To: ${ex.to}\nCc: ${ex.cc}\nSubject: ${ex.subject}\n\n${ex.body}</div>
-    <textarea placeholder="Tulis versi perbaikan email Anda di sini..."></textarea>
-    <div>
-      <button class="btn">Lihat Petunjuk Kesalahan</button>
-      <button class="btn secondary">Tampilkan Contoh Jawaban</button>
-    </div>
-    <ul class="checklist hidden"></ul>
-    <div class="model-answer"></div>
-  `;
-  const [hintBtn, modelBtn] = card.querySelectorAll('.btn');
-  const checklist = card.querySelector('.checklist');
-  const modelDiv = card.querySelector('.model-answer');
-
-  hintBtn.onclick = ()=>{
-    checklist.classList.toggle('hidden');
-    checklist.innerHTML = ex.issues.map(i=>`<li>${i}</li>`).join('');
-  };
-  modelBtn.onclick = ()=>{
-    modelDiv.classList.toggle('show');
-    modelDiv.textContent = ex.model;
-  };
-  return card;
-}
-
-/* ============ SCOREBOARD ============ */
-function updateScoreboard(){
-  const el = document.getElementById('scoreboardText');
-  if(el) el.innerHTML = `Skor sesi ini: <b>${score.correct} / ${score.total}</b> benar`;
-}
-
-/* ============ MC VIEW (Pilihan Ganda only) ============ */
-function renderMCView(){
-  const main = document.getElementById('mainContent');
-  main.innerHTML = '';
-
-  if(!sessionOrder[currentPart]) buildSessionForPart(currentPart);
-
-  const titleEl = document.createElement('h2');
-  titleEl.className = 'section-title';
-  titleEl.textContent = '📝 ' + PART_TITLES[currentPart] + ' — Pilihan Ganda';
-  main.appendChild(titleEl);
-
-  const scoreboard = document.createElement('div');
-  scoreboard.className = 'scoreboard';
-  scoreboard.innerHTML = `<span id="scoreboardText">Skor sesi ini: <b>${score.correct} / ${score.total}</b> benar</span><span>🔀 Urutan soal &amp; pilihan diacak setiap kali Anda membuka part ini</span>`;
-  main.appendChild(scoreboard);
-
-  sessionOrder[currentPart].forEach((q,i)=>{
-    main.appendChild(renderQuestion(currentPart, q, i));
-  });
-
-  const finishBox = document.createElement('div');
-  finishBox.className = 'finish-box';
-  const nextPart = currentPart < MC_PART_COUNT ? currentPart+1 : null;
-  finishBox.innerHTML = `<h3>Selesai dengan Pilihan Ganda Part ${currentPart}?</h3><p style="font-family:Arial,sans-serif;font-size:0.85rem;">${nextPart? 'Lanjutkan ke Part berikutnya, atau acak ulang part ini untuk latihan tambahan.':'Anda sudah menyelesaikan Pilihan Ganda di semua '+MC_PART_COUNT+' Part!'}</p>`;
-  const btnRow = document.createElement('div');
-  const shuffleBtn = document.createElement('button');
-  shuffleBtn.className = 'btn secondary';
-  shuffleBtn.textContent = '🔀 Acak Ulang Part Ini';
-  shuffleBtn.onclick = ()=>{ buildSessionForPart(currentPart); render(); };
-  btnRow.appendChild(shuffleBtn);
-  if(nextPart){
-    const nextBtn = document.createElement('button');
-    nextBtn.className = 'btn';
-    nextBtn.textContent = 'Lanjut ke Part ' + nextPart + ' →';
-    nextBtn.onclick = ()=>{ currentPart = nextPart; render(); };
-    btnRow.appendChild(nextBtn);
-  }
-  finishBox.appendChild(btnRow);
-  main.appendChild(finishBox);
-}
-
-/* ============ EMAIL VIEW (Latihan Email only) ============ */
-function renderEmailView(){
-  const main = document.getElementById('mainContent');
-  main.innerHTML = '';
-
-  const titleEl = document.createElement('h2');
-  titleEl.className = 'section-title';
-  titleEl.textContent = '✉️ ' + PART_TITLES[currentPart] + ' — Latihan Koreksi Email';
-  main.appendChild(titleEl);
-
-  const intro = document.createElement('div');
-  intro.className = 'scoreboard';
-  intro.innerHTML = `<span>3 skenario email per Part. Perbaiki tata bahasa, kelengkapan, kesopanan, dan format bisnisnya.</span>`;
-  main.appendChild(intro);
-
-  EMAIL_BANK[currentPart].forEach((ex,i)=>{
-    main.appendChild(renderEmail(currentPart, ex, i));
-  });
-
-  const finishBox = document.createElement('div');
-  finishBox.className = 'finish-box';
-  const nextPart = currentPart < EMAIL_PART_COUNT ? currentPart+1 : null;
-  finishBox.innerHTML = `<h3>Selesai dengan Latihan Email Part ${currentPart}?</h3><p style="font-family:Arial,sans-serif;font-size:0.85rem;">${nextPart? 'Lanjutkan ke Part berikutnya untuk skenario email baru.':'Anda sudah menyelesaikan Latihan Email di semua '+EMAIL_PART_COUNT+' Part!'}</p>`;
-  const btnRow = document.createElement('div');
-  if(nextPart){
-    const nextBtn = document.createElement('button');
-    nextBtn.className = 'btn';
-    nextBtn.textContent = 'Lanjut ke Part ' + nextPart + ' →';
-    nextBtn.onclick = ()=>{ currentPart = nextPart; render(); };
-    btnRow.appendChild(nextBtn);
-  }
-  finishBox.appendChild(btnRow);
-  main.appendChild(finishBox);
-}
-
-/* ============ CHEATSHEET VIEW ============ */
-function renderCheatsheetView(){
-  const main = document.getElementById('mainContent');
-  main.innerHTML = '';
-
-  const titleEl = document.createElement('h2');
-  titleEl.className = 'section-title';
-  titleEl.textContent = '📘 Cheatsheet';
-  main.appendChild(titleEl);
-
-  const tabs = document.createElement('div');
-  tabs.className = 'cheat-tabs';
-  tabs.innerHTML = `<button id="tabMC" class="active">Pilihan Ganda</button><button id="tabEmail">Penulisan Email Bisnis</button>`;
-  main.appendChild(tabs);
-
-  const mcPanel = document.createElement('div');
-  mcPanel.className = 'cheat-panel show';
-  mcPanel.id = 'panelMC';
-  mcPanel.innerHTML = `
-  <details open><summary>📞 Frasa Telepon (Telephone Phrases)</summary><ul>
-    <li><b>hold on</b> — tunggu sebentar di telepon</li>
-    <li><b>put (someone) through</b> — menyambungkan telepon ke orang/departemen lain</li>
-    <li><b>breaking up</b> — sinyal telepon tidak jelas/putus-putus</li>
-    <li><b>leave a message</b> — meninggalkan pesan</li>
-    <li><b>wrong number</b> — salah sambung</li>
-    <li><b>on the line</b> — sedang menelepon/dalam panggilan</li>
-  </ul></details>
-  <details><summary>👤 Pronoun (Kata Ganti)</summary><ul>
-    <li><b>Subject</b>: he, she, they, we, I — sebagai subjek kalimat</li>
-    <li><b>Object</b>: him, her, them, us, me — setelah kata kerja/preposisi (for him, give it to her)</li>
-    <li><b>Possessive adjective</b>: his, her, their, our, my — sebelum kata benda (his badge)</li>
-    <li><b>Possessive pronoun</b>: his, hers, theirs, ours, mine — berdiri sendiri tanpa kata benda (it's theirs)</li>
-    <li><b>Reflexive</b>: himself, herself, themselves — menekankan subjek melakukan sendiri (he did it himself)</li>
-  </ul></details>
-  <details><summary>✉️ Etika Email</summary><ul>
-    <li><b>To</b> — penerima utama</li>
-    <li><b>CC</b> — tembusan yang terlihat oleh semua penerima</li>
-    <li><b>BCC</b> — tembusan tersembunyi, tidak terlihat penerima lain</li>
-    <li>Sapaan formal: <i>Dear Mr./Ms. [Nama],</i> — hindari "Hey/Yo" untuk kontak formal</li>
-    <li>Penutup formal: <i>Sincerely,</i> / <i>Best regards,</i></li>
-    <li>Subject line harus spesifik dan informatif, hindari huruf kapital semua atau tanda seru berlebihan</li>
-  </ul></details>
-  <details><summary>📅 Kosakata Rapat & Jadwal</summary><ul>
-    <li><b>agenda</b> — daftar topik sebelum rapat</li>
-    <li><b>minutes</b> — notulen/catatan hasil rapat</li>
-    <li><b>postpone</b> — menunda ke waktu lain</li>
-    <li><b>cancel</b> — membatalkan sepenuhnya</li>
-    <li><b>confirm</b> — memastikan/mengonfirmasi kehadiran</li>
-  </ul></details>
-  <details><summary>⏳ Will vs Going to</summary><ul>
-    <li><b>will</b> — keputusan spontan ("The phone is ringing, I will answer it") atau janji ("I promise I will finish it")</li>
-    <li><b>going to</b> — rencana yang sudah diatur sebelumnya ("We are going to leave on Monday" — tiket sudah dipesan) atau prediksi berdasarkan bukti nyata ("Look at the clouds, it's going to rain")</li>
-  </ul></details>
-  <details><summary>🔢 Quantifiers (some/any/much/many)</summary><ul>
-    <li><b>much</b> — untuk uncountable noun, biasanya di kalimat negatif/pertanyaan (much time, much information)</li>
-    <li><b>many</b> — untuk countable noun jamak, di kalimat negatif/pertanyaan (many seats, many samples)</li>
-    <li><b>some</b> — biasanya di kalimat positif atau penawaran (some coffee?, some information)</li>
-    <li><b>any</b> — biasanya di kalimat negatif atau pertanyaan (do you have any samples?)</li>
-  </ul></details>
-  <details><summary>💰 Kosakata Transaksi Bisnis</summary><ul>
-    <li><b>quotation</b> — perkiraan harga sebelum pekerjaan dimulai</li>
-    <li><b>purchase order (PO)</b> — dokumen resmi pembeli untuk memesan barang</li>
-    <li><b>invoice</b> — tagihan setelah pekerjaan/barang selesai, meminta pembayaran</li>
-    <li><b>receipt</b> — bukti bahwa pembayaran sudah dilakukan</li>
-    <li><b>discount</b> — potongan harga</li>
-  </ul></details>
-  <details><summary>📖 Countable vs Uncountable Nouns</summary><ul>
-    <li><b>Uncountable (tidak bisa dijamakkan)</b>: furniture, information, time, money, advice</li>
-    <li>Untuk menghitung uncountable noun, gunakan satuan: <i>a piece of furniture</i>, <i>three pieces of furniture</i></li>
-  </ul></details>`;
-  main.appendChild(mcPanel);
-
-  const emailPanel = document.createElement('div');
-  emailPanel.className = 'cheat-panel';
-  emailPanel.id = 'panelEmail';
-  emailPanel.innerHTML = `
-  <details open><summary>🏗️ Struktur Email Bisnis</summary><ul>
-    <li><b>Subject line</b> — jelas dan spesifik (contoh: "Meeting Request – Tuesday 10 AM")</li>
-    <li><b>Salam pembuka (Greeting)</b> — "Dear Mr./Ms. [Nama]," untuk kontak formal/baru</li>
-    <li><b>Kalimat pembuka</b> — sapaan singkat atau referensi ke email sebelumnya ("I hope this email finds you well.")</li>
-    <li><b>Isi pesan (Body)</b> — sampaikan tujuan dengan jelas, satu topik utama per email, sertakan detail penting (tanggal, jumlah, nomor pesanan)</li>
-    <li><b>Permintaan tindakan (Call to action)</b> — apa yang Anda butuhkan dari penerima dan kapan</li>
-    <li><b>Penutup (Closing line)</b> — ucapan terima kasih ("Thank you for your time and consideration.")</li>
-    <li><b>Sign-off + nama</b> — "Best regards," / "Sincerely," diikuti nama lengkap</li>
-  </ul></details>
-  <details><summary>🎩 Etika Komunikasi Bisnis</summary><ul>
-    <li>Hindari singkatan gaya chat (u, pls, tmr, im) — gunakan kata lengkap</li>
-    <li>Hindari huruf kapital semua (ALL CAPS) dan tanda seru berlebihan (!!!)</li>
-    <li>Gunakan nada sopan meski menyampaikan keluhan atau tenggat mendesak</li>
-    <li>Sertakan detail spesifik (nomor pesanan, tanggal, jumlah) agar penerima mudah menindaklanjuti</li>
-    <li>Satu topik utama per email — jangan mencampur banyak permintaan berbeda</li>
-    <li>CC hanya untuk pihak yang relevan; BCC untuk tembusan yang tidak perlu diketahui penerima utama</li>
-  </ul></details>
-  <details><summary>🔧 Kesalahan Umum yang Harus Dihindari</summary><ul>
-    <li>Sapaan terlalu santai ("Hi bro", "Hey") untuk kontak formal/baru</li>
-    <li>Tidak ada sign-off atau nama pengirim</li>
-    <li>Nada mengancam atau menuntut, bukan meminta dengan sopan</li>
-    <li>Grammar dasar: "the meeting is cancel" → "has been cancelled"; "yesterday meeting" → "yesterday's meeting"</li>
-    <li>Subject line kosong atau terlalu umum ("hi", "doc", "help")</li>
-  </ul></details>`;
-  main.appendChild(emailPanel);
-
-  document.getElementById('tabMC').onclick = ()=>{
-    document.getElementById('tabMC').classList.add('active');
-    document.getElementById('tabEmail').classList.remove('active');
-    mcPanel.classList.add('show');
-    emailPanel.classList.remove('show');
-  };
-  document.getElementById('tabEmail').onclick = ()=>{
-    document.getElementById('tabEmail').classList.add('active');
-    document.getElementById('tabMC').classList.remove('active');
-    emailPanel.classList.add('show');
-    mcPanel.classList.remove('show');
-  };
-}
-
-/* ============ MAIN RENDER ============ */
 function render(){
-  renderNav();
-  if(currentView==='cheatsheet') renderCheatsheetView();
-  else if(currentView==='email') renderEmailView();
-  else renderMCView();
-  window.scrollTo(0,0);
+  if(view==='cs'){ renderCheat(); return; }
+  const s=SESSIONS[view], st=state[view];
+  mainEl.innerHTML='';
+  const intro=document.createElement('div');
+  intro.className='intro';
+  intro.innerHTML=`<h2>${s.title}</h2><p>${s.desc}</p>`;
+  mainEl.appendChild(intro);
+
+  const bar=document.createElement('div');
+  bar.className='scorebar';
+  bar.innerHTML=`<b id="sc"></b><div class="track"><div class="fill" id="fl"></div></div><span id="pc"></span>`;
+  mainEl.appendChild(bar);
+
+  s.items.forEach((it,qi)=>{
+    const card=document.createElement('div');
+    card.className='q';
+    const num=document.createElement('div');
+    num.className='num'; num.textContent=`Soal ${qi+1} dari ${s.items.length}`;
+    const txt=document.createElement('div');
+    txt.className='txt'; txt.textContent=it.q;
+    card.appendChild(num); card.appendChild(txt);
+
+    const exp=document.createElement('div');
+    exp.className='exp';
+
+    it.o.forEach((op,oi)=>{
+      const b=document.createElement('button');
+      b.className='opt';
+      b.innerHTML=`<span class="k">${LET[oi]}</span><span>${op}</span>`;
+      b.onclick=()=>pick(card,exp,qi,oi,it);
+      card.appendChild(b);
+    });
+    card.appendChild(exp);
+    mainEl.appendChild(card);
+
+    if(st.picks[qi]!==null) replay(card,exp,qi,it);
+  });
+
+  const done=document.createElement('div');
+  done.className='done'; done.id='done';
+  mainEl.appendChild(done);
+
+  const act=document.createElement('div');
+  act.className='actions';
+  act.innerHTML=`<button id="reset">Ulangi sesi</button><button class="main" id="next">${view<SESSIONS.length-1?'Sesi berikutnya':'Buka cheatsheet'}</button>`;
+  mainEl.appendChild(act);
+  document.getElementById('reset').onclick=()=>{ state[view]={answered:0,correct:0,picks:new Array(s.items.length).fill(null)}; render(); window.scrollTo({top:0}); };
+  document.getElementById('next').onclick=()=> go(view<SESSIONS.length-1?view+1:'cs');
+
+  updateBar();
 }
 
-render();
+function pick(card,exp,qi,oi,it){
+  const st=state[view];
+  if(st.picks[qi]!==null) return;
+  st.picks[qi]=oi; st.answered++;
+  if(oi===it.a) st.correct++;
+  paint(card,exp,qi,oi,it);
+  updateBar();
+}
+
+function replay(card,exp,qi,it){ paint(card,exp,qi,state[view].picks[qi],it); }
+
+function paint(card,exp,qi,oi,it){
+  const btns=[...card.querySelectorAll('.opt')];
+  btns.forEach((b,i)=>{
+    b.disabled=true;
+    if(i===it.a) b.classList.add(i===oi?'pick-ok':'show-ok');
+    if(i===oi && i!==it.a) b.classList.add('pick-no');
+  });
+  exp.classList.add('on');
+  exp.innerHTML = (oi===it.a ? '<b>Benar.</b> ' : `<b>Kurang tepat.</b> Jawaban: ${LET[it.a]}. `) + it.e;
+}
+
+function updateBar(){
+  const s=SESSIONS[view], st=state[view];
+  const sc=document.getElementById('sc'), fl=document.getElementById('fl'), pc=document.getElementById('pc');
+  if(!sc) return;
+  sc.textContent=`Benar ${st.correct}/${s.items.length}`;
+  pc.textContent=`${st.answered} terjawab`;
+  fl.style.width=(st.answered/s.items.length*100)+'%';
+  const done=document.getElementById('done');
+  if(st.answered===s.items.length){
+    const pct=Math.round(st.correct/s.items.length*100);
+    let msg = pct>=90?'Siap ujian. Pertahankan.':pct>=75?'Sudah bagus. Tinggal rapikan yang salah di bawah ini.':'Baca dulu review di bawah, lalu buka cheatsheet untuk materi yang paling sering meleset.';
+    let html=`<div class="big">${st.correct}/${s.items.length}</div><p style="margin:4px 0 0">${pct}% benar. ${msg}</p>`;
+
+    const wrong=[];
+    st.picks.forEach((p,i)=>{ if(p!==null && p!==SESSIONS[view].items[i].a) wrong.push(i); });
+
+    html+=`<div class="rev">`;
+    if(wrong.length===0){
+      html+=`<h4>Tidak ada kesalahan di sesi ini.</h4><p style="margin:0;font-size:14px">Lanjut ke sesi berikutnya atau ulangi besok pagi sebagai pemanasan.</p>`;
+    } else {
+      const count={};
+      wrong.forEach(i=>{ const t=tagOf(view,i); count[t]=(count[t]||0)+1; });
+      const sorted=Object.entries(count).sort((a,b)=>b[1]-a[1]);
+      html+=`<h4>Materi yang perlu diulang</h4><div class="chips">`;
+      sorted.forEach(([t,n])=>{ html+=`<span class="chip">${t} · ${n} salah</span>`; });
+      html+=`</div><h4>Kenapa jawaban kamu salah</h4>`;
+      wrong.forEach(i=>{
+        const it=SESSIONS[view].items[i];
+        html+=`<div class="miss">
+          <div class="tag">Soal ${i+1} · ${tagOf(view,i)}</div>
+          <div class="qt">${esc(it.q)}</div>
+          <div class="row"><span class="lbl">Jawaban kamu:</span> <span class="you">${LET[st.picks[i]]}. ${esc(it.o[st.picks[i]])}</span></div>
+          <div class="row"><span class="lbl">Seharusnya:</span> <span class="key">${LET[it.a]}. ${esc(it.o[it.a])}</span></div>
+          <div class="why">${it.e}</div>
+        </div>`;
+      });
+    }
+    html+=`</div>`;
+    done.innerHTML=html;
+    done.classList.add('on');
+
+    const act=document.querySelector('.actions');
+    if(act && wrong.length && !document.getElementById('retry')){
+      act.classList.add('three');
+      const b=document.createElement('button');
+      b.id='retry'; b.textContent='Ulangi yang salah';
+      b.onclick=()=>{
+        wrong.forEach(i=>{ st.picks[i]=null; st.answered--; });
+        render(); window.scrollTo({top:0});
+      };
+      act.insertBefore(b, act.children[1]);
+    }
+  } else done.classList.remove('on');
+}
+
+function tagOf(s,i){ return (TAGS[s] && TAGS[s][i]) || SESSIONS[s].name; }
+function esc(t){ const d=document.createElement('div'); d.textContent=t; return d.innerHTML; }
+
+function renderCheat(){
+  mainEl.innerHTML='';
+  const intro=document.createElement('div');
+  intro.className='intro';
+  intro.innerHTML=`<h2>Cheatsheet</h2><p>Ringkasan semua aturan yang keluar di review. Ketuk judul untuk membuka.</p>`;
+  mainEl.appendChild(intro);
+  const box=document.createElement('div');
+  box.className='cs';
+  CHEATS.forEach((c,i)=>{
+    const d=document.createElement('details');
+    if(i===0) d.open=true;
+    d.innerHTML=`<summary><h3>${c.t}</h3></summary><div class="body">${c.h}</div>`;
+    box.appendChild(d);
+  });
+  mainEl.appendChild(box);
+  const f=document.createElement('footer');
+  f.textContent='Semoga lancar ujiannya besok.';
+  mainEl.appendChild(f);
+}
+
+document.getElementById('themeBtn').onclick=()=>{
+  const cur=document.documentElement.getAttribute('data-theme');
+  const isDark = cur ? cur==='dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.setAttribute('data-theme', isDark?'light':'dark');
+};
+
+go(0);
 </script>
 </body>
 </html>
