@@ -1,700 +1,171 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>English Quiz Prep — Sesi 11–15</title>
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Latihan Ujian English</title>
 <style>
-:root{
-  --bg:#f4f6fb; --card:#ffffff; --ink:#16213e; --muted:#5d6a85; --line:#dfe4ef;
-  --accent:#3651d4; --accent-soft:#e7ebfc;
-  --ok:#17845c; --ok-soft:#e2f5ec; --bad:#c93a52; --bad-soft:#fce8ec;
-  --hard:#c93a52; --mid:#b8790a; --easy:#17845c;
-  --shadow:0 1px 2px rgba(22,33,62,.06),0 6px 20px rgba(22,33,62,.05);
-}
-@media (prefers-color-scheme:dark){
-  :root{
-    --bg:#0f1526; --card:#182038; --ink:#e8ecf8; --muted:#9aa7c7; --line:#2a3453;
-    --accent:#7d93ff; --accent-soft:#232d55;
-    --ok:#4cc794; --ok-soft:#143a2d; --bad:#ff7a8f; --bad-soft:#40202a;
-    --hard:#ff7a8f; --mid:#f0b34a; --easy:#4cc794;
-    --shadow:none;
-  }
-}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);
-  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  line-height:1.55;font-size:16px}
-button{font:inherit;color:inherit;cursor:pointer}
-:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-
-.top{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
-.top-in{max-width:860px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}
-.brand{font-weight:700;font-size:18px;letter-spacing:-.01em}
-.brand small{display:block;font-weight:400;font-size:12.5px;color:var(--muted)}
-.nav{display:flex;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px}
-.nav button{border:0;background:transparent;padding:8px 16px;border-radius:9px;font-weight:600;color:var(--muted)}
-.nav button[aria-selected="true"]{background:var(--accent);color:#fff}
-main{max-width:860px;margin:0 auto;padding:20px 16px 60px}
-
-h1{font-size:26px;letter-spacing:-.02em;margin:6px 0 4px}
-h2{font-size:20px;margin:0 0 10px;letter-spacing:-.01em}
-h3{font-size:16px;margin:18px 0 8px}
-.lead{color:var(--muted);margin:0 0 18px}
-
-.seg{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px;gap:4px;margin-bottom:18px}
-.seg button{border:0;background:transparent;padding:7px 14px;border-radius:9px;font-size:14px;color:var(--muted);font-weight:600}
-.seg button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent)}
-.seg-label{font-size:14px;color:var(--muted);margin-right:10px}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
-.sess{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:left;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:6px;transition:border-color .15s,transform .15s}
-.sess:hover{border-color:var(--accent);transform:translateY(-2px)}
-.sess .n{font-size:13px;color:var(--muted)}
-.sess .t{font-weight:700;font-size:17px;line-height:1.3}
-.sess .s{font-size:13.5px;color:var(--muted);flex:1}
-.sess .b{font-size:13px;font-weight:600;color:var(--accent);margin-top:4px}
-.sess.sim{border-style:dashed;background:var(--accent-soft)}
-
-.qhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px;font-size:14px;color:var(--muted)}
-.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:18px}
-.bar i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .25s}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
-.badge{display:inline-block;font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:99px;margin-bottom:10px;border:1px solid currentColor}
-.badge.h{color:var(--hard)} .badge.m{color:var(--mid)} .badge.e{color:var(--easy)}
-.q{font-size:19px;font-weight:600;line-height:1.45;margin:0 0 16px;white-space:pre-line}
-.opts{display:grid;gap:10px}
-.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;padding:12px 14px;background:var(--card);border:1.5px solid var(--line);border-radius:12px;transition:border-color .12s,background .12s}
-.opt:hover:not(:disabled){border-color:var(--accent);background:var(--accent-soft)}
-.opt .k{flex:none;width:26px;height:26px;border-radius:8px;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:13px;display:grid;place-items:center}
-.opt:disabled{cursor:default}
-.opt.ok{border-color:var(--ok);background:var(--ok-soft)}
-.opt.ok .k{background:var(--ok);color:#fff}
-.opt.bad{border-color:var(--bad);background:var(--bad-soft)}
-.opt.bad .k{background:var(--bad);color:#fff}
-.opt.dim{opacity:.55}
-.fb{margin-top:16px;padding:14px 16px;border-radius:12px;border:1.5px solid}
-.fb.ok{background:var(--ok-soft);border-color:var(--ok)}
-.fb.bad{background:var(--bad-soft);border-color:var(--bad)}
-.fb strong{display:block;margin-bottom:4px}
-.fb p{margin:0}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-.btn{border:0;background:var(--accent);color:#fff;font-weight:700;padding:11px 20px;border-radius:12px}
-.btn:hover{filter:brightness(1.08)}
-.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
-.hint{font-size:12.5px;color:var(--muted);margin-top:12px}
-
-.score{text-align:center;padding:10px 0 4px}
-.score .big{font-size:56px;font-weight:800;letter-spacing:-.03em;line-height:1}
-.score .msg{color:var(--muted);margin-top:6px}
-.dif{display:grid;gap:8px;margin:18px 0}
-.dif div{display:grid;grid-template-columns:90px 1fr 56px;align-items:center;gap:10px;font-size:14px}
-.dif .tr{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
-.dif .tr i{display:block;height:100%;border-radius:99px}
-.wrong{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;background:var(--card)}
-.wrong .wq{font-weight:600;margin-bottom:6px;white-space:pre-line}
-.wrong .you{color:var(--bad)} .wrong .right{color:var(--ok)}
-.wrong p{margin:4px 0;font-size:14.5px}
-
-.subtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
-.subtabs button{border:1.5px solid var(--line);background:var(--card);padding:7px 13px;border-radius:99px;font-size:14px;font-weight:600;color:var(--muted)}
-.subtabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
-.cs h2{margin-top:4px}
-.cs h3{color:var(--accent)}
-.cs table{width:100%;border-collapse:collapse;font-size:14.5px;margin:6px 0 10px;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.cs th,.cs td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-.cs th{background:var(--accent-soft);font-weight:700}
-.cs tr:last-child td{border-bottom:0}
-.tw{overflow-x:auto}
-.cs ul{margin:6px 0 10px;padding-left:20px}
-.cs li{margin:3px 0}
-.tip{background:var(--accent-soft);border-left:4px solid var(--accent);padding:10px 14px;border-radius:8px;margin:10px 0;font-size:14.5px}
-.warn{background:var(--bad-soft);border-left:4px solid var(--bad);padding:10px 14px;border-radius:8px;margin:10px 0;font-size:14.5px}
-code,.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92em}
-.wc{columns:2 220px;column-gap:24px}
-.wc div{break-inside:avoid;padding:2px 0;font-size:14.5px}
-
-@media print{
-  .top,.subtabs,.actions{display:none}
-  body{background:#fff;color:#000}
-  .cs table{font-size:11pt}
-}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
-@media (max-width:520px){
-  .q{font-size:17.5px}
-  .dif div{grid-template-columns:70px 1fr 50px}
-}
-</style>
-</head>
-<body>
-<header class="top">
-  <div class="top-in">
-    <div class="brand">English Quiz Prep<small>General Business English · Sesi 11–15</small></div>
-    <div class="nav" role="tablist" aria-label="Menu">
-      <button role="tab" id="tab-quiz" aria-selected="true" onclick="go('quiz')">Quiz</button>
-      <button role="tab" id="tab-cheat" aria-selected="false" onclick="go('cheat')">Cheat sheet</button>
-    </div>
-  </div>
-</header>
-<main id="app"></main>
-
+:root{--bg:#f4f6fb;--c:#fff;--t:#1d2433;--m:#6b7388;--p:#4f6df5;--ok:#1fa971;--no:#e5484d;--b:#dfe3ee}
+@media(prefers-color-scheme:dark){:root{--bg:#12151d;--c:#1c212d;--t:#eef0f6;--m:#9aa2b8;--b:#2d3445}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font:16px/1.5 system-ui,sans-serif}
+.w{max-width:560px;margin:0 auto;padding:16px 16px 40px}h1{font-size:22px;margin:8px 0 2px}.s{color:var(--m);font-size:14px;margin:0 0 16px}
+.card{background:var(--c);border:1px solid var(--b);border-radius:14px;padding:14px;margin:10px 0}
+.ss{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;color:var(--t);cursor:pointer;font:inherit}
+.ss b{display:block}.ss small{color:var(--m)}.bd{background:var(--p);color:#fff;border-radius:20px;padding:2px 10px;font-size:13px}
+.bar{height:6px;background:var(--b);border-radius:6px;overflow:hidden;margin:8px 0 14px}.bar i{display:block;height:100%;background:var(--p);transition:.3s}
+.top{display:flex;justify-content:space-between;color:var(--m);font-size:14px}.top a{color:var(--p);cursor:pointer}
+.q{font-size:17px;font-weight:600;white-space:pre-line}
+.o{display:block;width:100%;text-align:left;background:var(--c);color:var(--t);border:2px solid var(--b);border-radius:12px;padding:12px;margin:8px 0;font:inherit;cursor:pointer}
+.o.ok{border-color:var(--ok);background:rgba(31,169,113,.15)}.o.no{border-color:var(--no);background:rgba(229,72,77,.15)}
+.ex{margin-top:10px;font-size:14px;color:var(--m)}.btn{display:block;width:100%;background:var(--p);color:#fff;border:0;border-radius:12px;padding:14px;font:600 16px system-ui;margin-top:14px;cursor:pointer}
+.sc{text-align:center;font-size:44px;font-weight:700;margin:10px 0}.rv{font-size:14px;margin:10px 0;padding-top:10px;border-top:1px solid var(--b)}
+.fb{margin-top:12px;padding:10px 12px;border-radius:10px;font-size:14px}.fb.g{background:rgba(31,169,113,.13)}.fb.r{background:rgba(229,72,77,.13)}
+details{background:var(--c);border:1px solid var(--b);border-radius:12px;margin:8px 0;padding:10px 12px}summary{font-weight:600;cursor:pointer}details div{font-size:14px;margin-top:8px}
+details table{width:100%;border-collapse:collapse;margin:6px 0}details td,details th{border:1px solid var(--b);padding:5px 7px;text-align:left;vertical-align:top}details th{background:var(--bg)}details li{margin:3px 0}details ul{padding-left:18px;margin:4px 0}
+</style></head><body><div class="w" id="app"></div>
 <script>
-/* ============ DATA ============ */
-// Q(difficulty, question, correctAnswer, [3 wrong answers], explanation)  d: h=sulit, m=sedang, e=mudah
-const Q=(d,q,a,w,e)=>({d,q,a,w,e});
-
-const S1=[
-Q("h","Which sentence is grammatically CORRECT?","I suggest attending the seminar.",["I suggest you to attend the seminar.","I suggest to attend the seminar.","I suggest you attending the seminar."],"'Suggest' diikuti gerund (V-ing) atau that-clause ('I suggest that you attend'). TIDAK pernah diikuti infinitive (to + V)."),
-Q("h","You write a formal email to a client. Which sentence is the MOST appropriate?","Kindly confirm your attendance at your earliest convenience.",["Confirm your attendance.","Don't forget to confirm your attendance!","You must confirm now."],"'Kindly' adalah bentuk paling formal, cocok untuk email/surat resmi. Imperative telanjang ('Confirm...') terdengar kasar."),
-Q("h","Which version is best for a FORMAL compliance document?","Do not share this information with external parties.",["Don't share this info with outsiders.","No sharing!","Not share this information."],"Di dokumen formal pakai bentuk lengkap 'Do not', bukan singkatan 'Don't'."),
-Q("h","You want to give advice to a senior manager. Which sounds the MOST respectful?","It might be worth reconsidering the strategy.",["You should reconsider your strategy.","Reconsider your strategy.","You must reconsider your strategy."],"Dengan atasan, hindari 'should/must' yang langsung. Pakai framing lebih lembut seperti 'It might be worth...'."),
-Q("h","Which sentence is an IMPERATIVE (a command), NOT advice?","Submit the expense report.",["We should hire a new IT consultant.","How about offering them a 10% discount?","I highly recommend postponing the launch."],"Imperative = base verb di awal, subjek 'you' tidak disebut. Tiga pilihan lain adalah bentuk saran (advice)."),
-Q("h","I strongly advise ___ the legal team first.","you to consult",["you consult","consulting you","to you consult"],"Pola: I strongly advise + [subject] + to + base verb."),
-Q("h","How about ___ them a 10% discount?","offering",["offer","to offer","offered"],"Pola: How about + V-ing. Sedangkan 'Why don't we + base verb' (contoh: Why don't we offer them a discount?)."),
-Q("h","Which sentence has an ERROR?","Please to submit the form.",["Please review the attached document.","Kindly sign at the bottom.","Do not forward this email."],"Setelah Please / Kindly langsung base verb, TANPA 'to'. Yang benar: 'Please submit the form.'"),
-Q("h","Which statement about advice vs. imperatives is TRUE?","Advice leaves the listener free to accept or decline; an imperative expects compliance.",["Imperatives always need a stated subject like I or We.","Advice is used mainly in SOPs and safety warnings.","Imperatives are the softest way to give an instruction."],"Imperative = perintah langsung (pendengar diharapkan patuh). Advice = saran (pendengar bebas menerima atau menolak)."),
-Q("h","Which form suggests SHARED ownership of a task?","Let's finalize the file before end of day.",["Please finalize the file before end of day.","Kindly finalize the file before end of day.","Finalize the file before end of day."],"'Let's' = inclusive imperative. Pembicara ikut terlibat, jadi terasa kerja sama tim."),
-
-Q("m","Which form is the MOST suitable for a written SOP or technical manual?","Affirmative imperative: 'Click the Save button.'",["Advice: 'You might want to click Save.'","Question: 'Why don't you click Save?'","Inclusive: 'Let's maybe click Save.'"],"SOP butuh instruksi jelas dan langsung, jadi pakai affirmative imperative."),
-Q("m","Which sentence uses the sequence connector with correct punctuation?","After that, close the cover.",["After that close the cover.","After, that close the cover.","After that; close the cover."],"Selalu pakai koma (,) setelah sequence connector: First, / Next, / Then, / After that, / Finally,"),
-Q("m","In an imperative sentence, the subject is...","the implied 'you' (not spoken or written)",["'I' (always spoken)","'we' (always spoken)","'they' (always written)"],"Subjek imperative adalah 'you' yang tersirat sehingga tidak diucapkan atau ditulis."),
-Q("m","What is the main RISK of using imperatives without care?","They can sound blunt or rude.",["They sound weak and indecisive.","They are grammatically wrong.","They cannot be used in emails."],"Imperative yang salah tempat terdengar kasar. Sebaliknya, advice yang salah tempat bisa terdengar lemah/ragu."),
-Q("m","Complete: 'Why don't we ___ a follow-up call?'","schedule",["scheduling","to schedule","scheduled"],"Why don't we/you + base verb."),
-Q("m","Which is a NEGATIVE imperative?","Do not access restricted files.",["Please access the files.","Let's access the files.","You should access the files."],"Negative imperative: Do not / Don't + base verb."),
-Q("m","Manager: 'We need a new strategy for next month.'  Staff: '___ brainstorm some ideas together after lunch.'","Let's",["Please","You","We"],"'Let's' = ajakan inklusif ('mari kita'). Staff mengajak tim, bukan memerintah atasan."),
-Q("m","Which is the MOST blunt form?","Send the file.",["Please send the file.","Kindly send the file at your earliest convenience.","Let's send the file together."],"Urutan sopan: blunt < Please < Kindly. 'Let's' bersifat kolaboratif."),
-Q("m","In the 'Instant-Leave Notebook' SOP, why must you NOT use a pencil?","HR will reject the magic.",["The manager will notice.","A random employee will go to Bali.","The notebook will explode."],"Dari warning SOP: 'Do not use a pencil, or HR will reject the magic.' (Misspell nama yang bikin karyawan lain ke Bali.)"),
-Q("m","Which is the correct order to print a document?","First, open the file. Next, click the print icon. Finally, press OK.",["Finally, open the file. Next, click the print icon. First, press OK.","Next, open the file. First, click the print icon. Finally, press OK.","Then, press OK. First, click the print icon. Finally, open the file."],"First = awal, Next/Then/After that = tengah, Finally = langkah terakhir."),
-
-Q("e","___ the computer. (start the power)","Turn on",["Unplug","Sign","Submit"],"Turn on / Switch on = menyalakan."),
-Q("e","___ your password. (write it on the keyboard)","Enter",["Unplug","Switch off","Plug in"],"Enter / Type = mengetik/memasukkan."),
-Q("e","___ the cable. (disconnect from electricity)","Unplug",["Plug in","Enter","Press"],"Unplug = mencabut dari listrik. Plug in = mencolokkan."),
-Q("e","'Fill out the leave form' means...","Complete the form.",["Sign the form.","Delete the form.","Print the form."],"Fill out / fill in = melengkapi/mengisi formulir."),
-Q("e","'Sign' means...","Write your signature.",["Give the document to the boss.","Look for errors.","Connect to electricity."],"Sign = tanda tangan. Submit = menyerahkan. Check = memeriksa."),
-Q("e","'Submit the report' means...","Give the report to the boss.",["Write your signature on it.","Look for spelling errors.","Turn it off."],"Submit / Turn in = menyerahkan dokumen."),
-Q("e","Mary: '___ touch it! Unplug the cable now.'","Don't",["Not","No","Doesn't"],"Negative imperative: Don't + base verb."),
-Q("e","___, turn on the machine. (the start of a process)","First",["Finally","Next","After that"],"First = langkah pertama."),
-Q("e","___, press the green button. (the last step)","Finally",["First","Next","Then"],"Finally = langkah terakhir."),
-Q("e","Which word makes a request polite?","Please",["Now","Must","Don't"],"Please / Kindly melembutkan perintah.")
+// [soal, [opsi], index jawaban benar, penjelasan]
+const Q=[
+["IT Support: “You ___ restart the computer first.”",["should","might not","mustn't","would"],0,"Saran → should."],
+["Caller: “May I speak to Ms. Rina?”\nReceptionist: “Please ___ a moment.”",["hang up","hold on","pick up","speak up"],1,"Hold on = tunggu sebentar."],
+["“Sorry, I ___ your name. Could you spell it?”",["am not catching","do not catch","not catching","does not catch"],1,"Simple present dengan subjek I → do not + V1."],
+["Most appropriate greeting for a formal email to Ms. Sari:",["Hey Sari,","Dear Ms. Sari,","Hi guys,","To Sari,"],1,"Formal: Dear + gelar + nama."],
+["“We don't have ___ paper left. Please order more.”",["many","a","much","few"],2,"Paper uncountable, kalimat negatif → much."],
+["“___ forget to turn off the lights when you leave.”",["Doesn't","Isn't","Not","Don't"],3,"Imperative negatif: Don't + V1."],
+["“___, plug in the cable. Then, press the power button.”",["Finally","After that","First","Last"],2,"Langkah pertama → First."],
+["The training starts ___ 9 AM and lasts ___ noon.",["at / until","until / at","by / in","on / by"],0,"at + jam tepat; until = sampai (durasi)."],
+["Our team ___ the contract last week.",["signs","sign","signing","signed"],3,"Last week → Past Simple: signed."],
+["“___ did you leave the office?” “At 6 PM.”",["Where","Who","When","Why"],2,"Jawaban berupa waktu → When."],
+["Which sentence is typical of an ORIENTATION paragraph in a Recount Text?",["Last Monday, our team visited the factory in Bekasi.","Finally, we went back home.","Overall, the trip was useful.","Then, we ate lunch."],0,"Orientation = Who, When, Where."],
+["Which regular verb ends with an extra syllable (/id/)?",["Worked","Wanted","Played","Fixed"],1,"Verb berakhiran /t/ atau /d/ → /id/: wanted."],
+["Visitors ___ park here. It is reserved for the director.",["can","don't have to","would","must not"],3,"Larangan keras → must not."],
+["Employees ___ wear ID cards inside the building. It is company policy.",["have to","might","shouldn't","don't have to"],0,"Aturan/kewajiban → have to."],
+["Receptionist: “Mr. Dedi is not in. ___ I take a message?”",["Must","Shall","Would","Might"],1,"Menawarkan bantuan → Shall I...?"],
+["Rina and I finished the report by ___.",["ourselves","us","ours","we"],0,"Reflexive pronoun: ourselves."],
+["That umbrella isn't mine. Maybe it's ___.",["her","she","hers","herself"],2,"Possessive pronoun berdiri sendiri: hers."],
+["You want your supervisor to get a copy that the client can also see. Use the ___ field.",["To","CC","BCC","Subject"],1,"CC = salinan terbuka; BCC = tersembunyi."],
+["Look at those dark clouds! It ___ rain.",["will","would","go to","is going to"],3,"Prediksi dari bukti nyata → be going to."],
+["A: “I forgot my pen.”  B: “Here, I ___ lend you mine.”",["am going to","will","lends","lending"],1,"Keputusan spontan → will."],
+["“Could I have ___ advice about this contract?”",["an","some","many","two"],1,"Advice uncountable → some."],
+["Before ordering, the client asks for a price offer. You send a ___.",["receipt","invoice","quotation","agenda"],2,"Quotation = penawaran harga."],
+["“Please ___ careful with the glass.”",["is","are","being","be"],3,"Imperative dengan to be → be."],
+["She ___ the email yesterday.",["didn't sent","didn't send","not sent","didn't sends"],1,"didn't + V1."],
+["Which sentence contains an INCORRECT past form?",["He buyed a new laptop.","She wrote the report.","They went to Bali.","We met the client."],0,"Bought, bukan buyed."],
+["Which connectors fit the 'Series of Events' in a Recount Text?",["Overall, In conclusion","First, Next, After that","Who, When, Where","I feel, I think"],1,"Urutan kejadian pakai connector kronologis."],
+["When I was ten, I ___ run 5 km without stopping.",["can","could","must","should"],1,"Kemampuan masa lalu → could."],
+["Asking the boss formally: “___ I leave early today, Sir?”",["Must","May","Would","Shall"],1,"Izin formal → May."],
+["Dina isn't here. She ___ be at the dentist, I'm not sure.",["must","shall","might","would"],2,"Kemungkinan kecil → might."],
+["Caller: “I can't hear you.” Receiver: “Sorry, you are ___.”",["breaking up","hanging up","holding on","picking up"],0,"Sinyal putus-putus = breaking up."],
+["Which is the best email subject line?",["Hi","HELP!!!","info","Invoice No. 245 — Payment Due 30 June"],3,"Jelas, spesifik, profesional."],
+["Which sentence uses correct capitalization?",["We will visit bandung in august.","We will visit Bandung in August.","we will visit Bandung in august.","We Will Visit Bandung In August."],1,"Nama kota & bulan huruf kapital."],
+["The leader wrote a summary of what was discussed in the meeting. It is called the ___.",["agenda","invoice","venue","minutes"],3,"Minutes = notulen."],
+["“How ___ chairs do we need for the seminar?”",["much","many","any","a"],1,"Chairs countable → many."],
+["“I will be in a meeting ___ 3 PM, so call me after that.”",["by","on","until","in"],2,"Until = berlangsung sampai."],
+["“___ is the meeting room?” “It's on the 3rd floor.”",["What","Where","Who","When"],1,"Tempat → Where."],
+["What ___ the manager ___ at the meeting yesterday?",["did / say","did / said","do / said","does / say"],0,"did + V1."],
+["Which regular verb ends with a /t/ sound?",["Opened","Called","Watched","Planned"],2,"Setelah bunyi voiceless (ch) → /t/."],
+["It's Sunday and the office is closed. You ___ come in.",["mustn't","don't have to","have to","ought to"],1,"Tidak wajib → don't have to."],
+["You look pale. You ___ see a doctor.",["mustn't","might not","ought to","don't have to"],2,"Saran → ought to."],
+["It's hot in here. ___ I open the window?",["Must","Would","Might","Shall"],3,"Menawarkan sesuatu → Shall I...?"],
+["Caller: “Thanks for your help.”\nReceptionist: “___”",["Hang up now.","Speak up.","You're welcome. Have a nice day.","Who is this?"],2,"Penutup telepon yang sopan."],
+["“Please send the file to ___ directly.”",["I","me","my","myself"],1,"Setelah preposisi → object pronoun: me."],
+["The manager wrote the speech ___.",["him","his","he","himself"],3,"Pelaku = objek → himself."],
+["Best sign-off for a formal email to a client:",["Cheers,","Bye,","Sincerely,","See ya,"],2,"Formal → Sincerely."],
+["The cashier gives you a ___ after you pay, as proof of purchase.",["quotation","agenda","minutes","receipt"],3,"Receipt = bukti pembayaran."],
+["“We ___ launch the product next month; the date is confirmed.”",["are going to","is going to","goes","go to"],0,"Rencana pasti, subjek we → are going to."],
+["Which sentence is grammatically correct?",["I need an informations.","Do we have many time?","She gave me two advices.","We have some equipment."],3,"Equipment uncountable → some."],
+["“___, open the file. Next, edit the data. Finally, save it.”",["Last","First","Finally","At the end"],1,"Awal urutan → First."],
+["“Where ___ you ___ last night?” “I stayed at the office.”",["did / go","do / went","did / went","were / went"],0,"did + V1."],
+["“Last Friday, I joined a workshop in Surabaya with my team.” Which part is this?",["Orientation","Series of Events","Re-orientation","Conclusion"],0,"Memperkenalkan siapa, kapan, di mana → Orientation."],
+["A Recount Text mainly tells about ___.",["future plans","past experiences","how to make something","personal opinions"],1,"Recount = pengalaman masa lalu."],
+["Mr. Ali ___ come to the party. He said he is not sure.",["might","shall","has to","ought to"],0,"Belum pasti → might."],
+["Children under 12 ___ pay for entrance. It's free.",["mustn't","should","might not","don't have to"],3,"Tidak perlu → don't have to."],
+["“Excuse me, sir. ___ you mind closing the window?”",["Shall","Would","Must","May"],1,"Permintaan sopan → Would you mind...?"],
+["Receptionist: “The line is busy. Would you like to ___?”",["leave a message","turn on","hang a message","speak up it"],0,"Leave a message = meninggalkan pesan."],
+["These headphones are not ___. They belong to Tom.",["my","me","mine","myself"],2,"Possessive pronoun: mine."],
+["The most professional closing line in a formal email:",["TTYL","Looking forward to your reply.","Reply fast!!","bye."],1,"Sopan dan profesional."],
+["Which sentence uses correct punctuation?",["Where is the file.","Send me the agenda?","Could you send me the agenda?","What time is it."],2,"Kalimat tanya diakhiri tanda tanya."],
+["“I promise I ___ call you tomorrow.”",["will","is going to","calls","calling"],0,"Janji → will."],
+["“Are there ___ messages for me?”",["a","an","much","any"],3,"Pertanyaan + countable plural → any."],
+["The seminar is ___ 10 June.",["on","in","at","by"],0,"Tanggal spesifik → on."],
+["We ___ the documents to the client yesterday.",["sended","sent","send","sents"],1,"Past dari send = sent."],
+["“___ did the client call?” “Because he wanted to change the order.”",["Who","Why","Where","When"],1,"Alasan → Why."],
+["My phone battery is dead. ___ I use your charger?",["Can","Must","Should","Will"],0,"Meminta izin → Can I...?"],
+["Passengers ___ show their tickets to the guard.",["might not","have to","would","shall"],1,"Kewajiban → have to."],
+["It's cloudy. It ___ rain later, but I'm not sure.",["must","shall","has to","might"],3,"Belum pasti → might."],
+["In the 1990s, my uncle ___ walk to school every day.",["would","shall","may","must"],0,"Kebiasaan masa lalu → would."],
+["You ___ drink so much coffee. It's bad for your health.",["might","shouldn't","can","would"],1,"Saran negatif → shouldn't."],
+["“Could you speak ___? I can't hear you well.”",["off","out","up","in"],2,"Speak up = bicara lebih keras."],
+["Caller: “Is this the Sales Department?” Receptionist: “Sorry, you have the ___ number.”",["wrong","false","bad","error"],0,"Wrong number = salah sambung."],
+["Mr. Hadi is busy, so I will give the message to ___ later.",["he","him","his","himself"],1,"Setelah preposisi → object pronoun: him."],
+["My pen is broken. Can I use ___?",["you","your","yourself","yours"],3,"Possessive pronoun berdiri sendiri: yours."],
+["The students prepared the room by ___.",["them","they","themselves","theirs"],2,"Pelaku = objek → themselves."],
+["Which sentence is best when you attach a file to an email?",["I attach the file.","Look this file.","Please find the attached report.","Here file."],2,"Frasa standar email formal."],
+["Greeting when you don't know the recipient's name:",["Hey you,","Dear Sir/Madam,","Yo,","Dear friend,"],1,"Formal & netral."],
+["Which sentence is correctly written and punctuated?",["could you send me the invoice please","COULD YOU SEND ME THE INVOICE!!!","Could you send me the invoice,, please","Could you send me the invoice, please?"],3,"Kapital di awal, tanda baca tepat."],
+["A document listing items, quantity, and the amount you must pay is an ___.",["agenda","receipt","invoice","minutes"],2,"Invoice = tagihan."],
+["Buyer: “If I order 100 pieces, can I get a ___?” Seller: “Sure, 15% off.”",["tax","subtotal","receipt","discount"],3,"Discount = potongan harga."],
+["We ___ visit the factory tomorrow. The schedule is ready.",["will to","are going to","goes","is going"],1,"Rencana yang sudah diatur → be going to."],
+["The doorbell is ringing. I ___ open it.",["will","am going to","opens","opening"],0,"Keputusan spontan → will."],
+["Can I have ___ water, please?",["a","many","some","an"],2,"Water uncountable → some."],
+["There aren't ___ chairs in the room.",["much","any","a","an"],1,"Negatif + countable plural → any."],
+["We need to buy ___ new equipment.",["a","three","many","some"],3,"Equipment uncountable → some."],
+["“___ the door, please. It's cold.”",["Closing","Closed","Close","Closes"],2,"Imperative memakai V1."],
+["“First, open the app. ___, log in. Finally, click Submit.”",["Last","Then","At first","Before"],1,"Langkah tengah → Then/Next."],
+["The bank closes ___ 4 PM, so come ___ that time.",["in / on","at / before","on / at","by / until"],1,"at + jam; before = sebelum."],
+["Please submit the form ___ Friday. After that, it's too late.",["until","in","at","by"],3,"By = paling lambat."],
+["They ___ the meeting room yesterday.",["cleanned","clean","cleaned","cleaning"],2,"Regular verb + ed."],
+["___ you attend the training last week?",["Do","Did","Does","Are"],1,"Past question → Did + subject + V1."],
+["“___ did you meet at the airport?” “I met the new director.”",["Where","Who","When","Why"],1,"Orang → Who."],
+["He ___ his keys, so he couldn't open the door.",["losed","lose","lost","loses"],2,"Past dari lose = lost."],
+["Which sentence belongs to Re-orientation in a Recount Text?",["Last week, we visited a hotel.","In short, the visit gave us new ideas for our project.","First, we met the manager.","Then we toured the kitchen."],1,"Re-orientation = penutup/kesimpulan."],
+["A Recount Text mostly uses the ___ tense.",["Simple Future","Present Continuous","Simple Past","Present Perfect"],2,"Menceritakan kejadian lampau."]
 ];
-
-const S2=[
-Q("h","I am working ___ 5 PM. (I work now, later, and stop at 5.)","until",["by","in","from"],"UNTIL = durasi, melakukan sesuatu terus-menerus sampai waktu tersebut."),
-Q("h","Please submit the report ___ Friday. (Wed, Thu or Fri is OK, but NOT Saturday.)","by",["until","in","from"],"BY = tenggat (deadline): paling lambat pada waktu itu. Bisa selesai lebih awal."),
-Q("h","Yesterday, I ___ leave early.","had to",["must","musted","have to"],"'Must' tidak punya bentuk past. Untuk kewajiban di masa lalu pakai 'had to'."),
-Q("h","Tomorrow is Sunday. I ___ wake up early. I can sleep in.","don't have to",["mustn't","must","had to"],"Don't have to = tidak wajib (bebas memilih). Mustn't = dilarang. Keduanya berlawanan!"),
-Q("h","You ___ touch that wire. It is dangerous!","mustn't",["don't have to","don't need to","have to"],"Mustn't = larangan keras (prohibited)."),
-Q("h","Laboratory rule: Safety gloves ___ be worn by all personnel at all times.","must",["should","might","don't need to"],"Aturan tertulis resmi memakai 'must'. 'Should' hanya saran."),
-Q("h","You cheated in the exam and an innocent student was blamed. You ___ confess to the principal.","ought to",["don't need to","mustn't","can't"],"Ought to = kewajiban moral / norma etika."),
-Q("h","In England, tourists ___ drive on the left because it is the national traffic law.","have to",["should","don't have to","might"],"Have to = kewajiban dari pihak luar (hukum, aturan orang lain)."),
-Q("h","Which sentence has an INCORRECT form?","She musted finish the report yesterday.",["I had to leave early yesterday.","She doesn't have to cook tonight.","You mustn't smoke in the hospital."],"Tidak ada 'musted'. Past dari must / have to adalah 'had to'."),
-Q("h","Manager: 'I need it by Monday.'  Which is the most POLITE negotiation reply?","I'm sorry, I have 3 meetings today. Can I submit it by Wednesday?",["No. I can't do Monday.","Later.","That deadline is unfair."],"Formula sopan: minta maaf + alasan singkat + tawarkan deadline baru yang spesifik."),
-
-Q("m","'EOW' means...","by Friday afternoon (end of week)",["by the end of the day","as soon as the workday starts","exactly at that time"],"EOD = end of day. EOW = end of week."),
-Q("m","'First thing in the morning' means...","as soon as the workday starts",["at midnight","after lunch","exactly at 9 PM"],"Contoh: 'Send it first thing tomorrow.'"),
-Q("m","The meeting starts at 9 ___. (exactly)","on the dot",["ahead of schedule","running behind","overdue"],"On the dot = tepat pada waktu itu."),
-Q("m","Project Manager: 'We finished the task faster than planned. We are ___.'","ahead of schedule",["behind schedule","running behind","overdue"],"Ahead of schedule = lebih cepat dari rencana."),
-Q("m","Please send the email ___ the meeting. (earlier than the meeting)","before",["until","during","after"],"BEFORE = lebih awal dari suatu titik waktu."),
-Q("m","'Should' and 'ought to' are used for...","advice and moral guidance",["strict written rules","prohibitions","no obligation"],"Should/ought to = saran & moral. Aturan tegas = must / have to."),
-Q("m","'Need to' expresses...","necessity to reach a goal",["prohibition","past obligation","no choice at all"],"Need to = perlu dilakukan untuk mencapai tujuan (kekuatan sekitar 80%)."),
-Q("m","'This Friday' means...","the Friday of the current week",["the Friday of next week","every Friday","last Friday"],"This + hari = hari itu di minggu berjalan."),
-Q("m","Which sentence uses a future time marker correctly?","I will finish in 2 days.",["I will finish at 2 days.","I will finish next 2 days.","I will finish after 2 day."],"In + angka + satuan waktu = berapa lama dari sekarang."),
-Q("m","Which is NOT a way to ASK about the deadline?","I need it by Monday.",["When is it due?","What is the deadline?","By when should I submit this?"],"'I need it by Monday' adalah menetapkan deadline (dilakukan bos)."),
-
-Q("e","A 'deadline' is...","the last time you can finish a task",["extra time","a reminder message","a late report"],"Deadline = batas waktu terakhir."),
-Q("e","An 'extension' is...","extra time given beyond the deadline",["the final time","a message to remember","a finished task"],"Contoh: 'Can I ask for an extension?'"),
-Q("e","'Overdue' means...","late; the deadline has already passed",["very important","finished on time","not yet started"],"Contoh: 'This bill is overdue.'"),
-Q("e","'ASAP' stands for...","As Soon As Possible",["At Six A.M. Please","All Staff At Present","As Simple As Possible"],"ASAP = secepat mungkin."),
-Q("e","Do NOT say 'next day'. For the day after today, say...","tomorrow",["yesterday","this week","last day"],"Hari setelah hari ini = tomorrow."),
-Q("e","The shop is open ___ 9 PM.","until",["by","in","on"],"Until = durasi terus-menerus sampai jam 9."),
-Q("e","Can you complete this ___ next week?","by",["until","at","on"],"By = deadline (paling lambat minggu depan)."),
-Q("e","Staff A: 'I feel very dizzy today.'  Staff B: 'You ___ go to the clinic and rest.'","should",["shouldn't","had to","mustn't"],"Should = saran."),
-Q("e","'Pending' means...","not yet finished",["finished","late","urgent"],"Status kantor: Pending = belum selesai, In progress = sedang dikerjakan, Completed = selesai."),
-Q("e","Manager: 'Tomorrow is a national holiday. You ___ come to the office.'","don't have to",["mustn't","shouldn't","didn't"],"Don't have to = tidak wajib (boleh libur).")
+const SES=["Sesi 1","Sesi 2","Sesi 3","Sesi 4"],N=50;
+const $=document.getElementById("app");let L=[],i=0,sc=0,wr=[],key="";
+function ld(){try{return JSON.parse(localStorage.getItem("eng")||"{}")}catch(e){return{}}}
+function sv(k,v){try{const d=ld();d[k]=Math.max(d[k]||0,v);localStorage.setItem("eng",JSON.stringify(d))}catch(e){}}
+function sd(a,x){return a.slice().map(v=>[Math.sin(x*9301+v*49297)*233280%1,v]).sort((p,q)=>p[0]-q[0]).map(p=>p[1])}
+function sh(a){a=a.slice();for(let j=a.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[a[j],a[k]]=[a[k],a[j]]}return a}
+const CS=[
+["🔤 Modal Verbs",`<table><tr><th>Modal</th><th>Fungsi & contoh</th></tr>
+<tr><td>can / could</td><td>kemampuan (could = masa lalu); izin informal: <i>Can I use your pen?</i></td></tr>
+<tr><td>may</td><td>izin formal; kemungkinan: <i>May I leave early, Sir?</i></td></tr>
+<tr><td>might</td><td>kemungkinan kecil / tidak yakin</td></tr>
+<tr><td>must</td><td>kewajiban kuat / aturan</td></tr>
+<tr><td>mustn't</td><td>DILARANG keras</td></tr>
+<tr><td>have to</td><td>wajib (aturan, kebijakan)</td></tr>
+<tr><td>don't have to</td><td>TIDAK PERLU / tidak wajib (≠ mustn't)</td></tr>
+<tr><td>should / ought to</td><td>saran. Negatif: shouldn't</td></tr>
+<tr><td>shall</td><td>menawarkan / mengajak: <i>Shall I open the window? Shall we go?</i></td></tr>
+<tr><td>would</td><td>kebiasaan masa lalu; sopan: <i>Would you like tea? Would you mind...?</i></td></tr>
+<tr><td>will</td><td>prediksi, janji, keputusan spontan</td></tr></table>Setelah modal selalu <b>V1 (base verb)</b>.`],
+["📞 Telepon (Telephone English)",`<ul><li><b>hold on</b> = tunggu sebentar; <b>put through</b> = menyambungkan</li><li><b>break up</b> = sinyal putus-putus; <b>hang up</b> = menutup telepon; <b>speak up</b> = bicara lebih keras</li><li><b>wrong number</b> = salah sambung; <b>leave a message</b> / <b>take a message</b></li><li>Menawarkan: <i>Shall I take a message?</i></li><li>Penutup: <i>Thank you for calling. Have a nice day.</i></li><li>Stative verb (understand, know, want) <b>tidak</b> pakai -ing: I <i>do not understand</i></li></ul>`],
+["👤 Pronouns",`<table><tr><th>Subject</th><th>Object</th><th>Possessive adj.</th><th>Possessive pron.</th><th>Reflexive</th></tr>
+<tr><td>I</td><td>me</td><td>my</td><td>mine</td><td>myself</td></tr><tr><td>you</td><td>you</td><td>your</td><td>yours</td><td>yourself</td></tr>
+<tr><td>he</td><td>him</td><td>his</td><td>his</td><td>himself</td></tr><tr><td>she</td><td>her</td><td>her</td><td>hers</td><td>herself</td></tr>
+<tr><td>we</td><td>us</td><td>our</td><td>ours</td><td>ourselves</td></tr><tr><td>they</td><td>them</td><td>their</td><td>theirs</td><td>themselves</td></tr></table>
+<ul><li>Setelah verb/preposisi → <b>object</b>: give it to <i>him</i></li><li>Berdiri sendiri (tanpa noun) → <b>possessive pronoun</b>: It's <i>mine</i></li><li>Pelaku = objek → <b>reflexive</b>: He fixed it <i>himself</i></li></ul>`],
+["✉️ Email & Penulisan",`<ul><li><b>Formal:</b> Dear Mr. Tanaka, / Dear Sir/Madam, → penutup <i>Sincerely, / Best regards,</i></li><li><b>Kolega dekat:</b> Hi Rina, → penutup <i>Thanks,</i></li><li><b>To</b> = penerima utama; <b>CC</b> = salinan terlihat semua; <b>BCC</b> = salinan tersembunyi</li><li>Subject: singkat, spesifik (<i>Meeting Request — Tuesday 10 AM</i>); hindari "URGENT!!!"</li><li>Kapital: nama orang, kota, hari, bulan (<i>Wednesday, Jakarta, August</i>)</li><li>Kalimat tanya diakhiri <b>?</b>; hindari !!! dan ???; hindari HURUF KAPITAL semua</li><li>Sopan: <i>Could you please send...? Please find the attached...</i></li></ul>`],
+["🧾 Dokumen & Meeting",`<table><tr><td>Quotation</td><td>penawaran harga (sebelum beli)</td></tr><tr><td>Invoice</td><td>tagihan (minta bayar)</td></tr><tr><td>Receipt</td><td>bukti pembayaran</td></tr><tr><td>Purchase Order</td><td>pesanan resmi pembeli</td></tr><tr><td>Discount</td><td>potongan harga</td></tr><tr><td>Agenda</td><td>daftar topik meeting (sebelum)</td></tr><tr><td>Minutes</td><td>notulen (sesudah)</td></tr><tr><td>Postpone / cancel</td><td>menunda / membatalkan</td></tr></table><i>How much</i> = harga (uncountable); <i>how many</i> = jumlah (countable).`],
+["⏩ Future: will vs be going to",`<ul><li><b>will</b>: keputusan spontan (<i>The phone is ringing. I'll answer it.</i>), janji, prediksi opini</li><li><b>be going to</b>: rencana yang sudah pasti (ada tiket/jadwal) atau prediksi dari bukti (<i>Look at the clouds! It's going to rain.</i>)</li><li>Rumus: S + will + V1 | S + am/is/are + going to + V1</li></ul>`],
+["🔢 Quantifiers & Countable",`<table><tr><th></th><th>Countable</th><th>Uncountable</th></tr><tr><td>Positif</td><td>many / a few / some</td><td>much / a little / some</td></tr><tr><td>Negatif</td><td>not many / <b>not any</b></td><td>not much / <b>not any</b></td></tr><tr><td>Tanya</td><td>How many...? / any</td><td>How much...? / any</td></tr></table>Uncountable (tidak ada -s, tidak ada a/an): <b>furniture, information, advice, equipment, money, time, water, paper</b>.<br>Tawaran/permintaan → <b>some</b>: <i>Would you like some coffee?</i>`],
+["👉 Imperative & Sequence",`<ul><li>Perintah: <b>V1</b> → <i>Close the door.</i> | Larangan: <b>Don't + V1</b> → <i>Don't touch it!</i></li><li>Dengan be: <i>Be careful.</i> | Ajakan: <i>Let's brainstorm.</i> | Sopan: <i>Please...</i></li><li>Urutan: <b>First → Next / Then / After that → Finally</b></li></ul>`],
+["🕒 Preposisi Waktu",`<table><tr><td>at</td><td>jam tepat: at 9 AM</td></tr><tr><td>on</td><td>hari/tanggal: on Monday, on 10 June</td></tr><tr><td>in</td><td>bulan/tahun/bagian hari: in August, in the morning</td></tr><tr><td>by</td><td>paling lambat (deadline): by 4 PM</td></tr><tr><td>until</td><td>berlangsung sampai: until 11 AM</td></tr><tr><td>before / after</td><td>sebelum / sesudah</td></tr></table>`],
+["⏪ Past Simple",`<ul><li>(+) S + V2 → <i>She sent the email.</i></li><li>(−) S + <b>didn't + V1</b> → <i>She didn't send...</i></li><li>(?) <b>Did</b> + S + V1? → <i>Did you attend?</i></li><li>Wh: What/Where/When/Who/Why + <b>did</b> + S + V1? (V1, bukan V2!)</li><li>Regular: +ed (close→closed, study→studied, copy→copied)</li><li>Irregular: go→went, buy→bought, write→wrote, send→sent, lose→lost, meet→met, blow→blew, sink→sank, bend→bent, pay→paid, get→got</li><li>Salah umum: ❌ buyed, goed, quited → ✅ bought, went, quit</li></ul>`],
+["🗣 Pelafalan -ed",`<ul><li><b>/id/</b> → verb berakhir bunyi <b>t / d</b>: wanted, needed, submitted, guided</li><li><b>/t/</b> → setelah bunyi tak bersuara (k, p, s, sh, ch, f, x): fixed, watched, packed (filed = /d/)</li><li><b>/d/</b> → sisanya: closed, played, called, opened, answered</li></ul>`],
+["❓ Wh-Questions",`<table><tr><td>Who</td><td>orang</td></tr><tr><td>What</td><td>benda / kegiatan</td></tr><tr><td>When</td><td>waktu</td></tr><tr><td>Where</td><td>tempat</td></tr><tr><td>Why</td><td>alasan (jawab: Because...)</td></tr></table>Lihat <b>jawabannya</b> untuk menentukan kata tanya.`],
+["📖 Recount Text",`<ul><li><b>Fungsi:</b> menceritakan pengalaman/kejadian masa lalu (Simple Past)</li><li><b>1. Orientation</b>: latar — Who, When, Where (<i>Last Monday, our team visited...</i>)</li><li><b>2. Series of Events</b>: kejadian berurutan — First, Next, After that, Finally</li><li><b>3. Re-orientation</b>: penutup/kesan/kesimpulan — <i>Overall, the trip was successful...</i></li></ul>`]
 ];
-
-const S3=[
-Q("h","What is the past simple of 'refer'?","referred",["refered","referd","referrd"],"Aturan 4: vokal pendek + konsonan → konsonan digandakan + -ed (stop→stopped, plan→planned, refer→referred)."),
-Q("h","What is the past simple of 'carry'?","carried",["carryed","carrid","carryd"],"Aturan 3: konsonan + Y → ubah Y jadi I lalu tambah -ed (copy→copied, reply→replied)."),
-Q("h","Which regular verb does NOT end with an extra syllable (/id/ sound)?","Persuaded",["Submitted","Guided","Ricocheted"],"/id/ hanya muncul jika kata dasar berakhir bunyi T atau D. 'Persuade' berakhir bunyi vokal, jadi persuaded = /d/."),
-Q("h","Which regular verb ends with a /t/ sound?","Fixed",["Closed","Filed","Answered"],"Fix berakhir bunyi /s/ (unvoiced) → /t/. Closed (/z/), filed (/l/), answered (/r/) → /d/."),
-Q("h","Which sentence is correct?","She did not check the document.",["She did not checked the document.","She not checked the document.","She didn't checking the document."],"Negatif: did not + base verb. Hanya 'did' yang menunjukkan past."),
-Q("h","Which is the correct question?","Did she check the document?",["Did she checked the document?","Does she checked the document?","Did she checking the document?"],"Question: Did + subject + base verb."),
-Q("h","According to the module, My Chemical Romance was formed as a direct psychological response to...","The September 11 attacks",["The Vietnam War","The 2008 Financial Crisis","The Bali bombing"],"Gerard Way menyaksikan langsung serangan 9/11. Band dibentuk sebagai coping mechanism dan misi membuat seni yang 'menyelamatkan nyawa'."),
-Q("h","In 'Welcome to the Black Parade', the marching band plays the role of a ___ (a guide of souls to the afterlife).","psychopomp",["mentor","patient","volta"],"Psychopomp = pemandu jiwa. Parade menyamarkan kematian dalam wujud parade masa kecil. Sang ayah adalah Mentor."),
-Q("h","In 'Welcome to the Black Parade' the key modulates from ___ to ___.","G major to A major",["A major to G major","C major to D major","E minor to G major"],"Modulasi G→A menggambarkan perjalanan emosi dari refleksi sedih menuju perlawanan yang menang."),
-Q("h","In the 2010 album Danger Days, the rebels fight against ___.","Better Living Industries",["The Black Parade","The Patient","The MCRmy"],"Better Living Industries = metafora keserakahan korporasi, konsumerisme, dan konformitas."),
-
-Q("m","How is 'printed' pronounced?","print-ID (/id/)",["print-T (/t/)","print-D (/d/)","print-S (/s/)"],"Kata dasar berakhir huruf T → /id/ (suku kata tambahan). Catatan: di kunci jawaban slide, 'printed' sempat ditaruh di kolom /t/, itu keliru. Aturan yang benar: berakhir T atau D → /id/."),
-Q("m","The father in 'Welcome to the Black Parade' acts as which Jungian archetype?","The Mentor",["The Psychopomp","The Villain","The Narrator"],"Ayah = Mentor yang memberi beban berat: menjadi penyelamat bagi 'the broken, the beaten, and the damned'."),
-Q("m","Which word is pronounced with a /d/ sound?","called",["worked","started","locked"],"Call berakhir bunyi voiced (/l/) → /d/. Worked, locked → /t/. Started → /id/."),
-Q("m","Why did MCR reject the 'Emo' label?","They saw it as reductive; they saw themselves as an alternative/punk rock band about survival.",["They wanted to be a pop band.","They never heard the label.","They agreed with it but hid it."],"MCR menolak label 'emo' karena terlalu sempit. Pesan mereka adalah bertahan hidup, bukan meromantisasi kesedihan."),
-Q("m","The 11-note piano intro of 'Welcome to the Black Parade' acts as...","an auditory tolling bell",["a dance beat","a radio jingle","a metronome"],"Intro piano 11 nada = lonceng duka yang membangun suasana muram sebelum ledakan perubahan nada."),
-Q("m","Three Cheers for Sweet Revenge (2004) is a concept album about...","a man separated from his lover by death",["rebels fighting a corporation","a terminally ill patient and a parade","a road trip across America"],"Di balik metafora vampir yang keras, album ini tentang duka, kehilangan, dan cinta. (Pasien dan parade = The Black Parade.)"),
-Q("m","'We'll carry on' is repeated in the song. What does it represent?","A collective anthem of survival and resilience",["A love song for one person","A dance instruction","A complaint about music critics"],"Lirik berulang itu mengubah kisah individu menjadi anthem kolektif untuk kaum marginal."),
-Q("m","What is the name of MCR's fanbase?","MCRmy",["The Patients","Black Parade Club","Sweet Revenge Crew"],"MCRmy berkembang jadi jaringan dukungan sosial, 'keluarga pilihan'."),
-Q("m","The meeting started 10 minutes ___.","ago",["before","last","yesterday"],"'… ago' dipakai setelah kata waktu: 5 minutes ago, 2 days ago."),
-Q("m","She joined the company ___ 2021.","in",["at","on","by"],"In + tahun yang sudah lewat."),
-
-Q("e","What is the past simple of 'check'?","checked",["checkt","checkd","check"],"Aturan 1: kebanyakan verba cukup tambah -ed."),
-Q("e","What is the past simple of 'file'?","filed",["fileed","filled","filid"],"Aturan 2: verba berakhir -e cukup tambah -d."),
-Q("e","What is the past simple of 'copy'?","copied",["copyed","copyied","copid"],"Konsonan + y → ied."),
-Q("e","What is the past simple of 'stop'?","stopped",["stoped","stopt","stoping"],"Gandakan konsonan akhir untuk pola vokal pendek + konsonan."),
-Q("e","What is the past simple of 'submit'?","submitted",["submited","submitt","submiting"],"Submit → double t + -ed."),
-Q("e","We use Past Simple for actions that are...","finished",["happening now","planned for tomorrow","repeated every day"],"Past simple = aksi yang sudah selesai di masa lalu."),
-Q("e","Which is a past time marker?","last week",["next week","tomorrow","in 2 days"],"Penanda past: yesterday, last…, …ago, in [tahun lampau]."),
-Q("e","Regular verbs ending in -E only add...","-d",["-ed","-ied","-e"],"file → filed, use → used, decide → decided."),
-Q("e","The main character of 'Welcome to the Black Parade' is known as...","The Patient",["The Mentor","The Psychopomp","The Rebel"],"Tokoh utama: 'The Patient', seorang pasien terminal."),
-Q("e","Which is NOT one of the three songs in the warm-up?","Helena",["I'm Not Okay (I Promise)","Welcome to the Black Parade","Disenchanted"],"Tiga lagu di warm-up: I'm Not Okay (I Promise), Welcome to the Black Parade, dan Disenchanted.")
-];
-
-const S4=[
-Q("h","Which sentence contains an INCORRECT past form?","We swimmed to the shore safely.",["The wind blew the documents away.","The strong waves bent the metal frame.","The boat sank quickly."],"Swim → swam (bukan swimmed)."),
-Q("h","What is the past simple of 'steal'?","stole",["stealed","stolen","stoled"],"Steal → stole. 'Stolen' adalah past participle (dipakai setelah had/have)."),
-Q("h","The boat almost ___ to the bottom, but the captain only ___ at his place.","sank / stayed",["sinked / stayed","sunk / staied","sank / staied"],"Sink → sank. Stay → stayed (vokal + y hanya tambah -ed, bukan staied)."),
-Q("h","Which verb has the SAME form in present and past?","put",["go","write","buy"],"Put, cut, set, hit, hurt, cost, quit, spread adalah V1 = V2."),
-Q("h","Which sentence is grammatically correct?","When did the CEO arrive at the hotel?",["What did the manager said during the meeting?","Why you sent the wrong data to the client?","Where did you went yesterday?"],"Rumus: WH + did + subject + V1. Setelah did, verba kembali ke bentuk dasar."),
-Q("h","I didn't ___ the data from the finance team.","get",["got","gotten","gets"],"Setelah didn't → V1 (get), bukan V2."),
-Q("h","'Hanged' (instead of 'hung') is used ONLY for...","execution by hanging",["hanging a picture","hanging a sign","hanging clothes"],"Hang → hung untuk benda. Hanged khusus hukuman gantung."),
-Q("h","What is the past simple of 'spin'?","spun",["spinned","spinnen","spanned"],"Spin → spun."),
-Q("h","What is the past simple of 'forbid'?","forbade",["forbidded","forbidden","forbid"],"Forbid → forbade. (Forbidden = past participle)"),
-Q("h","Which verb pair is CORRECT (V1 → V2)?","seek → sought",["weep → weeped","sleep → sleeped","find → finded"],"Weep → wept, sleep → slept, find → found. Seek → sought (pola -ought)."),
-
-Q("h","Which was NOT one of the three founding Germanic tribes (5th century)?","The Celts",["The Angles","The Saxons","The Jutes"],"Angles, Saxons, dan Jutes datang menyeberangi Laut Utara. Celts adalah penduduk asli Britania yang terdesak ke Wales dan Skotlandia."),
-Q("m","Who is called the 'Father of English Literature'?","Geoffrey Chaucer",["William Shakespeare","William Caxton","William the Conqueror"],"Chaucer menulis The Canterbury Tales dalam bahasa Inggris (Middle English), bukan Prancis/Latin."),
-Q("m","What happened in 1066?","The Norman Conquest by William the Conqueror",["The first English dictionary was published","The Great Vowel Shift began","Beowulf was written"],"Bahasa Prancis menjadi bahasa kerajaan, hukum, dan bangsawan. Lebih dari 10.000 kata Prancis masuk bahasa Inggris."),
-Q("m","The word 'England' comes from 'Engla land', meaning...","the land of the Angles",["the land of the Saxons","the land of the Normans","the island of the Celts"],"Suku Angles berasal dari Semenanjung Jutlandia (Angeln)."),
-Q("m","The 'Great Vowel Shift' belongs to which period?","Early Modern English (1500–1800)",["Old English (450–1100)","Middle English (1100–1500)","After 1800"],"Old English 450–1100, Middle English 1100–1500, Early Modern English 1500–1800."),
-Q("m","What did William Caxton's printing press (15th century) do?","Standardized English spelling and grammar",["Created the first dictionary","Brought French words into English","Translated Beowulf"],"Mesin cetak Caxton menyeragamkan ejaan dan tata bahasa."),
-Q("m","Shakespeare invented or documented at least ___ new words (e.g. lonely, swagger, manager).","1,700",["170","10,000","17,000"],"Setidaknya 1.700 kata baru dan ratusan idiom yang masih dipakai."),
-Q("m","Which words entered English from French after 1066?","crown, castle, beef, army",["water, strong, be","lonely, swagger, manager","computer, internet, phone"],"Water, strong, be = Old English (Jermanik). Lonely, swagger, manager = Shakespeare."),
-Q("m","Why do irregular verbs exist?","Very common verbs were used so often that people kept their old forms.",["Shakespeare invented them.","A dictionary made them irregular in 1604.","French rules replaced English rules."],"Kata-kata paling sering dipakai (go, do, have, see, get) mempertahankan bentuk lama dari Old English."),
-Q("m","Which sentence is a correct negative?","He didn't come to the office on Sunday.",["He didn't came to the office on Sunday.","He not come to the office on Sunday.","He doesn't came to the office on Sunday."],"Didn't + V1 (come)."),
-
-Q("e","What is the past of 'go'?","went",["goed","gone","goes"],"Go → went. (Gone = past participle)"),
-Q("e","What is the past of 'buy'?","bought",["buyed","boughted","bough"],"Buy → bought."),
-Q("e","What is the past of 'write'?","wrote",["writed","written","writen"],"Write → wrote."),
-Q("e","I ___ Mr. Tanaka last Tuesday. (meet)","met",["meeted","meet","meets"],"Meet → met."),
-Q("e","We ___ the invoice last Friday. (pay)","paid",["payed","pay","paied"],"Pay → paid."),
-Q("e","I ___ your message this afternoon. (get)","got",["getted","get","gotted"],"Get → got."),
-Q("e","I didn't ___ to Bali.","go",["went","goed","going"],"Setelah didn't pakai V1."),
-Q("e","We ___ the site survey. (do)","did",["done","doed","does"],"Do → did."),
-Q("e","Did she ___ the file? (send)","send",["sent","sended","sends"],"Did + subject + V1."),
-Q("e","'Did she send the file?'  Short 'yes' answer:","Yes, she did.",["Yes, she sent.","Yes, she does.","Yes, she was."],"Jawaban singkat memakai auxiliary yang sama: Yes, she did. / No, she didn't.")
-];
-
-const S5=[
-Q("h","'Finally, we paid the vendor and returned to the main office. Overall, the trip was incredibly successful, and we identified solutions that will save the company money.'  Which part of a recount is this?","Re-orientation",["Orientation","Series of events","Introduction"],"Berisi kesimpulan dan komentar pribadi tentang pengalaman = re-orientation."),
-Q("h","What is the main function of the Orientation paragraph?","To set the background: who, when and where the story starts",["To list events using First and Next","To give a personal comment about the trip","To complain about a problem at a site visit"],"Orientation = pengantar (siapa, kapan, di mana)."),
-Q("h","What is the key difference between Recount and Narrative?","Recount tells events in natural order without a complex conflict; Narrative has conflict and resolution.",["Recount uses the present tense; Narrative uses the past tense.","Recount is always fictional.","Narrative is always about a business trip."],"Keduanya memakai past tense. Narrative punya konflik + resolusi dan bertujuan menghibur. Recount hanya menceritakan kembali urutan kejadian."),
-Q("h","Which text type uses imperative sentences, the present tense and action verbs like cut, boil, mix?","Procedure text",["Recount text","Narrative text","Report text"],"Procedure = langkah demi langkah, memakai imperative + penanda urutan (first, second, finally)."),
-Q("h","Which text type usually ends with a recommendation marked by 'should'?","Hortatory exposition",["Analytical exposition","Descriptive text","News item"],"Hortatory = membujuk bahwa sesuatu seharusnya/tidak seharusnya dilakukan. Analytical diakhiri reiteration (penegasan ulang)."),
-Q("h","Which text type often uses passive voice and causal conjunctions to explain WHY and HOW something happens?","Explanation text",["Discussion text","Review text","Recount text"],"Explanation = proses terjadinya fenomena (alam, sosial, sains, budaya)."),
-Q("h","'Types of cats in general' vs. 'My pet cat, Milo'. Which pair is correct?","Report text; Descriptive text",["Descriptive text; Report text","Narrative; Recount","Recount; Procedure"],"Report = informasi umum & faktual. Descriptive = satu subjek spesifik."),
-Q("h","An editorial opens with a past story, adds statistics and describes social impact, but its main goal is to persuade. How is it classified?","Exposition (argument), because the dominant purpose decides the type",["Recount, because it starts with a past story","Report, because it has statistics","Descriptive, because it describes impact"],"Teks otentik biasanya hibrida. Jenisnya ditentukan oleh tujuan dominan (di sini: meyakinkan)."),
-Q("h","Why do language courses still teach text types one by one?","As scaffolding: learners master basic patterns before writing hybrid texts.",["Because real texts are always 100% pure","Because hybrid texts are forbidden","Because grammar does not matter"],"Text types = perkakas / pijakan belajar (scaffolding), bukan sangkar yang kaku."),
-Q("h","'I thought it ___ a bear!'","was",["were","be","been"],"Subjek 'it' (tunggal) → was. (Di slide, 'were' justru salah.)"),
-
-Q("m","'I ___ my support for him completely.' (withdraw)","withdrew",["withdrawn","withdrawed","withdraws"],"Withdraw → withdrew (V2). Withdrawn = past participle."),
-Q("m","'It ___ him almost five hundred dollars.' (cost)","cost",["costed","costs","costen"],"Cost → cost → cost (V1 = V2)."),
-Q("m","'Then a strange man ___ his head in my tent.' (poke)","poked",["poke","pokes","poking"],"Poke → poked (regular). Ada dalam cerita 'My scary camping experience'."),
-Q("m","'I ___ the man; he was not one of our group.' (not recognize)","did not recognize",["not recognized","did not recognized","was not recognize"],"Negatif past: did not + base verb."),
-Q("m","Which is NOT a temporal sequence connector?","Because",["First","Then","Next"],"Because = kata hubung sebab-akibat (causal). First / Then / Next / After that = urutan waktu."),
-Q("m","Why do we use recount texts in business?","To inform managers about a trip, document a site visit, or report daily progress",["To persuade customers to buy a product","To explain scientific processes","To describe the features of a product"],"Contoh: laporan perjalanan dinas, dokumentasi site visit, logbook harian."),
-Q("m","Which text type presents pro and con views objectively before a conclusion?","Discussion text",["News item","Review text","Narrative"],"Discussion = isu dari dua sudut pandang (pro & kontra)."),
-Q("m","Descriptive text usually uses...","the simple present and many adjectives",["the past simple and action verbs","imperatives and sequence words","passive voice and causal conjunctions"],"Descriptive: simple present, banyak adjective, fokus satu subjek."),
-Q("m","Which sentence is correct in a recount text?","We went to the factory and met the manager.",["We go to the factory and meet the manager.","We are going to the factory yesterday.","We will go to the factory and met the manager."],"Recount memakai past tense secara konsisten (went, met)."),
-Q("m","What is the main purpose of a narrative text?","To entertain the reader",["To give instructions","To explain a natural process","To evaluate a product"],"Narrative: past tense, konflik + resolusi, tujuan menghibur."),
-
-Q("e","'My colleague and I ___ on a three-day business trip.'","went",["go","goed","gone"],"Go → went."),
-Q("e","A recount text retells...","past events in chronological order",["how a process works in general","steps to do something","two sides of an issue"],"Recount = menceritakan kembali kejadian/pengalaman masa lalu secara berurutan."),
-Q("e","Which tense is used consistently in a recount?","Past simple",["Present simple","Future simple","Present continuous"],"Recount = past tense."),
-Q("e","The Orientation answers which questions?","Who, when and where",["What, why and how much","Which, whose and whom","First, next and finally"],"Orientation = konteks awal: who, when, where."),
-Q("e","In the Events part we mostly use ___ verbs.","V2 (past tense)",["V1 (base)","V-ing","V3 (past participle)"],"Series of events = V2, contoh: went, met, wrote, did."),
-Q("e","'I ___ the manager.' (meet)","met",["meet","meeted","meets"],"Meet → met."),
-Q("e","'She ___ the report.' (write)","wrote",["writed","written","write"],"Write → wrote."),
-Q("e","'The puppy ___ comfortable with us very fast.' (grow)","grew",["growed","grown","grows"],"Grow → grew."),
-Q("e","Which text type evaluates a film, a book or a product?","Review text",["News item","Procedure text","Recount text"],"Review = evaluasi, kritik, atau ulasan sebuah karya."),
-Q("e","Which text type informs readers about a newsworthy event?","News item",["Review text","Discussion text","Narrative"],"News item = peristiwa hari itu yang dianggap penting/layak diberitakan.")
-];
-
-const SESSIONS=[
- {id:1,emoji:"📋",title:"Session 1",sub:"SOP, imperatives, sequence connectors & advice",q:S1},
- {id:2,emoji:"⏰",title:"Session 2",sub:"Deadlines, time markers, by/until/before & modals",q:S2},
- {id:3,emoji:"🎸",title:"Session 3",sub:"Past simple (regular), -ed sounds & My Chemical Romance",q:S3},
- {id:4,emoji:"📜",title:"Session 4",sub:"Irregular verbs, negative & questions, history of English",q:S4},
- {id:5,emoji:"📝",title:"Session 5",sub:"Recount text, text types & irregular verb error hunt",q:S5}
-];
-
-/* ============ CHEAT SHEET ============ */
-const CHEAT={
-1:`<h2>Session 1 · SOP, imperatives & advice</h2>
-<h3>Verbs for equipment & documents</h3>
-<div class="tw"><table><tr><th>Verb</th><th>Meaning</th><th>Example</th></tr>
-<tr><td>Turn on / Switch on</td><td>Start the power</td><td>Turn on the computer.</td></tr>
-<tr><td>Turn off / Switch off</td><td>Stop the power</td><td>Turn off the lights.</td></tr>
-<tr><td>Press / Push</td><td>Use finger on a button</td><td>Press the red button.</td></tr>
-<tr><td>Click</td><td>Use the mouse</td><td>Click the Start icon.</td></tr>
-<tr><td>Enter / Type</td><td>Write on keyboard</td><td>Enter your password.</td></tr>
-<tr><td>Plug in / Unplug</td><td>Connect / disconnect electricity</td><td>Unplug the cable.</td></tr>
-<tr><td>Select / Choose</td><td>Pick an option</td><td>Select Print.</td></tr>
-<tr><td>Fill out / Fill in</td><td>Complete a form</td><td>Fill out the leave form.</td></tr>
-<tr><td>Sign</td><td>Write your signature</td><td>Sign at the bottom.</td></tr>
-<tr><td>Submit / Turn in</td><td>Give the document to the boss</td><td>Submit the report.</td></tr>
-<tr><td>Check</td><td>Look for errors</td><td>Check the spelling.</td></tr></table></div>
-<h3>4 imperative patterns</h3>
-<div class="tw"><table><tr><th>Type</th><th>Pattern</th><th>Example</th></tr>
-<tr><td>Affirmative</td><td>Base verb + object</td><td>Submit the expense report.</td></tr>
-<tr><td>Negative</td><td>Do not / Don't + base verb</td><td>Do not forward this email.</td></tr>
-<tr><td>Polite</td><td>Please / Kindly + base verb</td><td>Please review the document.</td></tr>
-<tr><td>Inclusive</td><td>Let's + base verb</td><td>Let's brainstorm ideas.</td></tr></table></div>
-<div class="tip"><b>Politeness ladder:</b> Send the file. (blunt) → Please send the file. → Kindly send the file at your earliest convenience. (formal). <b>Let's</b> = kolaboratif.</div>
-<div class="tip">Subjek imperative = <b>you</b> (tidak disebut). Formal writing: pakai <b>Do not</b>, bukan Don't.</div>
-<h3>Sequence connectors (selalu diikuti koma)</h3>
-<p><b>First,</b> (awal) → <b>Next, / Then, / After that,</b> (tengah) → <b>Finally,</b> (akhir)</p>
-<h3>Giving advice</h3>
-<div class="tw"><table><tr><th>Level</th><th>Pattern</th><th>Example</th></tr>
-<tr><td>Standard</td><td>should / ought to + base verb</td><td>We should hire a consultant.</td></tr>
-<tr><td>Soft</td><td>could / might want to + base verb; It would be a good idea to + base verb</td><td>You might want to double-check the figures.</td></tr>
-<tr><td>Strong</td><td>I (highly) recommend / suggest + V-ing; I strongly advise + person + to + base verb</td><td>I highly recommend postponing the launch.</td></tr>
-<tr><td>Question</td><td>Why don't we + base verb? / How about + V-ing?</td><td>How about offering a 10% discount?</td></tr></table></div>
-<div class="warn"><b>Jebakan:</b> ❌ I suggest you <u>to</u> attend → ✅ I suggest attending / I suggest that you attend. ❌ Please <u>to</u> send → ✅ Please send. Dengan atasan, hindari You should…; pakai It might be worth…</div>
-<div class="tip"><b>Imperative vs advice:</b> Imperative = perintah, pendengar diharapkan patuh (SOP, delegasi, peringatan). Advice = saran, pendengar bebas menerima/menolak (rapat, review, konsultasi).</div>`,
-
-2:`<h2>Session 2 · Deadlines & modals</h2>
-<h3>Vocabulary</h3>
-<div class="tw"><table><tr><th>Word</th><th>Meaning</th></tr>
-<tr><td>Deadline / Due date</td><td>Batas waktu terakhir</td></tr>
-<tr><td>Submit / Turn in</td><td>Menyerahkan pekerjaan</td></tr>
-<tr><td>Delay</td><td>Membuat terlambat</td></tr>
-<tr><td>Extension</td><td>Tambahan waktu setelah deadline</td></tr>
-<tr><td>Reminder</td><td>Pesan pengingat</td></tr>
-<tr><td>Urgent / ASAP</td><td>Sangat penting / As Soon As Possible</td></tr>
-<tr><td>Overdue / On time</td><td>Terlambat (deadline lewat) / tepat waktu</td></tr>
-<tr><td>Pending / In progress / Completed</td><td>Belum dikerjakan / sedang dikerjakan / selesai</td></tr>
-<tr><td>EOD / EOW</td><td>End of day / End of week (Jumat sore)</td></tr>
-<tr><td>First thing in the morning</td><td>Begitu jam kerja dimulai</td></tr>
-<tr><td>On the dot</td><td>Tepat pada waktu itu</td></tr>
-<tr><td>Running behind / Behind schedule</td><td>Terlambat dari rencana</td></tr>
-<tr><td>Ahead of schedule</td><td>Lebih cepat dari rencana</td></tr></table></div>
-<h3>Future time markers</h3>
-<ul><li><b>tomorrow</b> (bukan ‘next day’)</li><li><b>next</b> + week / Monday / month / year</li><li><b>this</b> + day = hari itu di minggu ini</li><li><b>in</b> + number + unit: in 10 minutes, in 2 days</li></ul>
-<h3>BY vs UNTIL vs BEFORE</h3>
-<div class="tw"><table><tr><th></th><th>Meaning</th><th>Use</th><th>Example</th></tr>
-<tr><td><b>BY</b></td><td>Paling lambat pada waktu itu</td><td>Deadline</td><td>Submit the report by Friday.</td></tr>
-<tr><td><b>UNTIL</b></td><td>Terus-menerus sampai waktu itu</td><td>Duration</td><td>I work until 5 PM.</td></tr>
-<tr><td><b>BEFORE</b></td><td>Lebih awal dari</td><td>Ahead of a point</td><td>Finish before lunch.</td></tr></table></div>
-<h3>Modals of obligation</h3>
-<div class="tw"><table><tr><th>Modal</th><th>Meaning</th><th>Example</th></tr>
-<tr><td>must</td><td>Wajib: dari diri sendiri / aturan tertulis resmi (100%)</td><td>Passengers must fasten seatbelts.</td></tr>
-<tr><td>have to / has to</td><td>Wajib: dari luar (aturan orang lain, keadaan)</td><td>I have to wear a uniform.</td></tr>
-<tr><td>had to</td><td>Past dari must DAN have to</td><td>I had to leave early.</td></tr>
-<tr><td>need to</td><td>Perlu untuk mencapai tujuan (~80%)</td><td>We need to buy groceries.</td></tr>
-<tr><td>should / ought to</td><td>Saran / kewajiban moral (50–70%)</td><td>You should apologize.</td></tr>
-<tr><td>mustn't</td><td>DILARANG</td><td>You mustn't touch the wire.</td></tr>
-<tr><td>don't have to / don't need to</td><td>TIDAK WAJIB (bebas)</td><td>You don't have to come.</td></tr></table></div>
-<div class="warn"><b>Jebakan besar:</b> mustn't ≠ don't have to (artinya berlawanan). Tidak ada ‘musted’ → pakai <b>had to</b>. Aturan tertulis/K3 → must. Saran → should. Moral → ought to.</div>
-<h3>Negotiating a deadline politely</h3>
-<p>Minta maaf → beri alasan singkat → tawarkan deadline baru → ucapkan terima kasih.<br>“I'm sorry, but I have 3 meetings today. Can I submit it by Wednesday? Thank you for understanding.”</p>
-<p><b>Ask:</b> When is it due? · What is the deadline? · By when should I submit this?<br><b>Set:</b> I need it by Monday. · Please submit ASAP.<br><b>Negotiate:</b> Can I have more time? · Is Tuesday okay?</p>`,
-
-3:`<h2>Session 3 · Past simple (regular), -ed sounds & MCR</h2>
-<h3>4 spelling rules for -ed</h3>
-<div class="tw"><table><tr><th>Rule</th><th>What to do</th><th>Examples</th></tr>
-<tr><td>1. Most verbs</td><td>+ ed</td><td>check → checked, work → worked</td></tr>
-<tr><td>2. Ends in -e</td><td>+ d</td><td>file → filed, use → used, decide → decided</td></tr>
-<tr><td>3. Consonant + y</td><td>y → ied</td><td>copy → copied, reply → replied, carry → carried, study → studied</td></tr>
-<tr><td>4. Short vowel + consonant</td><td>double consonant + ed</td><td>stop → stopped, plan → planned, refer → referred, commit → committed</td></tr></table></div>
-<h3>Past time markers</h3>
-<p>yesterday · last night/week/month/year · 5 minutes ago · in 2021</p>
-<h3>Negative & question</h3>
-<p>Positive: She checked the document.<br>Negative: She <b>did not check</b> the document.<br>Question: <b>Did</b> she <b>check</b> the document?<br>❌ Did she checked? → ✅ Did she check? (hanya <b>did</b> yang menandai past)</p>
-<h3>Pronunciation of -ed</h3>
-<div class="tw"><table><tr><th>Sound</th><th>When</th><th>Examples</th></tr>
-<tr><td><b>/t/</b></td><td>Setelah unvoiced: /k/ /p/ /s/ /ʃ/ /tʃ/ /f/</td><td>worked, checked, finished, asked, stopped, locked, fixed</td></tr>
-<tr><td><b>/d/</b></td><td>Setelah voiced (getar): /l/ /n/ /r/ /g/ /v/ /z/ dan vokal</td><td>called, signed, filed, answered, used, persuaded</td></tr>
-<tr><td><b>/id/</b></td><td>Kata dasar berakhir T atau D (suku kata tambahan)</td><td>started, waited, needed, decided, visited, ended, printed, submitted</td></tr></table></div>
-<div class="tip"><b>Cek cepat:</b> berakhir T/D → /id/. Tenggorokan bergetar → /d/. Tidak bergetar → /t/. (Slide menaruh ‘printed’ di kolom /t/, itu keliru; yang benar /id/.)</div>
-<h3>My Chemical Romance: fakta penting</h3>
-<ul>
-<li><b>Asal:</b> dibentuk Gerard Way sebagai respon psikologis atas serangan <b>9/11</b>, sebagai coping mechanism dan misi ‘save lives’.</li>
-<li><b>Label ‘Emo’:</b> ditolak MCR (dianggap reduktif). Mereka band alternative/punk rock tentang <b>survival</b>.</li>
-<li><b>Voice of the marginalized (subaltern):</b> ‘the broken, the beaten, and the damned’.</li>
-<li><b>Three Cheers for Sweet Revenge (2004):</b> album konsep, pria terpisah dari kekasihnya oleh kematian; tema duka & katarsis.</li>
-<li><b>Welcome to the Black Parade:</b> tokoh <b>The Patient</b> (pasien terminal); kematian hadir sebagai prosesi/parade dari kenangan masa kecil terindah. Struktur: Prologue (piano) → The Memory → The Crossing → The Defiance.</li>
-<li><b>Arketipe:</b> ayah = <b>Mentor</b> (Jungian); parade = <b>Psychopomp</b> (pemandu jiwa).</li>
-<li><b>Metafora:</b> black/shadows = sedih & tak dikenal; ‘scars’ = trauma jadi tanda ketangguhan; ‘We'll carry on’ = anthem kolektif.</li>
-<li><b>Musik:</b> intro piano <b>11 nada</b> (lonceng duka); modulasi <b>G major → A major</b> (dari refleksi sedih ke perlawanan).</li>
-<li><b>Danger Days (2010):</b> perlawanan sosial melawan <b>Better Living Industries</b> (keserakahan korporasi, konsumerisme, konformitas).</li>
-<li><b>Dampak sosial:</b> mendestigmatisasi kesehatan mental (Gerard Way terbuka & mendorong fans mencari bantuan); fanbase <b>MCRmy</b> = ‘chosen family’; teatrikal: makeup, androgini, world building.</li>
-<li><b>Warm-up songs:</b> I'm Not Okay (I Promise) · Welcome to the Black Parade · Disenchanted.</li>
-</ul>`,
-
-4:`<h2>Session 4 · Irregular verbs, negative, questions & history</h2>
-<h3>Office 12</h3>
-<div class="tw"><table><tr><th>V1</th><th>V2</th><th>V1</th><th>V2</th><th>V1</th><th>V2</th></tr>
-<tr><td>go</td><td>went</td><td>do</td><td>did</td><td>have</td><td>had</td></tr>
-<tr><td>send</td><td>sent</td><td>meet</td><td>met</td><td>buy</td><td>bought</td></tr>
-<tr><td>write</td><td>wrote</td><td>take</td><td>took</td><td>come</td><td>came</td></tr>
-<tr><td>get</td><td>got</td><td>see</td><td>saw</td><td>pay</td><td>paid</td></tr></table></div>
-<h3>Patterns</h3>
-<ul><li>Vokal berubah: write → wrote, give → gave, take → took</li><li>-ought / -aught: buy → bought, bring → brought, think → thought, catch → caught, seek → sought</li><li>V1 = V2: put, cut, set, hit, hurt, cost, quit, spread, burst, split, cast</li><li>Beda total: go → went, be → was/were</li></ul>
-<h3>Error-hunt verbs (hafalkan!)</h3>
-<div class="wc">
-<div>come → came</div><div>bring → brought</div><div>drink → drank</div><div>feel → felt</div><div>run → ran</div><div>leave → left</div><div>know → knew</div><div>throw → threw</div>
-<div>fly → flew</div><div>find → found</div><div>sleep → slept</div><div>wake → woke</div><div>eat → ate</div><div>spend → spent</div><div>lose → lost</div><div>weep → wept</div>
-<div>hear → heard</div><div>tell → told</div><div>lead → led</div><div>forgive → forgave</div><div>shake → shook</div><div>mean → meant</div><div>make → made</div><div>blow → blew</div>
-<div>draw → drew</div><div>fall → fell</div><div>break → broke</div><div>sweep → swept</div><div>rise → rose</div><div>build → built</div><div>creep → crept</div><div>strike → struck</div>
-<div>hide → hid</div><div>lend → lent</div><div>say → said</div><div>give → gave</div><div>withdraw → withdrew</div><div>speak → spoke</div><div>choose → chose</div><div>bite → bit</div>
-<div>lay → laid</div><div>sing → sang</div><div>hold → held</div><div>grow → grew</div><div>bleed → bled</div><div>swing → swung</div><div>hang → hung</div><div>stick → stuck</div>
-<div>sell → sold</div><div>steal → stole</div><div>forbid → forbade</div><div>spin → spun</div><div>bend → bent</div><div>sink → sank</div><div>swim → swam</div><div>win → won</div>
-<div>fight → fought</div><div>swear → swore</div><div>drive → drove</div><div>begin → began</div><div>freeze → froze</div><div>overcome → overcame</div><div>spring → sprang</div><div>catch → caught</div>
-</div>
-<div class="warn"><b>Jebakan:</b> hang → hung (benda), <b>hanged</b> hanya untuk hukuman gantung. ‘Stay’ → stayed (bukan staied). Stolen, gone, done, seen, written = past participle (bukan V2).</div>
-<h3>Negative & question</h3>
-<p><b>Negative:</b> Subject + didn't + <b>V1</b> → I didn't go. (❌ I didn't went)<br><b>Yes/No:</b> Did + subject + V1? → Did you go? Yes, I did. / No, I didn't.<br><b>WH:</b> What / Where / When / Who + did + subject + V1? → Where did you go? (❌ Where did you went?)</p>
-<h3>History of English (timeline)</h3>
-<div class="tw"><table><tr><th>Period</th><th>Key facts</th></tr>
-<tr><td>5th century</td><td>Tiga suku Jermanik: <b>Angles</b>, <b>Saxons</b>, <b>Jutes</b>. ‘England’ ← ‘Engla land’ (tanah Angles). Celts terdesak ke Wales & Skotlandia.</td></tr>
-<tr><td>Old English (450–1100)</td><td>Kosakata dasar Jermanik (water, strong, be). Epik <b>Beowulf</b>. Awalnya tulisan runik, lalu alfabet Latin karena pengaruh agama Kristen.</td></tr>
-<tr><td>1066</td><td><b>Norman Conquest</b>, William the Conqueror. Prancis = bahasa kerajaan/hukum. &gt;10.000 kata Prancis (crown, castle, beef, army).</td></tr>
-<tr><td>Middle English (1100–1500)</td><td>Infleksi hilang, tata bahasa lebih sederhana, urutan kata S-V-O. <b>Chaucer</b> (Canterbury Tales) = ‘Father of English Literature’, dialek London.</td></tr>
-<tr><td>15th century</td><td>Mesin cetak <b>William Caxton</b> menyeragamkan ejaan & grammar.</td></tr>
-<tr><td>Early Modern (1500–1800)</td><td><b>Great Vowel Shift</b>. <b>Shakespeare</b>: ≥1.700 kata baru (lonely, swagger, manager). 1604: kamus Inggris pertama.</td></tr>
-<tr><td>18th century</td><td>Revolusi Industri → ribuan kosakata teknis & sains.</td></tr>
-<tr><td>19th–20th century</td><td>Imperium Britania menyebarkan Inggris ke Amerika, Australia, India, Afrika → bahasa global.</td></tr></table></div>
-<div class="tip">Kenapa irregular verbs ada: kata yang paling sering dipakai (go, do, have, see, get) mempertahankan bentuk lama Old English. Sekitar 180–200 irregular verbs umum dipakai.</div>`,
-
-5:`<h2>Session 5 · Recount text & text types</h2>
-<h3>Recount text</h3>
-<p>Menceritakan kembali kejadian/pengalaman masa lalu <b>secara berurutan</b>. Di bisnis: memberi tahu atasan tentang perjalanan, mendokumentasikan site visit, melaporkan progres harian (logbook).</p>
-<div class="tw"><table><tr><th>Part</th><th>Isi</th><th>Contoh</th></tr>
-<tr><td>1. Orientation</td><td>Pengantar: <b>who, when, where</b></td><td>Last month, my colleague Sarah and I went on a business trip to Karawang.</td></tr>
-<tr><td>2. Series of events</td><td>Isi: kejadian berurutan, <b>V2</b>, connector First / Then / Next / After that / Finally</td><td>We arrived early. Then we did a survey. Finally, we paid the vendor.</td></tr>
-<tr><td>3. Re-orientation</td><td>Penutup: kesimpulan + komentar pribadi</td><td>Overall, the trip was successful. I felt satisfied.</td></tr></table></div>
-<ul><li>Past tense secara konsisten</li><li>Fokus pada partisipan tertentu (I, We)</li><li><b>Recount vs Narrative:</b> recount = urutan kejadian natural, tanpa konflik rumit. Narrative = ada <b>konflik + resolusi</b>, tujuan menghibur.</li></ul>
-<h3>Text types</h3>
-<div class="tw"><table><tr><th>Type</th><th>Purpose</th><th>Language features</th></tr>
-<tr><td>Narrative</td><td>Menghibur, kisah dengan konflik</td><td>Past tense, action verbs, Once upon a time / One day, konflik + resolusi</td></tr>
-<tr><td>Descriptive</td><td>Menggambarkan satu subjek spesifik (my pet cat)</td><td>Simple present, banyak adjective</td></tr>
-<tr><td>Report</td><td>Informasi umum & faktual (jenis kucing pada umumnya)</td><td>Simple present, istilah ilmiah, objektif</td></tr>
-<tr><td>Recount</td><td>Menceritakan kembali pengalaman lampau</td><td>Past tense, temporal sequence, I / We</td></tr>
-<tr><td>Procedure</td><td>Langkah demi langkah</td><td>Imperative, present tense, action verbs (cut, boil, mix), first/second/finally</td></tr>
-<tr><td>Analytical exposition</td><td>Meyakinkan bahwa topik penting</td><td>Present tense, argumen logis, ditutup <b>reiteration</b></td></tr>
-<tr><td>Hortatory exposition</td><td>Membujuk bahwa sesuatu seharusnya/tidak dilakukan</td><td>Present tense, opini, ditutup <b>recommendation (should)</b></td></tr>
-<tr><td>Explanation</td><td>Menjelaskan why & how suatu fenomena terjadi</td><td>Present tense, <b>passive voice</b>, causal conjunctions, chronological connectives</td></tr>
-<tr><td>Discussion</td><td>Isu dari dua sudut pandang (pro & kontra), objektif</td><td>Argumen dua sisi + kesimpulan</td></tr>
-<tr><td>News item</td><td>Peristiwa hari itu yang <i>newsworthy</i></td><td>Berita ringkas & faktual</td></tr>
-<tr><td>Review</td><td>Evaluasi buku, film, produk, layanan</td><td>Opini + kritik</td></tr></table></div>
-<h3>Teks hibrida</h3>
-<div class="tip">Teks otentik jarang 100% satu jenis (rhetorical modes / macrogenre). Jenis ditentukan oleh <b>tujuan dominan</b>. Text types diajarkan satu per satu sebagai <b>scaffolding</b>, alat bukan sangkar.</div>
-<h3>Contoh verba dari cerita camping</h3>
-<p>joined · went · poked · looked · did not recognize · said · opened · screamed · woke · told · had · dreamt/dreamed</p>
-<h3>Koreksi kesalahan yang sering muncul</h3>
-<div class="tw"><table><tr><th>Salah</th><th>Benar</th></tr>
-<tr><td>lended, spended, buyed, costed, selled</td><td>lent, spent, bought, cost, sold</td></tr>
-<tr><td>say (past), claimt, sended</td><td>said, claimed, sent</td></tr>
-<tr><td>withdrawn, spoken (sebagai V2)</td><td>withdrew, spoke</td></tr>
-<tr><td>choosed, bitten, hided, eaten</td><td>chose, bit, hid, ate</td></tr>
-<tr><td>layed, sung, holded, growed, swum, sleeped</td><td>laid, sang, held, grew, swam, slept</td></tr>
-<tr><td>I thought it <u>were</u> a bear</td><td>I thought it <u>was</u> a bear</td></tr></table></div>`,
-
-6:`<h2>Jebakan yang paling sering</h2>
-<div class="warn"><b>1. mustn't vs don't have to:</b> mustn't = dilarang; don't have to = tidak wajib.</div>
-<div class="warn"><b>2. by vs until:</b> by = deadline; until = durasi terus-menerus.</div>
-<div class="warn"><b>3. Setelah did / didn't:</b> pakai V1. ❌ Did she checked? ❌ I didn't went.</div>
-<div class="warn"><b>4. Tidak ada ‘musted’:</b> past dari must / have to = had to.</div>
-<div class="warn"><b>5. suggest:</b> I suggest attending / that you attend. Bukan ‘suggest you to’.</div>
-<div class="warn"><b>6. Please / Kindly + base verb:</b> tanpa ‘to’.</div>
-<div class="warn"><b>7. Sequence connector:</b> selalu diikuti koma (First, Next, Then, After that, Finally,).</div>
-<div class="warn"><b>8. -ed sound:</b> berakhir T/D → /id/ (printed, submitted, needed). Berakhir /s/ (fixed) → /t/.</div>
-<div class="warn"><b>9. Persuaded / closed / filed:</b> tidak ada suku kata tambahan (/d/).</div>
-<div class="warn"><b>10. hang → hung;</b> hanged hanya untuk hukuman gantung. <b>Stay → stayed</b> (bukan staied).</div>
-<div class="warn"><b>11. Recount vs Narrative:</b> recount tanpa konflik rumit; narrative punya konflik + resolusi.</div>
-<div class="warn"><b>12. Re-orientation</b> = kesimpulan + komentar pribadi (bukan Orientation).</div>
-<div class="tip"><b>Pola jawaban modal:</b> aturan tertulis / K3 / pengumuman resmi → <b>must</b>. Hukum atau bos → <b>have to</b>. Butuh untuk tujuan → <b>need to</b>. Saran → <b>should</b>. Moral → <b>ought to</b>.</div>`
-};
-
-/* ============ HELPERS ============ */
-const $=s=>document.querySelector(s);
-const app=$('#app');
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
-const DL={h:'Sulit',m:'Sedang',e:'Mudah'}, DI={h:'🔥',m:'⚡',e:'🌱'};
-const store={
-  get(){try{return JSON.parse(localStorage.getItem('enq_v1'))||{}}catch(e){return {}}},
-  set(o){try{localStorage.setItem('enq_v1',JSON.stringify(o))}catch(e){}}
-};
-let state={tab:'quiz',order:'hard',cheat:1,quiz:null};
-
-function go(tab){
-  state.tab=tab;
-  $('#tab-quiz').setAttribute('aria-selected',tab==='quiz');
-  $('#tab-cheat').setAttribute('aria-selected',tab==='cheat');
-  if(tab==='quiz'){const z=state.quiz;if(!z)renderHome();else if(z.ans.length===z.items.length)finish();else renderQuiz()} else renderCheat();
-  window.scrollTo(0,0);
-}
-
-/* ============ HOME ============ */
-function renderHome(){
-  state.quiz=null;
-  const st=store.get();
-  const cards=SESSIONS.map(s=>{
-    const b=st['s'+s.id];
-    return `<button class="sess" onclick="start(${s.id})">
-      <span class="n">${s.emoji} ${s.q.length} soal</span>
-      <span class="t">${esc(s.title)}</span>
-      <span class="s">${esc(s.sub)}</span>
-      <span class="b">${b?`Skor terbaik: ${b.score}/${b.total}`:'Belum dicoba'}</span></button>`;
-  }).join('');
-  const sb=st.sim;
-  app.innerHTML=`
-    <h1>Pilih sesi</h1>
-    <p class="lead">Tiap sesi berisi 30 soal dengan campuran tingkat kesulitan. Jika salah, penjelasan langsung muncul.</p>
-    <div><span class="seg-label">Urutan soal:</span>
-      <span class="seg" role="group" aria-label="Urutan soal">
-        <button aria-pressed="${state.order==='hard'}" onclick="setOrder('hard')">Sulit → mudah</button>
-        <button aria-pressed="${state.order==='shuffle'}" onclick="setOrder('shuffle')">Acak</button>
-      </span></div>
-    <div class="grid">${cards}
-      <button class="sess sim" onclick="start('sim')">
-        <span class="n">🎯 30 soal acak</span>
-        <span class="t">Simulasi quiz</span>
-        <span class="s">10 sulit + 10 sedang + 10 mudah dari semua sesi.</span>
-        <span class="b">${sb?`Skor terbaik: ${sb.score}/${sb.total}`:'Belum dicoba'}</span></button>
-    </div>
-    <p class="hint">Tips: tekan 1–4 atau A–D untuk memilih jawaban, Enter untuk lanjut. Skor terbaik disimpan di browser.</p>`;
-}
-function setOrder(o){state.order=o;renderHome()}
-
-/* ============ QUIZ ============ */
-function prepare(pool,order){
-  const items=pool.map(x=>{const opts=shuffle([x.a,...x.w]);return {src:x,d:x.d,q:x.q,e:x.e,a:x.a,opts,ai:opts.indexOf(x.a)}});
-  if(order==='shuffle')return shuffle(items);
-  const g={h:[],m:[],e:[]};items.forEach(i=>g[i.d].push(i));
-  return [...shuffle(g.h),...shuffle(g.m),...shuffle(g.e)];
-}
-function start(id){
-  let pool,title,key;
-  if(id==='sim'){
-    const all=SESSIONS.flatMap(s=>s.q);
-    pool=['h','m','e'].flatMap(d=>shuffle(all.filter(x=>x.d===d)).slice(0,10));
-    title='Simulasi quiz';key='sim';
-  }else{
-    const s=SESSIONS.find(x=>x.id===id);pool=s.q;title=s.title+' · '+s.sub;key='s'+id;
-  }
-  state.quiz={key,title,pool,items:prepare(pool,state.order),i:0,ans:[],locked:false,order:state.order};
-  renderQuiz();window.scrollTo(0,0);
-}
-function renderQuiz(){
-  const z=state.quiz,it=z.items[z.i],n=z.items.length;
-  const score=z.ans.filter(a=>a.ok).length;
-  const opts=it.opts.map((o,k)=>`<button class="opt" data-k="${k}" onclick="pick(${k})"><span class="k">${'ABCD'[k]}</span><span>${esc(o)}</span></button>`).join('');
-  app.innerHTML=`
-    <div class="qhead"><span>${esc(z.title)}</span><span>Soal ${z.i+1}/${n} · Benar ${score}</span></div>
-    <div class="bar"><i style="width:${(z.i/n)*100}%"></i></div>
-    <div class="card">
-      <span class="badge ${it.d}">${DI[it.d]} ${DL[it.d]}</span>
-      <p class="q">${esc(it.q)}</p>
-      <div class="opts" id="opts">${opts}</div>
-      <div id="fb"></div>
-      <div class="actions" id="act"></div>
-    </div>
-    <p class="hint"><button class="btn ghost" style="padding:6px 12px;font-size:13px" onclick="quit()">Keluar</button></p>`;
-  z.locked=false;
-  if(z.ans.length>z.i)showFeedback(z.ans[z.i]);
-}
-function pick(k){
-  const z=state.quiz;if(z.locked)return;z.locked=true;
-  const it=z.items[z.i];
-  z.ans.push({it,k,ok:k===it.ai});
-  showFeedback(z.ans[z.i]);
-}
-function showFeedback(r){
-  const z=state.quiz,it=r.it,k=r.k,ok=r.ok;
-  z.locked=true;
-  document.querySelectorAll('.opt').forEach((b,j)=>{
-    b.disabled=true;
-    if(j===it.ai)b.classList.add('ok');
-    else if(j===k)b.classList.add('bad');
-    else b.classList.add('dim');
-  });
-  $('#fb').innerHTML=ok
-    ?`<div class="fb ok"><strong>✅ Benar!</strong><p>${esc(it.e)}</p></div>`
-    :`<div class="fb bad"><strong>❌ Kurang tepat. Jawaban benar: ${esc(it.a)}</strong><p>${esc(it.e)}</p></div>`;
-  const last=z.i===z.items.length-1;
-  $('#act').innerHTML=`<button class="btn" id="nextBtn" onclick="next()">${last?'Lihat hasil':'Soal berikutnya'}</button>`;
-  $('#nextBtn').focus({preventScroll:true});
-}
-function next(){
-  const z=state.quiz;
-  if(z.i<z.items.length-1){z.i++;renderQuiz();window.scrollTo(0,0)}else finish();
-}
-function quit(){if(confirm('Keluar dari quiz? Progres soal ini tidak disimpan.')){state.quiz=null;renderHome()}}
-
-function finish(){
-  const z=state.quiz,total=z.ans.length,score=z.ans.filter(a=>a.ok).length;
-  if(!z.retry){const st=store.get();if(!st[z.key]||score>st[z.key].score){st[z.key]={score,total,date:Date.now()};store.set(st)}}
-  const pct=Math.round(score/total*100);
-  const msg=pct>=90?'Luar biasa! Siap untuk quiz.':pct>=75?'Bagus! Tinggal rapikan beberapa poin.':pct>=60?'Lumayan. Baca cheat sheet lalu ulangi soal yang salah.':'Ayo ulangi. Fokus pada penjelasan di bawah.';
-  const dif=['h','m','e'].map(d=>{
-    const a=z.ans.filter(x=>x.it.d===d),c=a.filter(x=>x.ok).length;
-    if(!a.length)return '';
-    const col={h:'var(--hard)',m:'var(--mid)',e:'var(--easy)'}[d];
-    return `<div><span>${DI[d]} ${DL[d]}</span><span class="tr"><i style="width:${c/a.length*100}%;background:${col}"></i></span><span>${c}/${a.length}</span></div>`;
-  }).join('');
-  const wrong=z.ans.filter(a=>!a.ok);
-  const wlist=wrong.length?wrong.map(a=>`<div class="wrong">
-      <div class="wq">${DI[a.it.d]} ${esc(a.it.q)}</div>
-      <p class="you">Jawabanmu: ${esc(a.it.opts[a.k])}</p>
-      <p class="right">Jawaban benar: ${esc(a.it.a)}</p>
-      <p>${esc(a.it.e)}</p></div>`).join(''):'<p>Semua benar. Mantap! 🎉</p>';
-  app.innerHTML=`
-    <div class="card">
-      <div class="score"><div class="big">${score}<span style="font-size:28px;color:var(--muted)">/${total}</span></div>
-      <div class="msg">${pct}% · ${msg}</div></div>
-      <div class="dif">${dif}</div>
-      <div class="actions">
-        ${wrong.length?`<button class="btn" onclick="retryWrong()">Ulangi ${wrong.length} soal yang salah</button>`:''}
-        <button class="btn ghost" onclick="restart()">Ulangi dari awal</button>
-        <button class="btn ghost" onclick="go('cheat')">Buka cheat sheet</button>
-        <button class="btn ghost" onclick="state.quiz=null;renderHome()">Menu utama</button>
-      </div>
-    </div>
-    <h2 style="margin-top:24px">Soal yang salah (${wrong.length})</h2>${wlist}`;
-  window.scrollTo(0,0);
-}
-function restart(){
-  const z=state.quiz;
-  state.quiz={key:z.key,title:z.title,pool:z.pool,items:prepare(z.pool,state.order),i:0,ans:[],locked:false,retry:z.retry};
-  renderQuiz();window.scrollTo(0,0);
-}
-function retryWrong(){
-  const z=state.quiz,pool=z.ans.filter(a=>!a.ok).map(a=>a.it.src);
-  state.quiz={key:z.key,title:z.title+' (ulang soal salah)',pool,items:prepare(pool,'shuffle'),i:0,ans:[],locked:false,retry:true};
-  renderQuiz();window.scrollTo(0,0);
-}
-
-/* ============ CHEAT SHEET ============ */
-function renderCheat(){
-  const names={1:'S1 SOP & advice',2:'S2 Deadlines & modals',3:'S3 Past regular & MCR',4:'S4 Irregular & history',5:'S5 Recount & text types',6:'Jebakan'};
-  const tabs=Object.keys(names).map(k=>`<button role="tab" aria-selected="${state.cheat==k}" onclick="state.cheat=${k};renderCheat()">${names[k]}</button>`).join('');
-  app.innerHTML=`<div class="subtabs" role="tablist">${tabs}</div>
-    <div class="cs">${CHEAT[state.cheat]}</div>
-    <div class="actions"><button class="btn ghost" onclick="window.print()">Cetak / simpan PDF</button></div>`;
-}
-
-/* ============ KEYBOARD ============ */
-document.addEventListener('keydown',e=>{
-  const z=state.quiz;
-  if(state.tab!=='quiz'||!z||!document.getElementById('opts'))return;
-  const k='1234abcd'.indexOf(e.key.toLowerCase());
-  if(!z.locked&&k>-1){pick(k%4);return}
-  if(z.locked&&(e.key==='ArrowRight')){next()}
-});
-
-renderHome();
-</script>
-</body>
-</html>
+function cheat(){$.innerHTML='<div class="top"><a onclick="home()">← Kembali</a><span></span></div><h1>📝 Cheatsheet</h1><p class="s">Ringkasan rumus & aturan. Ketuk judul untuk membuka.</p>'+CS.map(c=>`<details><summary>${c[0]}</summary><div>${c[1]}</div></details>`).join("")+'<button class="btn" onclick="home()">Kembali ke menu</button>';scrollTo(0,0)}
+function home(){const d=ld();let h=`<h1>📘 Latihan Ujian English</h1><button class="btn" style="margin:0 0 6px;background:#f59e0b" onclick="cheat()">📝 Buka Cheatsheet</button><p class="s">${Q.length} soal · modal verbs, telepon, email, grammar, past simple, recount. Tiap sesi campur semua materi.</p>`;
+SES.forEach((s,n)=>{const b=d[s];h+=`<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="go(${n})"><span><b>${s}</b><br><small style="color:var(--m)">${N} soal${b!=null?" · terbaik "+b:""}</small></span><span class="bd">Mulai</span></div></div>`});
+h+=`<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="go(-1)"><span><b>🎲 Acak 50 soal baru</b><small style="color:var(--m)">Berbeda tiap main</small></span><span class="bd">Mulai</span></div></div>`;
+h+=`<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="go(-2)"><span><b>🏁 Simulasi semua soal</b><br><small style="color:var(--m)">${Q.length} soal diacak</small></span><span class="bd">Mulai</span></div></div>`;$.innerHTML=h}
+function go(n){if(n>=0){key=SES[n];L=sh(sd(Q.map((_,k)=>k),n+1).slice(0,N).map(k=>Q[k]))}else if(n==-1){key="";L=sh(Q).slice(0,N)}else{key="";L=sh(Q)}i=0;sc=0;wr=[];show()}
+function show(){const q=L[i];const o=sh(q[1].map((t,k)=>[t,k==q[2]]));
+$.innerHTML=`<div class="top"><a onclick="if(confirm('Keluar dari latihan?'))home()">← Keluar</a><span>${i+1} / ${L.length} · Skor ${sc}</span></div><div class="bar"><i style="width:${i/L.length*100}%"></i></div><div class="card"><div class="q">${q[0].replace(/</g,"&lt;")}</div><div id="op">${o.map((x,k)=>`<button class="o" data-ok="${x[1]?1:0}" onclick="pk(this)">${"ABCD"[k]}. ${x[0]}</button>`).join("")}</div><div id="ex"></div></div><div id="nx"></div>`}
+function pk(b){const q=L[i],ok=b.dataset.ok=="1";document.querySelectorAll(".o").forEach(e=>{e.disabled=true;if(e.dataset.ok=="1")e.classList.add("ok")});
+if(ok)sc++;else{b.classList.add("no");wr.push([q[0],q[1][q[2]],q[3]])}
+document.getElementById("ex").innerHTML=`<div class="fb ${ok?"g":"r"}"><b>${ok?"✅ Benar!":"❌ Salah"}</b>${ok?"":"<br>Jawaban benar: <b>"+q[1][q[2]]+"</b>"}<br>💡 ${q[3]}</div>`;
+document.getElementById("nx").innerHTML=`<button class="btn" onclick="nx()">${i+1<L.length?"Lanjut →":"Lihat hasil"}</button>`}
+function nx(){i++;i<L.length?show():fin()}
+function fin(){const p=Math.round(sc/L.length*100);if(key)sv(key,sc);
+$.innerHTML=`<h1>Hasil</h1><div class="card"><div class="sc">${sc}/${L.length}</div><p class="s" style="text-align:center">${p}% · ${p>=80?"Mantap! 🎉":p>=60?"Lumayan, terus latihan 💪":"Pelajari lagi pembahasannya 📖"}</p></div>`+(wr.length?`<h3>Perlu diulang (${wr.length})</h3>`+wr.map(w=>`<div class="card rv"><b style="white-space:pre-line">${w[0].replace(/</g,"&lt;")}</b><br>Jawaban: <span style="color:var(--ok)">${w[1]}</span><br><span style="color:var(--m)">${w[2]}</span></div>`).join(""):"")+`<button class="btn" style="background:#f59e0b" onclick="cheat()">📝 Buka Cheatsheet</button><button class="btn" onclick="home()">Kembali ke menu</button>`;scrollTo(0,0)}
+home();
+</script></body></html>
