@@ -10,8 +10,8 @@
 body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.6;padding-bottom:env(safe-area-inset-bottom,0px)}
 .nav{background:var(--p);color:#fff;padding:13px 16px;padding-top:calc(13px + env(safe-area-inset-top,0px));position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .nav h1{font-size:15px;font-weight:700}
-.nbs{display:flex;gap:6px}
-.nb{background:rgba(255,255,255,.2);border:none;color:#fff;padding:5px 10px;border-radius:20px;font-size:12px;cursor:pointer}
+.nbs{display:flex;gap:4px}
+.nb{background:rgba(255,255,255,.2);border:none;color:#fff;padding:5px 8px;white-space:nowrap;border-radius:20px;font-size:12px;cursor:pointer}
 .nb.act{background:#fff;color:var(--p);font-weight:700}
 .pg{display:none;padding:16px;max-width:760px;margin:0 auto}
 .pg.act{display:block}
@@ -22,6 +22,7 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
 .sc{background:var(--card);border-radius:var(--r);padding:14px;text-align:center;border:1px solid var(--bdr)}
 .sc .n{font-size:26px;font-weight:800;color:var(--p)}
 .sc .l{font-size:12px;color:var(--muted);margin-top:3px}
+.seg{display:flex;gap:8px;margin-bottom:6px}.sg{flex:1;padding:9px 6px;border-radius:10px;border:2px solid var(--bdr);background:var(--card);font-weight:700;font-size:12px;cursor:pointer;color:var(--muted)}.sg.on{border-color:var(--p);color:var(--p);background:#eff6ff}
 .st{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin:12px 0 8px}
 .pl{display:flex;flex-direction:column;gap:9px}
 .pi{background:var(--card);border-radius:var(--r);padding:14px;border:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:.15s;gap:8px}
@@ -73,6 +74,7 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
 .tw{overflow-x:auto}
 table.t{width:100%;font-size:12px;border-collapse:collapse;margin-top:7px}
 table.t th{background:#eff6ff;color:var(--p);padding:5px 7px;text-align:left;font-size:11px}
+table.fm td{vertical-align:top}
 table.t td{padding:5px 7px;border-bottom:1px solid var(--bdr)}
 .ec{background:var(--card);border-radius:var(--r);padding:16px;margin-bottom:12px;border:1px solid var(--bdr)}
 .en{font-size:10px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px}
@@ -90,6 +92,7 @@ textarea:focus{outline:none;border-color:var(--p)}
   <h1>📚 English Exam Practice</h1>
   <div class="nbs">
     <button class="nb act" onclick="go('home')">Home</button>
+    <button class="nb" onclick="go('formula')">📐 Rumus</button>
     <button class="nb" onclick="go('cheat')">📋 Cheat</button>
     <button class="nb" onclick="go('essay')">✍️ Essay</button>
   </div>
@@ -102,6 +105,7 @@ textarea:focus{outline:none;border-color:var(--p)}
     <div class="sc"><div class="n" id="s-total">350</div><div class="l">Total Soal PG</div></div>
     <div class="sc"><div class="n" id="s-uniq">0</div><div class="l">Soal Unik</div></div>
   </div>
+  <div class="seg" id="set-seg"></div>
   <div class="st">Pilih Part — Mix Semua Materi Sesi 1–18</div>
   <div class="pl" id="part-list"></div>
 </div>
@@ -131,6 +135,11 @@ textarea:focus{outline:none;border-color:var(--p)}
   <div id="r-container"></div>
   <button class="btn bg bfull" onclick="retry()">🔄 Ulangi Part Ini</button>
   <button class="btn bp bfull" onclick="backHome()">← Kembali ke Home</button>
+</div>
+
+<div class="pg" id="page-formula">
+  <div class="hero" style="background:linear-gradient(135deg,#0891b2,#2563eb)"><h2>📐 Rumus Kalimat</h2><p>Pola kalimat Sesi 1–18 · Present, Past, Future, Modal, Conditional, dll.</p></div>
+  <div id="formula-list"></div>
 </div>
 
 <div class="pg" id="page-cheat">
@@ -520,6 +529,536 @@ N("Placement","'Ica couldn't even solve it.' suggests ___.",["the problem was ve
 N("Placement","'Santi sent just the email.' means ___.",["she sent only the email (no attachment)","she sent it a moment ago","she sent it twice","she sent nothing"],"'Just' sebelum object = hanya itu."),
 N("Placement","'Santi just sent the email.' means ___.",["the action happened a moment ago","she forgot the attachment","she sent only the body text","she will send it tomorrow"],"'Just' sebelum verb = baru saja."),
 ];
+const NEW2=[
+// Sesi 1
+N("To Be","'My colleagues ___ in the meeting room now.'",["are","is","am","be"],"Colleagues = jamak → are."),
+N("To Be","'___ the invoice ready, Ms. Dewi?'",["Is","Are","Am","Do"],"The invoice = tunggal → Is."),
+N("To Be","'I ___ not the team leader. I am only a staff member.'",["am","is","are","do"],"I → am (am not)."),
+N("To Be","Which sentence is the correct NEGATIVE?",["She is not from the HR team.","She not is from the HR team.","She don't from the HR team.","She does not is from the HR team."],"Negatif to be: S + is/am/are + not."),
+N("Vocabulary","Which department prepares promotions, ads, and product campaigns?",["Marketing","GA","Finance","HR"],"Marketing = promosi, iklan, kampanye."),
+N("Vocabulary","'The Wi-Fi is down in the whole office.' Which department do you contact?",["IT","HR","Finance","Marketing"],"IT = jaringan, komputer, software."),
+N("Vocabulary","'I want to apply for annual leave.' Which department handles this?",["HR","IT","GA","Marketing"],"HR mengurus cuti, rekrutmen, payroll."),
+// Sesi 2
+N("Prep.Time","'The training starts ___ 8.30 AM ___ Friday.'",["at / on","on / at","in / at","at / in"],"at + jam · on + hari."),
+N("Prep.Time","'Our new office will open ___ March.'",["in","on","at","by"],"in + bulan."),
+N("Prep.Time","'The party is ___ my birthday.'",["on","in","at","by"],"on + hari/tanggal/hari spesial."),
+N("Numbers","How do you read '77' in a phone number?",["double seven","triple seven","seventy-seven","seven hundred"],"Dua angka kembar berurutan = 'double'."),
+N("Prep.Time","'I will finish the task ___ 4 PM at the latest.' (deadline)",["by","until","in","on"],"by = batas akhir."),
+// Sesi 3
+N("Articles","'He is ___ honest manager.'",["an","a","the","some"],"'honest' diawali bunyi vokal (h silent) → an."),
+N("Articles","'I need ___ new laptop.' (any laptop)",["a","an","the","some"],"Sembarang, tunggal, bunyi konsonan → a."),
+N("Articles","'Can you close ___ door, please?' (the door in this room)",["the","a","an","some"],"Spesifik, sama-sama tahu → the."),
+N("There is/are","'___ two meeting rooms on the third floor.'",["There are","There is","There be","It is"],"Two rooms = jamak → There are."),
+N("There is/are","'There ___ any chairs in the pantry.' (negatif)",["aren't","isn't","not","don't"],"Chairs = jamak → There aren't any."),
+N("There is/are","'___ a photocopier near the lobby?'",["Is there","Are there","There is","Has there"],"A photocopier = tunggal → Is there...?"),
+N("Prep.Place","'The lab is ___ the bank and the pharmacy.'",["between","behind","on","at"],"between = di antara dua tempat."),
+N("Prep.Place","'The manager's room is ___ the end of the hall.'",["at","in","on","by"],"at the end of... (titik tertentu)."),
+N("Prep.Place","'The documents are inside the cabinet. They are ___ the cabinet.'",["in","on","at","between"],"in = di dalam."),
+N("Directions","Which sentence is a correct direction?",["Go straight and turn right at the bank.","You going straight and turning right.","Straight go and right turn.","He turns right at the bank."],"Directions memakai imperative (V1)."),
+N("Directions","'Walk ___ the cafeteria and the lift is on your left.'",["past","between","at","in"],"walk past = berjalan melewati."),
+// Sesi 4
+N("Present","'Our supervisor ___ the machines every morning.'",["checks","check","checking","is check"],"3rd person → checks."),
+N("Present","'They ___ work on Sundays.' (negatif)",["don't","doesn't","aren't","not"],"They → don't + V1."),
+N("Present","'___ the engineers submit the weekly report?'",["Do","Does","Is","Are"],"Engineers = jamak → Do."),
+N("Present","'She ___ to the office by train.'",["goes","go","gos","going"],"go → goes (3rd person)."),
+N("Present","'My boss rarely ___ meetings on Monday.'",["holds","hold","holding","is hold"],"My boss = 3rd person → holds."),
+N("Present","Third-person form of 'fix' is ___.",["fixes","fixs","fixies","fixed"],"Akhiran -x → tambah -es."),
+N("Collocations","Which collocation is correct?",["book a meeting room","do a meeting room","write a client","answer a contract"],"book a meeting room ✓."),
+N("Collocations","'We ___ a meeting every Monday.'",["hold","do","carry","put"],"hold/have a meeting."),
+// Sesi 5
+N("Modal","'You ___ wear a helmet on the site. It is the company rule.'",["have to","might","would","may"],"Aturan eksternal → have to."),
+N("Modal","'___ I borrow your pen, please?'",["May","Must","Shall","Will"],"May I = meminta izin sopan."),
+N("Modal","'You look very sick. You ___ see a doctor.'",["should","can't","mustn't","won't"],"should = saran."),
+N("Modal","'___ I carry your bag?' (menawarkan bantuan)",["Shall","Must","Would","Might"],"Shall I...? = tawaran."),
+N("Modal","'You ___ park here. It is forbidden.'",["must not","don't have to","might not","needn't"],"must not = larangan keras."),
+N("Modal","'I'm not sure, but she ___ be in the warehouse.'",["might","must","shall","would like"],"might = kemungkinan kecil."),
+// Sesi 6-7
+N("Phone","'Please ___ me ___ to Mr. Rudi's extension.'",["put / through","pick / up","hang / up","hold / on"],"put through = menyambungkan."),
+N("Phone","'Sorry, I can't hear you. Could you ___?'",["speak up","hang up","pick up","put through"],"speak up = bicara lebih keras."),
+N("Phone","'I'll ___ you ___ after the meeting.' (menelepon balik)",["call / back","hang / up","pick / on","put / out"],"call back = menelepon kembali."),
+N("Phone","How do you say 'rina.sales@abc.co.id'?",["rina dot sales at abc dot co dot id","rina point sales at abc dot co dot id","rina dot sales a abc dot co dot id","rina dash sales at abc comma co comma id"],"@ = at · . = dot."),
+N("Phone","What is the NATO alphabet code for the letter 'D'?",["Delta","Dalton","Dollar","Dingo"],"D = Delta."),
+N("Phone","'She ___ on the phone with a client at the moment.'",["is talking","talks","talk","talked"],"at the moment → Present Continuous."),
+N("Pronoun","'This is not my pen. It is ___.' (milik dia, laki-laki)",["his","he","him","himself"],"his = possessive (juga bentuk possessive pronoun)."),
+N("Pronoun","'Mr. Andi and I finished the report ___.' (tanpa bantuan)",["ourselves","themselves","ourself","us"],"Subjek 'we' → reflexive ourselves."),
+N("Pronoun","'Please give the files to ___.' (kami)",["us","we","our","ours"],"Setelah 'to' → object pronoun us."),
+N("Pronoun","'The decision is ___, not theirs.' (milik kami)",["ours","our","us","ourselves"],"ours = possessive pronoun."),
+// Sesi 8
+N("Email","Which sentence is the best opening of a formal email?",["I am writing to ask about the delivery schedule.","Yo, what about the delivery?","Hey, quick question!!!","So... delivery?"],"Email formal → langsung, sopan, jelas."),
+N("Email","'Dear Sir/Madam,' is closed with ___.",["Yours faithfully","Cheers","Yours sincerely","See ya"],"Tidak tahu nama → Yours faithfully."),
+N("Email","Which field do you use for the MAIN recipient?",["To","BCC","Subject","Attachment"],"To = penerima utama."),
+N("Email","Which subject line is the BEST?",["Invoice No. 245 — Payment Reminder","FYI","Important!!!","Hi"],"Subject spesifik dan informatif."),
+// Sesi 9
+N("Future","'I have already decided. I ___ study English next year.'",["am going to","will","shall","would"],"Keputusan sudah dibuat → going to."),
+N("Future","'Oh no, I forgot my wallet! I ___ pay by card.'",["will","am going to","going","would be"],"Keputusan spontan → will."),
+N("Future","'The sky is very dark. It ___ rain.'",["is going to","will to","is will","goes"],"Bukti jelas → is going to."),
+N("Future","Which sentence is a correct NEGATIVE with will?",["I will not be late.","I will not to be late.","I not will be late.","I don't will be late."],"will not + V1."),
+N("Future","'I think she ___ accept the offer.' (opini)",["will","going","is going","are going to"],"Opini/prediksi → will."),
+// Sesi 10
+N("Admin","Which document confirms the money has been RECEIVED?",["Receipt","Quotation","Invoice","Agenda"],"Receipt = bukti lunas."),
+N("Admin","'Please send us a ___ for 100 notebooks before we order.'",["quotation","receipt","minutes","invoice"],"Quotation = penawaran harga sebelum order."),
+N("Countable","'How ___ chairs do we need?'",["many","much","some","any"],"Chairs = countable → how many."),
+N("Countable","'How ___ does this printer cost?'",["much","many","few","a"],"Harga → how much."),
+N("Countable","'There isn't ___ milk in the pantry.'",["any","some","many","a"],"Kalimat negatif → any."),
+N("Countable","Which noun is UNCOUNTABLE?",["advice","report","invoice","meeting"],"Advice tidak punya bentuk jamak."),
+// Sesi 11
+N("SOP","'___ the power button, then wait for 10 seconds.'",["Press","Pressing","To pressing","You pressing"],"Imperative = V1."),
+N("SOP","'___ forget to lock the door.'",["Don't","Not","Doesn't","Never to"],"Imperative negatif → Don't + V1."),
+N("SOP","'I recommend ___ the file before sending it.'",["checking","to checking","for check","checked"],"recommend + V-ing."),
+N("SOP","Which is the CORRECT order of a sequence?",["First, Next, Then, Finally","Finally, First, Then, Next","Next, Finally, First, Then","Then, Finally, Next, First"],"First → Next → Then → Finally."),
+// Sesi 12
+N("Deadline","'I will be here ___ 6 PM, so you can come anytime before that.'",["until","by","in","on"],"until = berlangsung sampai."),
+N("Deadline","'The report is ___. It was due last week.'",["overdue","ahead","on the dot","in time"],"overdue = lewat deadline."),
+N("Deadline","'You ___ pay now. You can pay next week.'",["don't have to","mustn't","shouldn't","can't"],"don't have to = tidak wajib."),
+N("Deadline","If we finish earlier than planned, we are ___ schedule.",["ahead of","behind","over","under"],"ahead of schedule."),
+// Sesi 13-14
+N("Past","'Last night, I ___ a very long report.'",["wrote","write","writed","written"],"write → wrote."),
+N("Past","'Did she ___ the meeting yesterday?'",["attend","attended","attends","attending"],"Did + S + V1."),
+N("Past","'We ___ the contract two days ago.'",["signed","sign","signs","signing"],"Regular: sign → signed."),
+N("Past","'The client ___ call us last week.'",["didn't","doesn't","wasn't","not"],"Negatif lampau → didn't + V1."),
+N("Past","The past form of 'take' is ___.",["took","taked","taken","tooked"],"take → took (V2)."),
+N("Past","'He ___ the invoice to me yesterday.' (give)",["gave","gived","given","gives"],"give → gave."),
+N("Past","The past form of 'hold' is ___.",["held","holded","helded","hold-ed"],"hold → held."),
+N("Past","Which sentence is correct?",["Where did you go last Sunday?","Where you went last Sunday?","Where did you went last Sunday?","Where do you went last Sunday?"],"Wh + did + S + V1."),
+// Sesi 15 / OSASCOMP
+N("Recount","Which sentence belongs to the EVENTS part of a recount?",["After that, we visited the production line.","Last Monday, I went to Surabaya.","Overall, the visit was useful.","I love my job."],"Events memakai connector urutan + past tense."),
+N("Recount","Which words are typical time connectors in a recount?",["First, then, after that, finally","Always, never, usually, rarely","Must, should, can, may","Under, above, behind, between"],"Connector urutan waktu."),
+N("Recount","Which text type gives general, factual information about a group of things?",["Report","Recount","Procedure","Narrative"],"Report = informasi umum dan faktual."),
+N("OSASCOMP","Choose the correct order.",["a lovely small wooden box","a wooden small lovely box","a small lovely wooden box","a lovely wooden small box"],"Opinion → Size → Material."),
+N("OSASCOMP","In 'an old black leather bag', which word is the MATERIAL?",["leather","black","old","bag"],"leather = material."),
+N("OSASCOMP","Choose the correct order (size, shape, color, material).",["a big round white plastic table","a white big round plastic table","a plastic big round white table","a round big white plastic table"],"Size → Shape → Color → Material."),
+// Sesi 16
+N("Conjunction","'I forgot the attachment, ___ I sent another email.' (akibat)",["so","because","but","or"],"SO = akibat."),
+N("Conjunction","'She cannot join the call ___ she is in a meeting.'",["because","so","but","and"],"Alasan → because."),
+N("Conjunction","'The team finished the tasks ___ they went home.' (dua aksi berurutan)",["and","because","but","if"],"AND menyambung dua aksi."),
+N("Apology","Which phrase is used to TAKE RESPONSIBILITY?",["I take full responsibility for this.","It is not my fault.","Don't ask me.","Nobody told me."],"Mengakui tanggung jawab."),
+N("Apology","'I ___ for the confusion.' (formal)",["apologize","apologizing","apology","apologies"],"I apologize for + noun."),
+N("Apology","Step 2 of the 3-Step Formula includes ___.",["responsibility and a reason","only the solution","a reply to the apology","a discount"],"Step 2 = responsibility + reason."),
+N("Apology","Which sentence is a SOLUTION (Step 3)?",["I will make sure this does not happen again.","I am very sorry.","It was my oversight.","Thank you for your patience."],"Step 3 = tindakan perbaikan."),
+N("Softener","'This is ___ difficult.' Which softener makes it milder?",["a little","a lot","extremely","too"],"a little/a bit memperhalus."),
+N("Softener","Which softener means 'sayangnya'?",["Unfortunately","Just","Seem","A bit"],"Unfortunately = sayangnya."),
+N("Softener","Why do we say 'I'm afraid we cannot approve this'?",["To show empathy before bad news","To show fear of the customer","To be rude","To give a command"],"I'm afraid = empati sebelum kabar buruk."),
+N("Prob.Vocab","An ___ is something you forgot to do or check.",["oversight","insight","feedback","input"],"Oversight = kelalaian."),
+N("Prob.Vocab","'I have a ___ about the deadline.' (a worry)",["concern","setback","fault","insight"],"Concern = kekhawatiran."),
+N("Prob.Vocab","'The manager shared great ___ about our target.' (deep understanding)",["insights","oversights","faults","setbacks"],"Insight = wawasan."),
+// Sesi 17
+N("Comp.Vocab","'Our technicians will ___ the device free of charge.'",["repair","waive","expedite","compensate"],"Repair = memperbaiki."),
+N("Comp.Vocab","'We would like to ___ you for the trouble.'",["compensate","investigate","prioritize","arrange"],"Compensate = memberi kompensasi."),
+N("Comp.Vocab","'I will ___ a courier to collect the item tomorrow.'",["arrange","waive","ensure","resolve"],"Arrange = mengatur."),
+N("Comp.Vocab","'We will ___ your delayed order so it leaves today.'",["prioritize","compensate","waive","exchange"],"Prioritize = memprioritaskan."),
+N("Conditional","'If I ___ early, I go for a jog.'",["wake up","will wake up","woke up","waking up"],"Zero conditional: Present Simple di kedua klausa."),
+N("Conditional","'If it rains tomorrow, we ___ the event indoors.'",["will hold","would hold","held","holding"],"First conditional → will + V1."),
+N("Conditional","'We will refund you if you ___ the receipt.'",["show","will show","showed","showing"],"If-clause → Present Simple."),
+N("Conditional","'If you heat ice, it ___.'",["melts","will melts","melt","melted"],"Fakta → Present Simple."),
+N("Conditional","Which sentence is NOT correct?",["If the item will arrive late, we refund you.","If the item arrives late, we will refund you.","If the item arrives late, we can refund you.","We will refund you if the item arrives late."],"Jangan pakai 'will' di If-clause."),
+N("Conditional","'If you leave milk out of the fridge, it ___.'",["goes bad","will goes bad","going bad","gone bad"],"Fakta umum → Present Simple."),
+N("Clause","'The cute black cat' is a ___.",["noun phrase","clause","complex sentence","independent clause"],"Tidak ada subjek+predikat → frasa."),
+N("Clause","'If it rains tomorrow' is a ___.",["dependent clause","independent clause","simple sentence","phrase"],"Ada subjek+predikat tapi tidak berdiri sendiri."),
+N("Functional","Which phrase offers TWO options?",["I have two options for you. Which would you prefer?","Take it or leave it.","There is no option.","Wait here."],"Present multiple options."),
+N("Functional","Which is a polite way to offer a direct solution?",["What I can do right now is refund your money.","It's not our problem.","Calm down.","You should have read the manual."],"'What I can do right now is...'"),
+N("Functional","'To make up for the inconvenience, we will add ___ to your stay.'",["free breakfast","a complaint","a delay","a problem"],"Sweetener = bonus."),
+N("Functional","'I hope this resolves the matter to your ___.'",["satisfaction","satisfy","satisfied","satisfactory"],"to your satisfaction (noun)."),
+// Sesi 18
+N("Adjective","'We need a ___ supplier.' (dependable)",["reliable","urgent","faulty","vague"],"Reliable = dapat diandalkan."),
+N("Adjective","'The sensor is ___ and gives wrong readings.'",["faulty","punctual","reliable","thorough"],"Faulty = cacat/tidak berfungsi benar."),
+N("Adjective","'Handle the ___ samples carefully.' (easily broken)",["fragile","sturdy","routine","public"],"Fragile = mudah pecah."),
+N("Adjective","'This is a ___ system failure.' (extremely important)",["critical","minor","mild","routine"],"Critical = sangat penting/gawat."),
+N("Adjective","The opposite of 'efficient' is ___.",["inefficient","unefficient","disefficient","non-efficient"],"efficient ↔ inefficient."),
+N("Adverb","Choose the correct sentence.",["She speaks English fluently.","She speaks English fluent.","She speak English fluently.","She fluently English speaks."],"Setelah verb → adverb fluently."),
+N("Adverb","'He drives very ___.' (careful)",["carefully","careful","care","more care"],"Menjelaskan verb → adverb."),
+N("Adverb","'The meeting started ___.' (terlambat)",["late","lately","latly","lateful"],"late = adverb tak beraturan (bentuk sama)."),
+N("Adverb","The adverb of 'angry' is ___.",["angrily","angryly","angrly","angry"],"y → i + ly."),
+N("Adverb","The adverb of 'simple' is ___.",["simply","simplely","simpley","simple"],"-le → -ly."),
+N("Adverb","The adverb of 'tragic' is ___.",["tragically","tragicly","tragicaly","tragic"],"-ic → -ically."),
+N("Adverb","'Our team works ___ to meet the deadline.'",["hard","hardly","hardy","hardness"],"hard = adverb (hardly = nyaris tidak)."),
+N("Placement","'She always replies quickly.' Where is the adverb of frequency?",["before the main verb","after the object","at the end","after 'quickly'"],"Frekuensi → sebelum main verb."),
+N("Placement","'Even Ica couldn't solve it.' means ___.",["the problem was very difficult","the problem was very easy","Ica didn't try","Ica is a beginner"],"Even + subjek = masalahnya sangat sulit."),
+N("Placement","'Only Santi sent the file.' means ___.",["nobody else sent the file","Santi sent nothing else","Santi sent it a moment ago","Santi forgot the file"],"Only + subjek = hanya dia."),
+];
+const S2=[
+// ===== SESI 1 =====
+N("To Be","'The new interns ___ very enthusiastic this week.'",["are","is","am","be"],"Interns = jamak → are."),
+N("To Be","'Ms. Lina ___ the head of the Marketing department.'",["is","are","am","be"],"Ms. Lina = tunggal → is."),
+N("To Be","'___ you the person who called me this morning?'",["Are","Is","Am","Do"],"You → Are you...?"),
+N("To Be","'My laptop and my phone ___ on the desk.'",["are","is","am","be"],"Dua benda = jamak → are."),
+N("To Be","'I ___ in a hurry because the client is waiting.'",["am","is","are","be"],"I → am."),
+N("To Be","'The conference room ___ not available today.'",["is","are","am","do"],"The conference room = tunggal → is not."),
+N("To Be","'Where ___ the finance staff now?'",["are","is","am","be"],"Staff di sini jamak (orang-orangnya) → are."),
+N("To Be","Which sentence is a correct question with 'to be'?",["Is your supervisor in the office?","Are your supervisor in the office?","Does your supervisor in the office?","Do your supervisor is in the office?"],"Tunggal → Is + subjek + ...?"),
+N("To Be","'Mr. Kim and Ms. Park ___ our new clients from Seoul.'",["are","is","am","be"],"Dua orang = jamak → are."),
+N("To Be","'He ___ not at his desk. He is in a meeting.'",["is","are","am","do"],"He → is not."),
+N("To Be","Which short answer is correct? 'Are you the new accountant?'",["Yes, I am.","Yes, I is.","Yes, I do.","Yes, I are."],"Jawaban singkat memakai kata kerja yang sama: Yes, I am."),
+N("To Be","Which contraction is CORRECT for 'they are not'?",["they aren't","they amn't","they isn't","they don't are"],"are not → aren't."),
+// ===== Departments & job titles =====
+N("Vocabulary","Which job title is usually HIGHER than 'Manager'?",["Director","Staff","Assistant","Supervisor"],"Director → Manager → Supervisor → Staff."),
+N("Vocabulary","'Please send your CV to ___ if you want to apply for a job.'",["HR","GA","IT","Marketing"],"HR mengurus rekrutmen."),
+N("Vocabulary","Which department pays invoices and prepares the budget?",["Finance","IT","GA","Marketing"],"Finance = keuangan dan anggaran."),
+N("Vocabulary","'The meeting room needs cleaning and the lamp is broken.' Contact ___.",["GA","Finance","IT","HR"],"GA = fasilitas kantor."),
+N("Vocabulary","'My email password does not work.' Contact ___.",["IT","HR","Marketing","Finance"],"IT = masalah akun/komputer."),
+N("Vocabulary","A person who answers calls and greets visitors at the front desk is a ___.",["receptionist","director","accountant","technician"],"Receptionist = resepsionis."),
+N("Vocabulary","A person who repairs machines and equipment is a ___.",["technician","receptionist","accountant","recruiter"],"Technician = teknisi."),
+N("Vocabulary","A person who manages financial records, taxes and reports is an ___.",["accountant","engineer","receptionist","driver"],"Accountant = akuntan."),
+N("Vocabulary","'GA' stands for ___.",["General Affairs","General Accounting","Great Administration","Government Affairs"],"GA = General Affairs."),
+N("Vocabulary","In the hierarchy, a supervisor is ___ a staff member.",["above","below","behind","outside"],"Supervisor berada di atas staff."),
+// ===== SESI 2 =====
+N("Numbers","How do you say 'May 1st' in English?",["May the first","May one","May firstth","May ones"],"Tanggal memakai ordinal: May (the) first."),
+N("Numbers","How do you say the digit 0 in a phone number?",["Oh or zero","Nol","Null","Ten"],"0 dibaca 'oh' atau 'zero'."),
+N("Numbers","'555' in a phone number is often said as ___.",["triple five","five hundred fifty-five","fifty-five five","five-fifteen"],"Tiga angka kembar = triple."),
+N("Numbers","Which date is written correctly in English?",["Monday, 14 July","monday, 14 july","Monday, 14 july","monday, 14 July"],"Hari dan bulan diawali huruf kapital."),
+N("Numbers","Which is the correct ordinal for 22?",["twenty-second","twenty-twoth","twenty-twond","twenty-two"],"22 → twenty-second."),
+N("Numbers","Which is the correct ordinal for 3?",["third","threeth","thirth","three"],"3 → third."),
+N("Prep.Time","'Our next meeting is ___ the 15th.'",["on","in","at","by"],"on + tanggal."),
+N("Prep.Time","'The office opens ___ 7.30 and closes ___ 4 PM.'",["at / at","on / on","in / in","by / on"],"at + jam."),
+N("Prep.Time","'The new system will start ___ 2027.'",["in","on","at","by"],"in + tahun."),
+N("Prep.Time","'I usually have lunch ___ 12 o'clock.'",["at","on","in","by"],"at + jam."),
+N("Prep.Time","'We have a team meeting ___ Tuesday morning.'",["on","at","in","by"],"on + hari (termasuk bagian harinya)."),
+N("Prep.Time","'Please reply ___ tomorrow evening.' (deadline)",["by","until","in","on"],"by = batas akhir."),
+N("Prep.Time","'The shop is closed ___ night.'",["at","in","on","by"],"at night (ungkapan tetap)."),
+N("Prep.Time","'The store stays open ___ 9 PM.' (sampai jam 9)",["until","by","in","on"],"until = berlangsung sampai."),
+N("Prep.Time","'He will arrive ___ ten minutes.' (dalam waktu 10 menit)",["in","at","on","by"],"in + durasi."),
+N("Prep.Time","'She was born ___ August.'",["in","on","at","by"],"in + bulan."),
+N("Prep.Time","'The workshop is ___ Saturday, 12 October.'",["on","in","at","by"],"on + hari/tanggal."),
+N("Prep.Time","'Finish the draft ___ the meeting starts.' (sebelum)",["before","until","by","in"],"before + klausa."),
+// ===== SESI 3 =====
+N("Articles","'She is ___ engineer at a big company.'",["an","a","the","some"],"engineer diawali vokal → an."),
+N("Articles","'I bought ___ umbrella yesterday.'",["an","a","the","some"],"umbrella diawali vokal → an."),
+N("Articles","'Could you pass me ___ stapler on the table?' (yang sama-sama terlihat)",["the","a","an","some"],"Spesifik → the."),
+N("Articles","'He has ___ one-hour meeting at 3.'",["a","an","the","some"],"'one' diawali bunyi /w/ (konsonan) → a."),
+N("Articles","'There is ___ MBA program at this university.'",["an","a","the","some"],"'MBA' dibaca em-bi-ei (bunyi vokal) → an."),
+N("Articles","'___ sun is very bright today.'",["The","A","An","Some"],"Hanya ada satu matahari → the."),
+N("Articles","'It is ___ interesting article.'",["an","a","the","some"],"interesting diawali vokal → an."),
+N("Articles","'She is ___ university student.'",["a","an","the","some"],"university diawali bunyi /y/ → a."),
+N("Articles","'I have ___ appointment with Mr. Lee at 10.'",["an","a","the","some"],"appointment diawali vokal → an."),
+N("Articles","'Where is ___ nearest bank?'",["the","a","an","any"],"Superlative selalu dengan the."),
+N("There is/are","'___ a lot of work to do today.'",["There is","There are","There have","There be"],"Work = uncountable → There is."),
+N("There is/are","'___ four people in the lift.'",["There are","There is","It are","There be"],"Four people = jamak → There are."),
+N("There is/are","'There ___ a problem with the network.'",["is","are","were","be"],"A problem = tunggal → is."),
+N("There is/are","'___ any questions?'",["Are there","Is there","Has there","Do there"],"Questions = jamak → Are there...?"),
+N("There is/are","'There ___ no coffee left.'",["is","are","were","have"],"Coffee = uncountable → is."),
+N("There is/are","'There ___ some files on my desk.'",["are","is","am","be"],"Files = jamak → are."),
+N("There is/are","Which sentence about the pantry is correct?",["There isn't any sugar in the pantry.","There aren't any sugar in the pantry.","There not is sugar in the pantry.","It isn't any sugar there."],"Sugar = uncountable → There isn't any."),
+N("There is/are","'Is there a bank near here?' Which short answer is correct?",["Yes, there is.","Yes, there are.","Yes, it is.","Yes, there does."],"Jawaban singkat: Yes, there is."),
+N("Prep.Place","'The fire exit is ___ the left of the door.'",["on","in","at","between"],"on the left/right."),
+N("Prep.Place","'The cafeteria is ___ the ground floor.'",["on","in","at","by"],"on + lantai."),
+N("Prep.Place","'Meet me ___ the reception desk.'",["at","in","on","between"],"at = titik tertentu."),
+N("Prep.Place","'The printer is ___ my desk and the wall.'",["between","behind","on","in"],"between = di antara dua benda."),
+N("Prep.Place","'There is a poster ___ the wall.'",["on","in","at","between"],"on = menempel di permukaan."),
+N("Prep.Place","'The bookshelf is ___ the window.' (di samping)",["next to","between","in front","behind of"],"next to = di samping."),
+N("Prep.Place","'The security guard stands ___ the main gate.' (di depan gerbang)",["in front of","behind of","between","next of"],"in front of = di depan."),
+N("Prep.Place","'She is waiting ___ the bus stop.'",["at","on","in","between"],"at = titik lokasi."),
+N("Prep.Place","'The documents are ___ the second drawer.'",["in","on","at","by"],"in = di dalam."),
+N("Prep.Place","'The parking lot is ___ the building.' (di belakang)",["behind","between","in","on"],"behind = di belakang."),
+N("Directions","Which instruction means 'belok kiri'?",["Turn left","Turn right","Go straight","Go back"],"Turn left = belok kiri."),
+N("Directions","'___ the stairs to the third floor.'",["Go up","Go over","Go at","Go in"],"Go up the stairs = naik tangga."),
+N("Directions","'The pharmacy is ___ the right, next to the bank.'",["on","at","in","to"],"on the right."),
+N("Directions","'Go ___ the lobby and take the lift.'",["through","between","at","on"],"go through = melewati/menembus."),
+N("Directions","'Excuse me, how do I get ___ the post office?'",["to","at","in","for"],"get to + tempat."),
+N("Directions","'It is at the end of the corridor.' This means ___.",["It is in the last part of the corridor.","It is in the middle.","It is next to the door.","It is behind the building."],"at the end of = di ujung."),
+// ===== SESI 4 =====
+N("Present","'Our manager ___ lunch with the team on Fridays.'",["has","have","haves","having"],"3rd person: have → has."),
+N("Present","'The bus ___ at 7.15 every morning.'",["leaves","leave","leaving","is leave"],"Jadwal rutin, 3rd person → leaves."),
+N("Present","'We ___ our emails after lunch.'",["check","checks","checking","is check"],"We → check."),
+N("Present","'Does Mr. Tan ___ coffee?'",["drink","drinks","drank","drinking"],"Setelah does → V1."),
+N("Present","'My sister ___ in a bank.'",["works","work","working","is work"],"My sister → works."),
+N("Present","'They ___ not use the old software anymore.'",["do","does","are","is"],"They → do not."),
+N("Present","'She ___ English at an institute on Saturdays.'",["teaches","teachs","teach","teaching"],"teach → teaches (-ch + es)."),
+N("Present","'How often ___ the printer need maintenance?'",["does","do","is","are"],"The printer = 3rd person → does."),
+N("Present","'The company ___ new staff every year.'",["hires","hire","hiring","hired"],"The company → hires."),
+N("Present","'He ___ understand the instructions.' (negatif)",["doesn't","don't","isn't","not"],"He → doesn't + V1."),
+N("Present","'I ___ the monthly report on the last Friday.' (submit)",["submit","submits","submitting","am submit"],"I → submit."),
+N("Present","Which negative sentence is correct?",["She doesn't like spicy food.","She don't like spicy food.","She doesn't likes spicy food.","She not like spicy food."],"doesn't + V1."),
+N("Present","Which sentence places the adverb of frequency correctly?",["He is always on time.","He always is on time.","Always he is on time.","He is on always time."],"Frekuensi: setelah to be."),
+N("Present","'___ the receptionist speak Japanese?'",["Does","Do","Is","Are"],"The receptionist = 3rd person → Does."),
+N("Collocations","Which verb goes with 'a phone call'?",["make","do","write","sign"],"make a phone call."),
+N("Collocations","Which verb goes with 'an email'?",["send","hold","sign","visit"],"send an email."),
+N("Collocations","Which is correct?",["attend a training","hold to a training","write a training","pick a training"],"attend a training."),
+N("Collocations","'We need to ___ the deadline.'",["meet","do","hold","sign"],"meet a deadline."),
+N("Collocations","'Please ___ the form and return it.'",["fill out","fill off","fill away","fill over"],"fill out a form."),
+N("Collocations","'I will ___ a client in Bandung.'",["visit","write","hold","answer"],"visit a client."),
+// ===== SESI 5 =====
+N("Modal","'___ you send me the file, please?' (sopan)",["Could","Must","Shall","Might"],"Could you...? = permintaan sopan."),
+N("Modal","'Students ___ bring their ID cards to the exam.' (aturan)",["must","might","would","may"],"Kewajiban → must."),
+N("Modal","'It's a holiday. We ___ work today.' (tidak wajib)",["don't have to","mustn't","shouldn't","can't"],"don't have to = tidak wajib."),
+N("Modal","'Excuse me, ___ I use your phone?'",["May","Must","Would","Shall"],"May I...? = izin."),
+N("Modal","'You ___ not drive after drinking alcohol. It is dangerous.'",["must","might","would","could"],"must not = dilarang keras."),
+N("Modal","'I'm sorry, I ___ come to the party. I have an exam.' (tidak bisa)",["can't","don't have to","mustn't","shouldn't"],"can't = tidak bisa."),
+N("Modal","'___ we start the meeting now?'",["Shall","Must","Might","Would to"],"Shall we...? = usulan."),
+N("Modal","'She ___ speak three languages.' (kemampuan)",["can","must","shall","might"],"can = kemampuan."),
+N("Modal","'He ___ be late because of the traffic, but I'm not sure.'",["might","shall","would like","has to"],"might = kemungkinan kecil."),
+N("Modal","'I ___ like some water, please.'",["would","will","must","can't"],"I would like = cara sopan meminta."),
+N("Modal","'You ___ smoke inside the building.' (tanda larangan)",["must not","don't have to","might not","need not"],"must not = dilarang."),
+N("Modal","'I ___ to finish this by Friday.' (aturan dari manajer)",["have","has","am","do"],"I have to + V1."),
+N("Modal","Which sentence with 'can' is correct?",["She can drive a truck.","She can drives a truck.","She cans drive a truck.","She can to drive a truck."],"Setelah modal → V1 tanpa to dan -s."),
+N("Modal","Which is the MOST polite request?",["Would you mind helping me?","Help me.","You help me!","Can you help? now"],"Would you mind + V-ing = paling sopan."),
+N("Modal","Which sentence is the NEGATIVE of 'He can swim'?",["He can't swim.","He doesn't can swim.","He not can swim.","He can't swims."],"can't + V1."),
+N("Modal","'You ___ wear a tie. It is optional.'",["don't have to","mustn't","can't","shouldn't"],"Opsional → don't have to."),
+N("Modal","'___ you like to join us for dinner?'",["Would","Will","Must","Might"],"Would you like to...? = ajakan sopan."),
+N("Modal","'You look pale. You ___ rest for a while.'",["should","mustn't","can't","won't"],"should = saran."),
+// ===== SESI 6 =====
+N("Phone","'Good afternoon, ABC Company. ___ I help you?'",["How may","How do","What do","Why may"],"Salam telepon: How may I help you?"),
+N("Phone","'May I speak ___ Mr. Hadi, please?'",["to","at","on","by"],"speak to + orang."),
+N("Phone","'I'm sorry, he is not available. Can I ___ a message?'",["take","do","hold","put"],"take a message."),
+N("Phone","'Please ___ the line. I'll connect you.'",["hold","hang","break","drop"],"hold the line = tunggu di telepon."),
+N("Phone","'The line is busy. I'll try again ___.'",["later","lately","latter","latest"],"later = nanti."),
+N("Phone","'Can you repeat that? I didn't ___ your name.'",["catch","hold","pick","put"],"catch = menangkap/mendengar jelas."),
+N("Phone","'Sorry, I think you have the wrong ___.'",["number","name","address","message"],"wrong number = salah sambung."),
+N("Phone","How do you say 'www.abc.com'?",["www dot abc dot com","www point abc point com","www dash abc dash com","www at abc at com"],". = dot."),
+N("Phone","'Could you spell your name, please?' The caller wants you to ___.",["say each letter one by one","say your address","hang up","speak faster"],"Spell = mengeja huruf demi huruf."),
+N("Phone","'Please hold the line.' What should the caller do?",["wait on the phone","call again tomorrow","hang up","speak louder"],"Hold the line = tunggu di telepon."),
+N("Phone","'Could you speak more slowly, please?' What is the problem?",["The listener cannot follow the speaker","The line is busy","The caller has the wrong number","The call is finished"],"Minta bicara lebih pelan = sulit mengikuti."),
+N("Phone","Which phrase ends a phone call politely?",["Thank you for calling. Goodbye!","Okay, bye, whatever.","Hang up now.","Stop calling."],"Penutup sopan."),
+N("Pres.Cont","'Listen! Someone ___ at the door.'",["is knocking","knocks","knock","knocked"],"Aksi yang sedang berlangsung."),
+N("Pres.Cont","'I can't talk now. I ___ a presentation.'",["am giving","give","gives","gave"],"now → am + V-ing."),
+N("Pres.Cont","'Why ___ you ___ so loudly?'",["are / talking","do / talking","is / talk","are / talk"],"are + you + V-ing."),
+N("Pres.Cont","'The technicians ___ the server right now.'",["are fixing","fix","fixes","is fixing"],"Technicians = jamak → are fixing."),
+N("Pres.Cont","Which sentence uses a stative verb correctly?",["I know the answer.","I am knowing the answer.","I am knowing answer.","I knowing the answer."],"know = stative → tanpa -ing."),
+N("Pres.Cont","'She ___ not listening. She is checking her phone.'",["is","are","does","do"],"She → is not."),
+N("Pres.Cont","Which time expression usually goes with the Present Continuous?",["at the moment","every day","usually","last week"],"at the moment = sedang."),
+N("Pres.Cont","'They ___ for the CEO in the lobby now.'",["are waiting","waits","is waiting","wait"],"They → are waiting."),
+// ===== SESI 7 pronouns =====
+N("Pronoun","'Ms. Rita called. ___ wants to reschedule.'",["She","Her","Hers","Herself"],"Subjek perempuan → She."),
+N("Pronoun","'Please tell ___ about the new rule.' (kami)",["us","we","our","ourselves"],"Object pronoun → us."),
+N("Pronoun","'This laptop is not mine. It is ___.' (milik mereka)",["theirs","their","them","themselves"],"theirs = possessive pronoun."),
+N("Pronoun","'The manager introduced ___ to the new team.' (dirinya sendiri)",["himself","him","his","he"],"Reflexive: himself."),
+N("Pronoun","'I made this coffee ___.' (sendiri)",["myself","me","mine","my"],"Reflexive: myself."),
+N("Pronoun","'Mr. Joko lost ___ keys.'",["his","him","he","himself"],"Possessive adjective + noun → his keys."),
+N("Pronoun","'Can you help ___ with this form?' (saya)",["me","I","my","mine"],"Object pronoun → me."),
+N("Pronoun","'The company changed ___ logo last year.'",["its","it's","itself","it"],"its = milik benda/perusahaan."),
+N("Pronoun","'The red pen is ___, not yours.' (milik saya)",["mine","my","me","myself"],"mine = possessive pronoun."),
+N("Pronoun","'She taught ___ to use the software.'",["herself","her","hers","she"],"Reflexive: herself."),
+N("Pronoun","'Are these your files?' 'No, they are ___.' (milik dia, perempuan)",["hers","her","she","herself"],"hers = possessive pronoun."),
+N("Pronoun","'Rina and I work together. ___ are in the same team.'",["We","Us","Our","Ours"],"Subjek jamak → We."),
+// ===== SESI 8 =====
+N("Email","Which closing is formal?",["Best regards,","See you,","Later,","Ciao,"],"Best regards = formal."),
+N("Email","'Hi Dani, ... Thanks, Rina' is a(n) ___ email.",["informal","very formal","legal","anonymous"],"Hi + Thanks = informal."),
+N("Email","In an email, an 'attachment' is ___.",["a file you add to the email","the main recipient","a copy to others","the subject"],"Attachment = lampiran."),
+N("Email","'Please find attached the quotation.' means ___.",["the quotation is in the attachment","the quotation is cancelled","please write a quotation","please attach the receipt"],"Frasa umum untuk lampiran."),
+N("Email","Which sentence is appropriate in a formal email?",["I would like to request a meeting.","I want meeting now.","Give me a meeting.","Meeting, please now."],"Sopan dan lengkap."),
+N("Email","'Reply All' sends your answer to ___.",["everyone in To and CC","only the sender","only BCC","nobody"],"Reply All = semua penerima."),
+N("Email","'Dear Ms. Anita,' is usually closed with ___.",["Yours sincerely,","Yours faithfully,","Hugs,","Peace,"],"Tahu nama → Yours sincerely."),
+N("Email","Which capitalization is correct?",["I will visit Surabaya on Friday.","I will visit surabaya on friday.","i will visit Surabaya on Friday.","I will Visit Surabaya on Friday."],"Kota dan hari kapital."),
+N("Email","Which email line is too informal for a client?",["hey, send me the file asap lol","Dear Mr. Lee, could you send the file today?","Good morning, I am writing about the file.","Kindly send the file by 3 PM."],"Bahasa gaul tidak cocok untuk klien."),
+N("Email","'CC' is used to ___.",["send a copy to people who should know","hide a recipient","attach a file","write a subject"],"CC = Carbon Copy."),
+N("Email","'I look forward to hearing from you.' is used ___.",["at the end of an email","as a subject","as a greeting","as an attachment"],"Kalimat penutup."),
+N("Email","Which subject line is clear?",["Request: Meeting Schedule for 20 October","Hello!!","urgent urgent","Re: Re: Re: ??"],"Spesifik dan informatif."),
+// ===== SESI 9 =====
+N("Future","'I'm tired. I think I ___ go home early.'",["will","am going to","going to","shall to"],"Keputusan spontan/opini → will."),
+N("Future","'We ___ launch the new product in March. The date is fixed.'",["are going to","will to","is going","goes to"],"Rencana pasti → going to."),
+N("Future","'Look at the traffic! We ___ be late.'",["are going to","will to","is going to","go to"],"Bukti jelas → going to."),
+N("Future","'The coffee machine is empty. I ___ buy some now.'",["will","am going","going to","was"],"Keputusan spontan → will."),
+N("Future","'She ___ not attend the meeting tomorrow.'",["will","is","does","did"],"will not + V1."),
+N("Future","'Are you ___ to visit the factory next week?'",["going","will","go","gone"],"be + going to + V1."),
+N("Future","'I promise I ___ call you tonight.'",["will","would to","going to","shall to"],"Janji → will."),
+N("Future","'What ___ you ___ after the meeting?'",["are / going to do","will / doing","do / going","are / will do"],"are + you + going to + V1."),
+N("Future","'I think it ___ be a great year for our company.'",["will","would to","is will","goes to"],"Prediksi/opini → will."),
+N("Future","Which sentence shows a PLAN?",["I am going to take an English course next month.","I will help you now.","It will rain maybe.","I'll answer the phone."],"Rencana → going to."),
+N("Future","Which sentence shows a spontaneous DECISION?",["The printer is empty? I'll refill it.","I am going to move next week.","We are going to open a branch.","She is going to study abroad."],"Keputusan saat berbicara → will."),
+N("Future","Which is the correct question with will?",["Will you join the training?","Do you will join the training?","Will you to join the training?","You will join the training?"],"Will + S + V1?"),
+N("Future","'We ___ meet the client at 10 AM tomorrow. It is on my calendar.'",["are going to","will to","goes to","are go to"],"Sudah dijadwalkan → going to."),
+N("Future","Which time expression is typical for the future?",["next week","last week","yesterday","ago"],"next week = masa depan."),
+// ===== SESI 10 =====
+N("Admin","Which document lists items, prices, and the total to be paid?",["Invoice","Agenda","Minutes","Memo"],"Invoice = tagihan."),
+N("Admin","'Minutes of meeting' are ___.",["notes that record what was discussed","a list of attendees only","a very short meeting","a lunch menu"],"Minutes = notulen."),
+N("Admin","A 'memo' is ___.",["a short internal note","a bank receipt","a long contract","a job interview"],"Memo = catatan internal singkat."),
+N("Admin","A 'purchase order' is sent ___.",["to a supplier to order goods","to a customer after payment","by HR to staff","to a doctor"],"PO = pesanan pembelian ke pemasok."),
+N("Admin","'Please pay the ___ within 30 days.' (tagihan)",["invoice","agenda","venue","attendee"],"Invoice = tagihan."),
+N("Admin","The place where a meeting is held is the ___.",["venue","agenda","minutes","quotation"],"Venue = tempat acara."),
+N("Admin","People who come to a meeting are the ___.",["attendees","venues","invoices","agendas"],"Attendees = peserta."),
+N("Admin","'Rp 50,000 off' is a ___.",["discount","receipt","tax","deposit"],"Discount = potongan harga."),
+N("Countable","'We need ___ more chairs for the training.'",["a few","a little","much","a bit of"],"Chairs countable → a few."),
+N("Countable","'There is only ___ time left.'",["a little","a few","many","several"],"Time uncountable → a little."),
+N("Countable","'How ___ coffee do you drink a day?'",["much","many","few","several"],"Coffee uncountable → how much."),
+N("Countable","'I have ___ good news for you.'",["some","a","many","few"],"News uncountable → some news."),
+N("Countable","'Can I give you ___ advice?'",["some","an","many","a few"],"Advice uncountable → some advice."),
+N("Countable","'There aren't ___ seats left.'",["many","much","a little","an"],"Seats countable, negatif → many."),
+N("Countable","'We have ___ equipment in the lab.'",["a lot of","many","several","a few"],"Equipment uncountable → a lot of."),
+N("Countable","Which of these nouns can take a plural -s?",["report","water","luggage","furniture"],"A report, two reports."),
+N("Countable","Which sentence about the staff is correct?",["The staff are very friendly.","The staffs are very friendly.","The staff is very friendlies.","Staff are very friend."],"staff tidak diberi -s; friendly adjective."),
+N("Countable","'___ money do we need for the project?'",["How much","How many","How few","How a lot"],"Money uncountable → how much."),
+// ===== SESI 11 =====
+N("SOP","'___ the door when you leave the lab.'",["Close","Closing","To close","Closes"],"Imperative = V1."),
+N("SOP","'___ enter without a mask.'",["Do not","Not","Doesn't","No"],"Do not + V1."),
+N("SOP","'Kindly ___ your visitor badge at the gate.'",["return","returning","to returned","returns"],"Kindly + V1."),
+N("SOP","'First, turn on the machine. ___, wait for the green light.'",["Next","Finally","At last","In the end"],"Langkah kedua → Next."),
+N("SOP","'___ finish this task before lunch.'",["Let's","Lets to","Let","Letting"],"Let's + V1 = ajakan."),
+N("SOP","'I suggest ___ a new supplier.'",["finding","to find","find","for find"],"suggest + V-ing."),
+N("SOP","Which sentence is an instruction?",["Wash your hands before work.","He washes his hands.","Washing is good.","They are washing."],"Instruksi = imperative."),
+N("SOP","'You should ___ the manual first.'",["read","reading","to read","reads"],"should + V1."),
+N("SOP","Which word shows the LAST step?",["Finally","First","Next","Then"],"Finally = langkah terakhir."),
+N("SOP","Which is a polite instruction?",["Please sign here.","Sign here!","Sign now.","You sign."],"Please + V1."),
+// ===== SESI 12 =====
+N("Deadline","'The report must be on my desk ___ Monday.' (paling lambat)",["by","until","since","during"],"by = batas akhir."),
+N("Deadline","'I'll be in the office ___ 5 PM, then I'll leave.'",["until","by","since","for"],"until = berlangsung sampai."),
+N("Deadline","'The project is ___ schedule; we need two more days.'",["behind","ahead of","on the dot","over"],"behind schedule = terlambat."),
+N("Deadline","'The meeting starts at 9 AM ___.' (tepat)",["on the dot","in the dot","at the dot","by dot"],"on the dot = tepat waktu."),
+N("Deadline","'EOD' means ___.",["end of day","end of delivery","early order date","each other day"],"EOD = End of Day."),
+N("Deadline","Task status 'in progress' means the task is ___.",["being worked on","finished","cancelled","not planned"],"in progress = sedang dikerjakan."),
+N("Deadline","Task status 'pending' means ___.",["waiting to be done","already finished","fully paid","deleted"],"pending = belum selesai."),
+N("Deadline","'You ___ submit it today; tomorrow is also fine.'",["don't have to","mustn't","can't","shouldn't"],"Tidak wajib hari ini."),
+N("Deadline","'You ___ be late for the safety briefing. It is compulsory.'",["mustn't","don't have to","might","may not"],"mustn't = dilarang/harus dihindari."),
+N("Deadline","'We finished ahead of schedule.' means we finished ___.",["earlier than planned","later than planned","exactly on plan","never"],"ahead of schedule = lebih cepat."),
+// ===== SESI 13-14 =====
+N("Past","'The CEO ___ to the factory last week.' (come)",["came","comed","come","comes"],"come → came."),
+N("Past","'I ___ the news on TV last night.' (see)",["saw","seen","seed","sawed"],"see → saw."),
+N("Past","'She ___ me about the delay yesterday.' (tell)",["told","telled","tell","tolled"],"tell → told."),
+N("Past","'He ___ to the station because he was late.' (run)",["ran","runned","run","running"],"run → ran."),
+N("Past","'We ___ the supplier in cash last month.' (pay)",["paid","payed","pay","payd"],"pay → paid."),
+N("Past","'The training ___ at 9 AM yesterday.' (begin)",["began","begun","beginned","begins"],"begin → began."),
+N("Past","'They ___ the old files for ten years.' (keep)",["kept","keeped","keep","kepted"],"keep → kept."),
+N("Past","'I ___ my password this morning.' (forget)",["forgot","forgotten","forgeted","forget"],"forget → forgot."),
+N("Past","'She ___ the invoice, but she didn't send it.' (prepare)",["prepared","prepare","preparred","preparing"],"Regular: prepare → prepared."),
+N("Past","'The team ___ hard to finish the project.' (work)",["worked","work","workt","works"],"Regular: work → worked."),
+N("Past","'He ___ the door and left.' (close)",["closed","closeed","close","closing"],"close → closed (+d)."),
+N("Past","'We ___ the manager about the problem.' (inform)",["informed","inform","informmed","informing"],"Regular: inform → informed."),
+N("Past","'Did you ___ the email?' (read)",["read","reads","reading","readed"],"Setelah did → V1."),
+N("Past","'I didn't ___ the instruction.' (understand)",["understand","understood","understanded","understands"],"didn't + V1."),
+N("Past","'___ they win the contract?'",["Did","Do","Were","Does"],"Did + S + V1?"),
+N("Past","'He ___ at the office until 8 PM last night.' (stay)",["stayed","staied","stay","stays"],"Regular: stay → stayed."),
+N("Past","'She ___ happy when she got the news.' (be)",["was","were","is","been"],"She → was."),
+N("Past","'We ___ at the airport at 6 AM.' (be)",["were","was","are","be"],"We → were."),
+N("Past","Which past negative sentence is correct?",["He didn't go to work yesterday.","He didn't went to work yesterday.","He not go to work yesterday.","He doesn't went to work yesterday."],"didn't + V1."),
+N("Past","Which question is correct?",["What time did the meeting start?","What time the meeting started?","What time did the meeting started?","What time does the meeting started?"],"Wh + did + S + V1?"),
+N("Past","'How long ___ you work there?'",["did","do","were","have"],"Past question → did + V1."),
+N("Past","The -ed in 'wanted' is pronounced ___.",["/ɪd/","/t/","/d/","silent"],"Setelah bunyi /t/ atau /d/ → /ɪd/."),
+N("Past","The -ed in 'talked' is pronounced ___.",["/t/","/d/","/ɪd/","silent"],"Setelah bunyi voiceless (k) → /t/."),
+N("Past","The -ed in 'cleaned' is pronounced ___.",["/d/","/t/","/ɪd/","/ed/"],"Setelah bunyi voiced (n) → /d/."),
+// ===== SESI 15 =====
+N("Recount","Which sentence is the RE-ORIENTATION?",["In conclusion, it was a useful trip.","Yesterday we arrived at 8 AM.","First, we met the manager.","Then, we toured the plant."],"Re-orientation = penutup/komentar."),
+N("Recount","'Last Saturday, my team visited a warehouse in Bekasi.' Which part is this?",["Orientation","Series of events","Re-orientation","Title"],"Siapa, kapan, di mana → Orientation."),
+N("Recount","A recount text mainly tells ___.",["what happened in the past","how to do something","how things work","what something is like"],"Recount = kejadian lampau."),
+N("Recount","Which verb form is most common in a recount?",["Past tense","Future tense","Imperative","Present continuous"],"Past tense."),
+N("Recount","A procedure text is organized by ___.",["steps","a conflict and resolution","past events with a personal comment","an opinion"],"Procedure = langkah-langkah."),
+N("Recount","Which text type explains how to make something?",["Procedure","Report","Recount","Narrative"],"Procedure."),
+N("Recount","Which sentence is typical of a Descriptive text?",["The office is spacious and bright.","First, open the box.","Yesterday I met a client.","Once upon a time, a king lived."],"Descriptive = ciri-ciri, present tense."),
+N("Recount","Which text type has a problem (complication) and a solution?",["Narrative","Procedure","Report","Descriptive"],"Narrative punya conflict & resolution."),
+// ===== OSASCOMP =====
+N("OSASCOMP","Choose the correct order of Opinion, Size, and Age.",["a nice big new house","a new big nice house","a big nice new house","a nice new big house"],"Opinion → Size → Age."),
+N("OSASCOMP","Choose the correct order of Size, Shape, and Color.",["a small square blue box","a blue small square box","a square small blue box","a small blue square box"],"Size → Shape → Color."),
+N("OSASCOMP","'an ___ car'",["old red Japanese","Japanese red old","red old Japanese","old Japanese red"],"Age → Color → Origin."),
+N("OSASCOMP","Choose the correct order of Size, Color, and Material.",["two large black metal cabinets","two metal large black cabinets","two black large metal cabinets","two large metal black cabinets"],"Size → Color → Material."),
+N("OSASCOMP","Which word describes MATERIAL?",["cotton","tiny","modern","German"],"cotton = bahan."),
+N("OSASCOMP","Which word describes ORIGIN?",["German","cotton","tiny","modern"],"German = asal."),
+N("OSASCOMP","Which word describes AGE?",["ancient","square","plastic","Chinese"],"ancient = usia."),
+N("OSASCOMP","Which phrase is INCORRECT?",["a leather brown old bag","an old brown leather bag","a lovely small round table","a tall young Indonesian man"],"Seharusnya: an old brown leather bag."),
+// ===== SESI 16 =====
+N("Conjunction","'The system crashed, ___ we lost all the data.' (akibat)",["so","because","but","or"],"SO = akibat."),
+N("Conjunction","'We lost the data ___ the system crashed.'",["because","so","but","and"],"Alasan → because."),
+N("Conjunction","'The offer is good, ___ the price is too high.'",["but","because","so","and"],"Kontras → but."),
+N("Conjunction","'He opened the file ___ read the report.'",["and","because","but","if"],"Dua aksi berurutan → and."),
+N("Conjunction","'The client was angry ___ the delivery was late.'",["because","so","but","or"],"Alasan → because."),
+N("Conjunction","'The printer is broken, ___ please use the one on the third floor.'",["so","because","but","although"],"Akibat/tindak lanjut → so."),
+N("Conjunction","Which conjunction connects an action with its RESULT?",["so","because","but","and"],"SO = hasil."),
+N("Conjunction","'It was raining heavily, ___ the event was moved indoors.'",["so","because","but","or"],"Akibat → so."),
+N("Apology","'I am sorry ___ the late reply.'",["for","to","at","of"],"sorry for + noun."),
+N("Apology","'Please accept my sincere ___.'",["apologies","apologize","apologetic","apologized"],"my apologies = noun."),
+N("Apology","'It won't happen ___.'",["again","before","already","yet"],"It won't happen again."),
+N("Apology","Which reply would a colleague use (casual)?",["No worries.","Please ensure it is corrected.","Let's move forward from here.","Thank you for informing me."],"No worries = santai."),
+N("Apology","Which sentence gives a REASON?",["I made an error because I was rushing.","I will fix it now.","I'm so sorry.","It won't happen again."],"Alasan memakai because."),
+N("Apology","Which sentence is a SOLUTION?",["I will resend the correct document now.","I am sorry.","It was a misunderstanding.","I was not aware of the deadline."],"Solusi = tindakan."),
+N("Apology","'I should have ___ more carefully.'",["checked","check","checking","checks"],"should have + V3."),
+N("Apology","Which phrase is MOST formal?",["I sincerely apologize for the inconvenience.","Oops, my bad!","Sorry lah.","My bad, bro."],"Formal dan profesional."),
+N("Softener","'I'm ___ the meeting is cancelled.'",["afraid","afraidly","fear","fearing"],"I'm afraid + klausa."),
+N("Softener","'The file ___ to be damaged.'",["seems","seem","seeming","is seems"],"The file → seems."),
+N("Softener","Which sentence is softer?",["I just need two minutes of your time.","I need two minutes.","Give me two minutes.","Two minutes now."],"just melembutkan permintaan."),
+N("Softener","'___, the deadline has passed.' (kabar buruk)",["Unfortunately","Unfortunate","Fortunately","Misfortune"],"Unfortunately = sayangnya."),
+N("Softener","'I am a ___ confused about the instructions.'",["bit","many","few","much"],"a bit + adjective."),
+N("Softener","Which word makes a problem sound smaller?",["little","huge","serious","terrible"],"a little."),
+N("Softener","Which is NOT a softener?",["definitely","just","seem","I'm afraid"],"definitely menguatkan, bukan melembutkan."),
+N("Softener","'It ___ that we have a problem with the server.'",["seems","seem","is seeming","seeming"],"It seems that + klausa."),
+N("Prob.Vocab","'Sorry for the ___. I used the wrong date.'",["mistake","insight","concern","setback"],"mistake = kesalahan."),
+N("Prob.Vocab","'There was a ___ about the time; I thought it was 10, but it was 9.'",["misunderstanding","setback","insight","feedback"],"Misunderstanding = salah paham."),
+N("Prob.Vocab","'We had a small ___ because the supplier was late.'",["setback","insight","feedback","input"],"Setback = hambatan."),
+N("Prob.Vocab","'Thanks for your ___ on my draft. I will revise it.'",["feedback","oversight","setback","fault"],"Feedback = evaluasi."),
+N("Prob.Vocab","'Before we decide, we need everyone's ___.'",["input","fault","oversight","setback"],"Input = ide/pendapat."),
+N("Prob.Vocab","'Do you have any ___ for improving the process?'",["suggestions","faults","setbacks","confusions"],"Suggestion = saran."),
+N("Prob.Vocab","'It was my ___. I didn't read the email.'",["fault","insight","input","suggestion"],"Fault = kesalahan/tanggung jawab."),
+N("Prob.Vocab","'I apologize for the ___ caused by the delay.'",["inconvenience","insight","oversight","concern"],"inconvenience = ketidaknyamanan."),
+// ===== SESI 17 =====
+N("Comp.Vocab","'We can ___ the damaged chair with a new one.'",["replace","waive","investigate","expedite"],"Replace = mengganti."),
+N("Comp.Vocab","'The customer will get a full ___ to her credit card.'",["refund","upgrade","warranty","gift"],"Refund = pengembalian uang."),
+N("Comp.Vocab","'You can use this ___ on your next purchase.' (kupon)",["voucher","refund","repair","fee"],"Voucher = kupon belanja."),
+N("Comp.Vocab","'We will ___ the delivery fee as a gesture of goodwill.'",["waive","repair","exchange","investigate"],"Waive = membebaskan biaya."),
+N("Comp.Vocab","'We moved your seat to business class at no extra cost.' This is a ___.",["free upgrade","refund","discount","warranty"],"Free upgrade."),
+N("Comp.Vocab","'Our team will ___ the cause of the problem.'",["investigate","waive","compensate","expedite"],"Investigate = menyelidiki."),
+N("Comp.Vocab","'I will ___ that your request is handled today.'",["ensure","waive","expedite","refund"],"Ensure = memastikan."),
+N("Comp.Vocab","'We can ___ the process by sending it overnight.'",["expedite","investigate","compensate","arrange"],"Expedite = mempercepat."),
+N("Comp.Vocab","An 'extended warranty' gives ___.",["longer protection","a lower price","a refund","a new product"],"Perlindungan lebih lama."),
+N("Comp.Vocab","'Complimentary' means ___.",["free of charge","very expensive","broken","delayed"],"Complimentary = gratis."),
+N("Conditional","'If you press this key, the screen ___.'",["turns on","turned on","is turn on","turning on"],"Zero conditional: Present Simple."),
+N("Conditional","'When the temperature drops below 0°C, water ___.'",["freezes","freeze","froze","freezing"],"Fakta ilmiah → freezes."),
+N("Conditional","'If I drink coffee late, I ___ sleep.'",["can't","couldn't","didn't can","not"],"Kebiasaan/fakta → can't."),
+N("Conditional","'If customers ___ the button, the system sends a confirmation.'",["click","will click","clicked","clicking"],"If-clause: Present Simple."),
+N("Conditional","'If the sun ___, the plants grow.'",["shines","shine","will shine","shone"],"Fakta alam → Present Simple."),
+N("Conditional","Which sentence is TRUE for all time (zero conditional)?",["If you heat oil, it gets hot.","If it rains tomorrow, I will stay.","If I were rich, I would travel.","If he had studied, he would have passed."],"Zero = fakta umum."),
+N("Conditional","'If the supplier ___ late, we will cancel the order.'",["is","will be","was","being"],"If-clause: Present Simple."),
+N("Conditional","'If you ___ your password, we will reset it.'",["forget","will forget","forgot","forgetting"],"If + Present Simple."),
+N("Conditional","'I ___ call you if I get the results.'",["will","would","did","am"],"Main clause: will + V1."),
+N("Conditional","'If the weather ___ bad on Sunday, we will cancel the trip.'",["is","will be","was","being"],"Tanpa will di If-clause."),
+N("Conditional","'We ___ send a technician if the problem continues.'",["will","would","did","are"],"will + V1."),
+N("Conditional","'If you ___ now, you can get a 10% discount.'",["order","will order","ordered","ordering"],"If + Present Simple."),
+N("Conditional","Which sentence is a promise?",["If you wait, I will check it for you.","If water boils, it evaporates.","If I were you, I would wait.","If I had waited, I would have seen it."],"First conditional = janji."),
+N("Conditional","'If we don't finish today, we ___ it tomorrow.'",["will continue","would continued","continued","continuing"],"will + V1."),
+N("Conditional","Which sentence breaks the rule for the If-clause?",["If I will see him, I tell him.","If I see him, I will tell him.","If I see him, I can tell him.","I will tell him if I see him."],"Jangan 'will' di If-clause."),
+N("Conditional","'Ask me ___ you need help.'",["if","because","so","but"],"if = jika."),
+N("Clause","'when the meeting ended' is a ___.",["dependent clause","independent clause","noun phrase","sentence"],"Ada S+P tapi tidak berdiri sendiri."),
+N("Clause","'The system works well.' is an ___.",["independent clause","phrase","dependent clause","adverb"],"Bisa berdiri sendiri."),
+N("Clause","'In the morning' is a ___.",["prepositional phrase","clause","sentence","verb"],"Frasa preposisi."),
+N("Clause","'She called the client, and he replied.' is a ___ sentence.",["compound","simple","complex","fragment"],"Dua independent clause + and."),
+N("Clause","'Although it was late, we finished the report.' is a ___ sentence.",["complex","simple","compound","fragment"],"Dependent + independent clause."),
+N("Clause","'The new manager arrived.' is a ___ sentence.",["simple","compound","complex","phrase"],"Satu independent clause."),
+N("Functional","'I completely understand your ___, and here is what I propose.'",["frustration","frustrate","frustrated","frustrating"],"your + noun."),
+N("Functional","'Allow me to personally ___ care of this for you.'",["take","make","do","hold"],"take care of."),
+N("Functional","'Option A is a refund; Option B is a voucher. ___ would you prefer?'",["Which","Who","Where","Why"],"Menawarkan pilihan → Which would you prefer?"),
+N("Functional","'Would you be willing to accept a store voucher ___ cash?'",["instead of","because of","in front of","next to"],"instead of = sebagai pengganti."),
+N("Functional","'Thank you for ___ this to our attention.'",["bringing","bring","brought","bringed"],"for + V-ing."),
+N("Functional","'Could you please hold ___ one moment?'",["for","at","by","on"],"for one moment."),
+N("Functional","'Please give me just a moment while I ___ into this.'",["look","see","go","take"],"look into = menyelidiki."),
+N("Functional","'I'll send you a confirmation email ___ the call.'",["after","by","at","in"],"after the call."),
+N("Functional","'I have escalated this to our specialist team' means ___.",["I sent the issue to a higher team","I fixed it myself","I ignored it","I closed it"],"Escalate = naikkan ke level lebih tinggi."),
+N("Functional","Step 4 of the 5-Step Resolution Framework is to ___.",["add a sweetener","check agreement","apologize only","end the call"],"Step 4 = sweetener."),
+// ===== SESI 18 =====
+N("Adjective","'The delivery was ___. It arrived two days after the deadline.'",["late","punctual","sudden","gradual"],"late = terlambat."),
+N("Adjective","'Our new supplier is very ___. They always deliver on time.'",["reliable","faulty","vague","sudden"],"reliable = dapat diandalkan."),
+N("Adjective","'Please keep this ___ document safe. Do not share it.'",["confidential","public","routine","mild"],"confidential = rahasia."),
+N("Adjective","'The instructions are ___. Nobody understands them.'",["vague","clear","punctual","accurate"],"vague = tidak jelas."),
+N("Adjective","'A ___ check means checking every detail.'",["thorough","superficial","vague","sudden"],"thorough = menyeluruh."),
+N("Adjective","The opposite of 'public' is ___.",["confidential","routine","gradual","sturdy"],"public ↔ confidential."),
+N("Adjective","The opposite of 'routine' is ___.",["urgent","mild","sturdy","accurate"],"routine ↔ urgent."),
+N("Adjective","The opposite of 'flawless' is ___.",["defective","accurate","reliable","safe"],"flawless ↔ defective."),
+N("Adjective","The opposite of 'safe' is ___.",["risky","sturdy","punctual","clear"],"safe ↔ risky."),
+N("Adjective","'The damage is ___, so we must stop production.'",["severe","mild","routine","superficial"],"severe = parah."),
+N("Adjective","'There was a ___ power cut during the test.'",["sudden","gradual","routine","punctual"],"sudden = tiba-tiba."),
+N("Adjective","'The ___ equipment needs careful handling.'",["fragile","sturdy","flawless","routine"],"fragile = mudah rusak."),
+N("Adverb","'She answered the questions ___.' (clear)",["clearly","clear","clearness","clearer"],"Menjelaskan verb → adverb."),
+N("Adverb","'Please talk ___ to the customers.' (polite)",["politely","polite","politeness","more polite"],"adverb: politely."),
+N("Adverb","'The printer works ___.' (perfect)",["perfectly","perfect","perfection","more perfect"],"adverb: perfectly."),
+N("Adverb","'He solved the problem ___ and easily.' (quick)",["quickly","quick","quicker","quickness"],"adverb: quickly."),
+N("Adverb","'The technician checked the machine ___.' (careful)",["carefully","careful","care","more careful"],"adverb: carefully."),
+N("Adverb","'They worked ___ all night.' (hard)",["hard","hardly","hardily","hardness"],"hard = adverb tak beraturan."),
+N("Adverb","'The bus came ___, so we missed the start.' (late)",["late","lately","latter","lateness"],"late = adverb (bentuk sama)."),
+N("Adverb","'The team performed ___ in the test.'",["well","good","goodly","best"],"good → well."),
+N("Adverb","Which word is an ADVERB?",["quickly","quick","quickness","quicken"],"-ly = adverb."),
+N("Adverb","Which of these is an adverb of manner?",["professionally","professional","profession","professionals"],"professionally."),
+N("Adverb","Which sentence about driving is correct?",["He drove carefully.","He drove careful.","He drove care.","He drove carefulness."],"Setelah verb → adverb."),
+N("Adverb","The adverb of 'lucky' is ___.",["luckily","luckyly","luckly","lucky"],"y → ily."),
+N("Adverb","The adverb of 'noisy' is ___.",["noisily","noisyly","noisly","noisy"],"y → ily."),
+N("Adverb","The adverb of 'comfortable' is ___.",["comfortably","comfortablely","comfortabley","comfortable"],"-le → -ly."),
+N("Adverb","The adverb of 'terrible' is ___.",["terribly","terriblely","terribley","terrible"],"-le → -ly."),
+N("Adverb","The adverb of 'automatic' is ___.",["automatically","automaticly","automaticaly","automatic"],"-ic → -ically."),
+N("Adverb","The adverb of 'real' is ___.",["really","realy","reali","real"],"real + ly = really."),
+N("Adverb","'Costly' (cost + ly) is a(n) ___.",["adjective","adverb","verb","noun"],"Noun + ly = adjective."),
+N("Adverb","'Lovely' (love + ly) is a(n) ___.",["adjective","adverb","verb","noun"],"Noun + ly = adjective."),
+N("Placement","Which sentence with 'always' is correct?",["We always check the data twice.","We check the always data twice.","We check the data always twice.","We twice always check the data."],"Frekuensi sebelum main verb."),
+N("Placement","Which sentence with 'rarely' is correct?",["She is rarely late.","She rarely late is.","She is late rarely the.","Rarely she late is."],"Frekuensi setelah to be."),
+N("Placement","'Ica only checked the draft.' means ___.",["she did nothing else to the draft","only Ica checked it","she checked only the first page","she checked it twice"],"'Only' sebelum verb = hanya melakukan itu."),
+N("Placement","'Only the manager signed the contract.' means ___.",["nobody else signed it","he signed only one page","he only read it","he signed yesterday"],"Only + subjek = hanya dia."),
+N("Placement","'Dika couldn't even open the file.' suggests ___.",["opening it should be easy","opening it is very hard","Dika is an expert","Dika opened it"],"even setelah subjek = seharusnya mudah."),
+N("Placement","'Even the director agreed.' suggests ___.",["it was surprising that he agreed","he refused","he was absent","nobody agreed"],"Even + subjek = mengejutkan."),
+N("Placement","'I just finished the report.' means ___.",["a short time ago","only the report, nothing else","I will finish soon","I never finish"],"just sebelum verb = baru saja."),
+N("Placement","'I finished just the report.' means ___.",["only the report, nothing else","a short time ago","very late","very early"],"just sebelum object = hanya itu."),
+N("Placement","Which sentence with a manner adverb is correct?",["She opened the door quietly.","She opened quietly the door.","She quietly the door opened.","Quietly opened she the door."],"Jangan pisahkan verb dan object."),
+N("Placement","Which sentence with 'here tomorrow' is correct?",["We will meet here tomorrow.","We tomorrow will meet here.","Tomorrow we meet will here.","We will here meet tomorrow."],"Waktu/tempat di akhir kalimat."),
+];
 const CHEAT=[
 {h:"📋 Sesi 1 — To Be, Departments & Job Titles",r:[["To Be (+)","I am · He/She/It is · You/We/They are"],["To Be (-)","I am not · He is not (isn't) · They are not (aren't)"],["To Be (?)","Am I? · Is he/she? · Are they/you?"],["HR","Human Resources — hiring, salaries, training"],["Finance","Money, budgets, invoices, tax"],["IT","Computers, internet, software"],["Marketing","Selling products, promotions, ads"],["GA","General Affairs — building, office cars, AC"],["Hierarchy","Director/CEO → Manager → Supervisor → Staff → Assistant"]]},
 {h:"🔢 Sesi 2 — Numbers, Dates & Prepositions of Time",r:[["Phone numbers","Digit per digit: 0812 → 'Oh-eight-one-two'"],["Triple/Double","555 = 'triple five' · 77 = 'double seven'"],["Dates","Ordinal: May 1st = 'May First' · Oct 20 = 'October the twentieth'"],["AT","Waktu spesifik: at 9 AM · at noon · at midnight"],["ON","Hari/tanggal: on Monday · on October 10"],["IN","Bulan/tahun/durasi: in October · in 2026 · in 2 days"],["Months","January, February, March… selalu huruf kapital!"]]},
@@ -540,6 +1079,26 @@ const CHEAT=[
 {h:"🛠️ Sesi 17 — Offering Solutions & Conditionals",r:[["Big 5","Refund · Replace/Exchange · Repair · Store credit/Voucher · Discount"],["More","Complimentary gift · Free upgrade · Extended warranty · Free shipping/Waived fee"],["Action verbs","investigate (menyelidiki) · prioritize · ensure (memastikan) · waive · expedite (mempercepat) · resolve · compensate · arrange"],["Zero Cond.","If/When + Present Simple, Present Simple → fakta: 'If you heat ice, it melts.'"],["First Cond.","If + Present Simple, will/can + V1 → janji/tawaran. <b>JANGAN</b> 'If you will send…'"],["Comma","Klausa utama di depan → tanpa koma: 'I will refund you if you send the receipt.'"],["Clause","Phrase = tanpa subjek+predikat · Independent clause = bisa berdiri sendiri · Dependent clause = tidak bisa"],["Sentence types","Simple (1 IC) · Compound (IC + but/and/or + IC) · Complex (IC + DC)"],["5 Steps","1 Transition → 2 Direct solution → 3 Alternatives → 4 Sweetener → 5 Check agreement"],["Check agreement","How does that sound to you? · Would that be an acceptable solution?"]]},
 {h:"🎯 Sesi 18 — Adjectives & Adverbs",r:[["Adjective","Sebelum noun / setelah 'to be' → status masalah: 'The damage is severe.'"],["Adverb","Setelah action verb → cara menangani: 'We worked carefully.'"],["Adjectives","accurate · defective · confidential · reliable · urgent · late · vague · severe · thorough · sudden · faulty · inefficient · critical · fragile · overdue"],["Opposites","accurate↔inaccurate · urgent↔routine · severe↔mild · sudden↔gradual · fragile↔sturdy · risky↔safe"],["Order","Opinion sebelum Fact: 'a terrible digital error'"],["Adj + ly","careful→carefully · quick→quickly · thorough→thoroughly"],["Spelling","happy→happily · gentle→gently · basic→basically · full→fully · public→publicly"],["Noun + ly","friend→friendly · cost→costly (ADJECTIVE!)"],["Irregular","good→<b>well</b> · fast→fast · hard→hard (hardly = nyaris tidak) · late→late (lately = akhir-akhir ini)"],["Placement","Frekuensi: sebelum main verb, setelah 'to be' · Waktu/tempat: di akhir · Manner: setelah object"],["Only/Even/Just","'Only Aryo approved' ≠ 'Aryo approved only the budget' · 'Santi just sent' (baru saja) ≠ 'sent just the email' (hanya itu)"]]},
 ];
+const H=["Bentuk","Rumus","Contoh"];
+const FORMULA=[
+{h:"1️⃣ To Be — am / is / are (Sesi 1)",u:"Menyatakan identitas, jabatan, asal, keadaan.",t:[H,["(+)","S + am/is/are + noun/adj/place","She <b>is</b> a manager."],["(−)","S + am/is/are + <b>not</b> + ...","They <b>are not</b> from HR."],["(?)","Am/Is/Are + S + ...?","<b>Is</b> he the supervisor?"],["I / he-she-it / you-we-they","am / is / are","I <b>am</b> · It <b>is</b> · We <b>are</b>"]]},
+{h:"2️⃣ Present Simple (Sesi 4)",u:"Kebiasaan, rutinitas, fakta, jadwal tetap. Signal: always, usually, often, sometimes, never, every day.",t:[H,["(+) I/you/we/they","S + V1","They <b>submit</b> reports."],["(+) he/she/it","S + V1 + <b>s/es</b>","She <b>checks</b> emails."],["(−)","S + do/does + <b>not</b> + V1","He <b>doesn't attend</b> the meeting."],["(?)","Do/Does + S + V1?","<b>Does</b> she work here?"],["Wh-?","Wh + do/does + S + V1?","Where <b>do</b> you work?"],["Ejaan -s/-es","-o,-x,-ch,-sh,-s → +es · konsonan+y → ies","go→goes · fix→fixes · try→tries"]]},
+{h:"3️⃣ Present Continuous (Sesi 6)",u:"Aksi yang SEDANG berlangsung. Signal: now, at the moment, currently. Stative verbs (know, understand, like) TIDAK pakai -ing.",t:[H,["(+)","S + am/is/are + V-ing","She <b>is meeting</b> a client."],["(−)","S + am/is/are + not + V-ing","I <b>am not working</b>."],["(?)","Am/Is/Are + S + V-ing?","<b>Are</b> they waiting?"]]},
+{h:"4️⃣ Past Simple (Sesi 13–14)",u:"Kejadian yang sudah selesai di masa lalu. Signal: yesterday, last week, ago, in 2024.",t:[H,["(+) regular","S + V1 + <b>ed</b>","I <b>submitted</b> the report."],["(+) irregular","S + V2","She <b>sent</b> the email."],["(−)","S + <b>did not (didn't)</b> + <b>V1</b>","He <b>didn't pay</b> (bukan didn't paid)."],["(?)","Did + S + V1?","<b>Did</b> you attend?"],["Wh-?","Wh + did + S + V1?","What <b>did</b> you <b>do</b>?"],["To be lampau","I/he/she/it <b>was</b> · you/we/they <b>were</b>","The delivery <b>was</b> late."],["Ejaan -ed","+d (close→closed) · y→ied (copy→copied) · gandakan (submit→submitted)",""]]},
+{h:"5️⃣ Future — will vs going to (Sesi 9)",u:"will = keputusan spontan, janji, prediksi. going to = rencana yang sudah diputuskan / bukti jelas.",t:[H,["will (+)","S + will + V1","I <b>will answer</b> it!"],["will (−)","S + will not (won't) + V1","I <b>won't be</b> late."],["will (?)","Will + S + V1?","<b>Will</b> you help me?"],["going to (+)","S + am/is/are + going to + V1","We <b>are going to fly</b> to Bali."],["going to (−)","S + am/is/are + <b>not</b> + going to + V1","He <b>isn't going to join</b>."],["going to (?)","Am/Is/Are + S + going to + V1?","<b>Is</b> it <b>going to</b> rain?"]]},
+{h:"6️⃣ Modal Verbs (Sesi 5, 12)",u:"Setelah modal SELALU V1 (tanpa to, tanpa -s).",t:[H,["Rumus umum","S + modal + V1 · S + modal + not + V1 · Modal + S + V1?","She <b>can</b> help. · <b>Can</b> she help?"],["Permintaan","Can/Could/Would you + V1 ...?","<b>Could you</b> send the file?"],["Izin","May/Can I + V1 ...?","<b>May I</b> open the window?"],["Tawaran","Shall I + V1? · Would you like + noun/to V1?","<b>Shall I</b> help you?"],["Usulan","Shall we + V1?","<b>Shall we</b> take a taxi?"],["Saran","should / ought to + V1","You <b>should rest</b>."],["Kewajiban","must (internal) · have to (aturan)","I <b>have to</b> wear a helmet."],["Larangan / tidak wajib","must not = DILARANG · don't have to = tidak perlu","You <b>mustn't</b> smoke. · You <b>don't have to</b> come."],["Kemungkinan","may (±50%) · might (lebih kecil)","It <b>might</b> rain."]]},
+{h:"7️⃣ There is / There are (Sesi 3)",u:"Menyatakan sesuatu ADA.",t:[H,["(+) tunggal/uncountable","There is + a/an/some + noun","There <b>is</b> a printer."],["(+) jamak","There are + plural noun","There <b>are</b> 3 rooms."],["(−)","There isn't / aren't + any + noun","There <b>aren't any</b> chairs."],["(?)","Is there / Are there + (any) + noun?","<b>Is there</b> any paper?"]]},
+{h:"8️⃣ Article, Preposisi Waktu & Tempat (Sesi 2–3, 12)",t:[H,["a / an","a + bunyi konsonan · an + bunyi vokal","<b>a</b> desk · <b>an</b> hour · <b>a</b> university"],["the","benda spesifik / sudah diketahui","Where is <b>the</b> meeting room?"],["at / on / in (waktu)","at + jam · on + hari/tanggal · in + bulan/tahun/durasi","<b>at</b> 9 AM · <b>on</b> Monday · <b>in</b> October"],["at / on / in (tempat)","at + titik · on + permukaan/lantai · in + ruang/area","<b>at</b> the door · <b>on</b> the 5th floor · <b>in</b> the room"],["by / until / before","by = deadline · until = durasi · before = sebelum kejadian","Submit <b>by</b> Friday. · Wait <b>until</b> 5."]]},
+{h:"9️⃣ Imperative / SOP (Sesi 11)",u:"Perintah, instruksi, arah jalan. Subjek tidak ditulis.",t:[H,["(+)","V1 + object","<b>Submit</b> the report."],["(−)","Don't / Do not + V1","<b>Do not touch</b> the machine."],["Sopan","Please / Kindly + V1","<b>Kindly sign</b> here."],["Ajakan","Let's + V1","<b>Let's start</b>."],["Urutan","First, ... Next, ... Then, ... After that, ... Finally, ...","(selalu diikuti koma)"],["Saran","I suggest/recommend + V-ing","I suggest <b>postponing</b> the meeting."]]},
+{h:"🔟 Countable / Uncountable (Sesi 10)",t:[H,["Countable","a/an, many, few, several + noun (jamak ok)","How <b>many</b> chairs?"],["Uncountable","some, much, little + noun (tanpa -s)","How <b>much</b> information?"],["some","kalimat positif + tawaran","Would you like <b>some</b> coffee?"],["any","kalimat negatif + pertanyaan","We don't have <b>any</b> rooms."]]},
+{h:"1️⃣1️⃣ Conjunction (Sesi 16)",t:[H,["because","Effect + because + Cause","I am late <b>because</b> the traffic is bad."],["so","Cause + so + Effect","The traffic is bad, <b>so</b> I am late."],["but","Kabar buruk + but + kabar baik / kontras","I can't finish today, <b>but</b> I will tomorrow."],["and","Aksi/ide sejenis + and + aksi/ide","I found the error <b>and</b> fixed it."]]},
+{h:"1️⃣2️⃣ Apology & Softeners (Sesi 16)",t:[H,["3-Step Formula","1 Apology → 2 Responsibility + Reason → 3 Solution","I'm so sorry. It was my fault because I misread the email. I will resend it now."],["Minta maaf","I'm sorry for + noun/V-ing · I apologize for + noun","I apologize <b>for the confusion</b>."],["I'm afraid","I'm afraid + clause","<b>I'm afraid</b> we don't have it."],["Unfortunately","Unfortunately, + clause","<b>Unfortunately</b>, we are out of stock."],["a little / a bit of","a little + adj · a bit of a + noun","We have <b>a bit of a</b> problem."],["just","I just + V1","I <b>just need</b> your signature."],["seem","S + seem(s) + to V1 / to be + adj","The file <b>seems to be</b> wrong."]]},
+{h:"1️⃣3️⃣ Zero & First Conditional (Sesi 17)",u:"Zero = fakta/kebiasaan. First = janji, tawaran, kemungkinan nyata. If-clause JANGAN pakai will.",t:[H,["Zero","If/When + Present Simple, Present Simple","If you heat ice, it <b>melts</b>."],["First","If + Present Simple, will/can + V1","If you send the receipt, I <b>will process</b> the refund."],["Urutan terbalik","Main clause + if + Present Simple (tanpa koma)","I will refund you if you send the receipt."],["Salah ❌","If you <s>will send</s> ...","✅ If you <b>send</b> ..."]]},
+{h:"1️⃣4️⃣ Menyelesaikan Komplain (Sesi 17)",t:[H,["Transisi","Let's see what we can do to fix this.","(Step 1)"],["Solusi langsung","What I can do right now is + V1 · I would be happy to + V1 · Let me + V1 for you","<b>I would be happy to</b> send a replacement."],["Alternatif","We can't ..., but we can ... · How about we + V1? · Would you accept + noun?","<b>How about we</b> exchange it?"],["Sweetener","As a gesture of goodwill, ... · To make up for the inconvenience, ...","(Step 4)"],["Cek persetujuan","Would that be an acceptable solution? · Does this meet your expectations?","(Step 5)"]]},
+{h:"1️⃣5️⃣ Adjective vs Adverb (Sesi 18)",u:"Adjective = status/kondisi (WHAT). Adverb = cara melakukan (HOW).",t:[H,["Adjective","S + to be + adj · adj + noun","The damage <b>is severe</b>. · a <b>severe</b> problem"],["Adverb manner","S + V (+ O) + adverb","We worked <b>carefully</b>. · He answered the email <b>quickly</b>."],["Pembentukan","adj + ly · y→ily · -le→-ly · -ic→-ically · -ll→-lly","quick→quickly · happy→happily · gentle→gently · basic→basically · full→fully"],["Tak beraturan","good→<b>well</b> · fast→fast · hard→hard · late→late","She sings <b>well</b>."],["Noun + ly","= ADJECTIVE","friend<b>ly</b> · cost<b>ly</b> · time<b>ly</b>"],["Urutan adjective","Opinion → Fact → Noun","a <b>terrible digital</b> error"],["Posisi adverb","Frekuensi: sebelum V / setelah be · Waktu/tempat: akhir kalimat · Manner: setelah V/O (jangan pisahkan V dan O)","He <b>always</b> replies. · He is <b>never</b> late."]]},
+{h:"1️⃣6️⃣ Urutan Adjective (OSASCOMP, Sesi 15)",t:[H,["Rumus","Opinion → Size → Age → Shape → Color → Origin → Material → Purpose + Noun","a <b>beautiful large old round black Japanese wooden</b> table"]]},
+{h:"1️⃣7️⃣ Recount Text & Email (Sesi 8, 15)",t:[H,["Recount","Orientation (who, when, where) → Events (First, Then, Finally + Past Simple) → Re-orientation","Last week I went to Bandung. First, we ... Overall, it was ..."],["Email formal","Subject → Dear Mr./Ms. X, → tujuan → permintaan/aksi → Yours sincerely/faithfully, → nama","Dear Mr. Tanaka, I am writing to ..."],["Text types","Recount (past) · Procedure (imperative) · Descriptive (present, 1 subjek) · Report (present, umum) · Narrative (konflik)","—"]]},
+];
 
 
 // ===================== ENGINE =====================
@@ -559,18 +1118,17 @@ const store={
 };
 
 // Pool: soal baru ditulis "jawaban benar di pertama"; semua opsi diacak deterministik
-// Soal lama (kunci sudah ditentukan) ikut diacak opsinya kecuali opsinya merujuk huruf/opsi lain ('Both B and C')
-const POOL=RAW.concat(NEW).map(r=>{
+// Soal ditulis "jawaban benar di pertama"/kunci huruf; semua opsi diacak deterministik, kecuali yang merujuk opsi lain ('Both B and C')
+function mkPool(raw){return raw.map(r=>{
   const fixed=!r.shuffle&&r.o.some(o=>/\b(both|none of|all of the above)\b/i.test(o));
   if(fixed) return r;
   const key=r.shuffle?0:LET.indexOf(r.a);
   const idx=shuf([0,1,2,3],rng(hash(r.q)));
   return {t:r.t,q:r.q,o:idx.map(i=>r.o[i]),a:LET[idx.indexOf(key)],e:r.e};
-});
-const SIG=POOL.length+':'+hash(POOL.map(q=>q.q).join('|'));
+});}
 
 // Tiap topik disebar merata lalu dipotong per 50 → proporsi topik seimbang, tanpa duplikat dalam satu part
-function buildParts(){
+function buildParts(POOL){
   const by={};
   POOL.forEach((q,i)=>{(by[q.t]=by[q.t]||[]).push(i);});
   const keyed=[];
@@ -586,29 +1144,37 @@ function buildParts(){
     return shuf(out,rng(hash('part'+p)));
   });
 }
-const PART_QS=buildParts();
+const SETS={
+  B:{name:'Set B · Soal Baru',raw:S2},
+  A:{name:'Set A · Soal Lama',raw:RAW.concat(NEW,NEW2)}
+};
+Object.values(SETS).forEach(x=>{x.pool=mkPool(x.raw);x.sig=x.pool.length+':'+hash(x.pool.map(q=>q.q).join('|'));x.parts=buildParts(x.pool);});
+let setId=store.get('set')==='A'?'A':'B';
+const cs=()=>SETS[setId];
 
 let cur=-1,qs=[],ans={},done=false;
-const load=i=>{const s=store.get('p'+i);return s&&s.sig===SIG?s:null;};
+const load=i=>{const s=store.get('p'+setId+i);return s&&s.sig===cs().sig?s:null;};
 const calc=()=>{let c=0;qs.forEach((q,i)=>{if(ans[i]===q.a)c++;});return{correct:c,score:Math.round(c/PER*100)};};
-const save=()=>{if(cur>=0)store.set('p'+cur,{sig:SIG,ans,done,score:calc().score});};
+const save=()=>{if(cur>=0)store.set('p'+setId+cur,{sig:cs().sig,ans,done,score:calc().score});};
 
 function go(p){
-  ['home','quiz','result','cheat','essay'].forEach(x=>$('page-'+x).classList.toggle('act',x===p));
-  const n={home:0,quiz:0,result:0,cheat:1,essay:2}[p];
+  ['home','quiz','result','formula','cheat','essay'].forEach(x=>$('page-'+x).classList.toggle('act',x===p));
+  const n={home:0,quiz:0,result:0,formula:1,cheat:2,essay:3}[p];
   document.querySelectorAll('.nb').forEach((b,i)=>b.classList.toggle('act',i===n));
   window.scrollTo(0,0);
 }
 
 function renderHome(){
   $('s-total').textContent=PARTS.length*PER;
-  $('s-uniq').textContent=POOL.length;
+  $('s-uniq').textContent=cs().pool.length;
+  $('set-seg').innerHTML=Object.keys(SETS).sort().reverse().map(k=>`<button class="sg${k===setId?' on':''}" data-s="${k}">${SETS[k].name}</button>`).join('');
   $('part-list').innerHTML=PARTS.map((p,i)=>{
     const s=load(i),n=s?Object.keys(s.ans).length:0;
     const st=s&&s.done?['dn','Skor '+s.score]:n?['pr',n+'/'+PER]:['',PER+' soal'];
     return `<div class="pi" data-i="${i}"><div class="pil"><div class="pico" style="background:${p.color}20">${p.icon}</div><div><div class="pit">${p.title} — Mix Sesi 1–18</div><div class="pis">${s&&s.done?'Selesai · ketuk untuk lihat review':n?'Sedang dikerjakan · ketuk untuk lanjut':'Belum dikerjakan'}</div></div></div><span class="bdg ${st[0]}">${st[1]}</span></div>`;
   }).join('');
 }
+$('set-seg').addEventListener('click',e=>{const b=e.target.closest('.sg');if(!b)return;setId=b.dataset.s;store.set('set',setId);renderHome();});
 $('part-list').addEventListener('click',e=>{const c=e.target.closest('.pi');if(c)startPart(+c.dataset.i);});
 
 function renderQuiz(){
@@ -629,7 +1195,7 @@ function updateProgress(){
 }
 
 function startPart(i){
-  cur=i;qs=PART_QS[i];const s=load(i);
+  cur=i;qs=cs().parts[i];const s=load(i);
   ans=s?s.ans:{};done=!!(s&&s.done);
   if(done){showResult();return;}
   renderQuiz();go('quiz');
@@ -655,7 +1221,7 @@ function showResult(){
 }
 function retry(){
   if(!confirm('Ulangi part ini? Jawaban dan skor sebelumnya akan dihapus.'))return;
-  store.del('p'+cur);ans={};done=false;renderQuiz();go('quiz');
+  store.del('p'+setId+cur);ans={};done=false;renderQuiz();go('quiz');
 }
 function backHome(){
   if(!done&&Object.keys(ans).length&&!confirm('Keluar dari ujian? Jawaban sudah tersimpan dan bisa dilanjutkan nanti.'))return;
@@ -664,6 +1230,8 @@ function backHome(){
 
 function tbl(rows){return `<div class="tw"><table class="t">${rows.map((r,i)=>'<tr>'+r.map(c=>i?`<td>${c}</td>`:`<th>${c}</th>`).join('')+'</tr>').join('')}</table></div>`;}
 $('cheat-list').innerHTML=CHEAT.map(s=>`<div class="cs"><h3>${s.h}</h3>${(s.r||[]).map(([k,v])=>`<div class="cr"><div class="ck">${k}</div><div class="cv">${v}</div></div>`).join('')}${s.tbl?tbl(s.tbl):''}</div>`).join('');
+
+$('formula-list').innerHTML=FORMULA.map(s=>`<div class="cs"><h3>${s.h}</h3>${s.u?`<div style="font-size:12px;color:var(--muted);margin-bottom:8px">${s.u}</div>`:''}<div class="tw"><table class="t fm">${s.t.map((r,i)=>'<tr>'+r.map((c,j)=>i?`<td${j==1?' style="font-weight:600"':''}>${c}</td>`:`<th>${c}</th>`).join('')+'</tr>').join('')}</table></div></div>`).join('');
 
 function tg(el){
   const b=el.nextElementSibling;b.classList.toggle('show');
